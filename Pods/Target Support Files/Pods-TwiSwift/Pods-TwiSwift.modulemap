@@ -1,0 +1,6 @@
+framework module Pods_TwiSwift {
+  umbrella header "Pods-TwiSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}
