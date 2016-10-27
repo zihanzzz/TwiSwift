@@ -24,20 +24,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func onLogin(_ sender: Any) {
-        TwiSwiftClient.sharedInstance?.requestSerializer.removeAccessToken()
-        let callbackURL = URL(string: "twiswift://oauth")
-        TwiSwiftClient.sharedInstance?.fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: callbackURL, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
-            
-            print("got the request token")
-            let authURL = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken!.token!)")!
-            UIApplication.shared.open(authURL, options: [:], completionHandler: nil)
-        }, failure: { (error: Error?) -> Void in
-            print("Failed to get request token")
-        })
         
+        TwiSwiftClient.sharedInstance?.loginWithCompletion(completionHandler: { (user: User?, error: Error?) in
+            
+            if user != nil {
+                
+                self.performSegue(withIdentifier: "loginSegue", sender: self)
+                
+            } else {
+                
+                
+            }
+        })
     }
-    
-
-
 }
 

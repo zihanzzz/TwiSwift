@@ -43,38 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
-        TwiSwiftClient.sharedInstance?.fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in
-            print("Got the access token!")
-            TwiSwiftClient.sharedInstance?.requestSerializer.saveAccessToken(accessToken)
-            
-//            TwiSwiftClient.sharedInstance?.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
-//                
-////                print("user: \(response)")
-//                
-//            }, failure: { (operation: URLSessionDataTask?, error: Error) in
-//                
-//                print("error getting current user")
-//                
-//            })
-            
-            TwiSwiftClient.sharedInstance?.get("1.1/statuses/home_timeline.json", parameters: nil, progress: nil, success: { (operation:URLSessionDataTask, response: Any?) in
-                
-                print("home timeline: \(response)")
-                
-                
-            }, failure: { (operation: URLSessionDataTask?, error: Error) in
-                
-                print("error getting home timeline")
-            })
-            
-
-            
-            
-        }, failure: { (error: Error?) in
-            print("Failed to receive access token")
-        })
-        
+        TwiSwiftClient.sharedInstance?.openURL(url: url)
         return true
     }
 
