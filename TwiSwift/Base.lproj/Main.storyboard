@@ -39,10 +39,10 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Tweets View Controller-->
         <scene sceneID="jfp-9j-LXF">
             <objects>
-                <viewController id="iIP-M2-gbp" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TweetsViewController" id="iIP-M2-gbp" customClass="TweetsViewController" customModule="TwiSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="r9T-8N-J9H"/>
                         <viewControllerLayoutGuide type="bottom" id="iHg-j5-Ufb"/>
@@ -50,6 +50,16 @@
                     <view key="view" contentMode="scaleToFill" id="KX7-UX-SeO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3hQ-aR-L65">
+                                <rect key="frame" x="152" y="293" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="onLogout:" destination="iIP-M2-gbp" eventType="touchUpInside" id="f5v-Kd-yci"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                 </viewController>

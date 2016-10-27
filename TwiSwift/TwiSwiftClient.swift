@@ -38,6 +38,28 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    func homeTimelineWithParams(params: Dictionary<String, Any>?, completionHandler: @escaping ([Tweet]?, Error?) -> ()) {
+
+        self.get("1.1/statuses/home_timeline.json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+            
+            if let tweetsJson = response as? [Dictionary<String, AnyObject>] {
+                
+                let tweets = Tweet.tweetsWithArray(array: tweetsJson)
+                completionHandler(tweets, nil)
+                
+            }
+
+            
+            
+        }, failure: { (operation: URLSessionDataTask?, error: Error) in
+            
+            completionHandler(nil, error)
+            
+        })
+        
+        
+    }
+    
     func openURL(url: URL) {
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in
@@ -47,6 +69,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
             self.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
 
                 let user = User(dictionary: response as! Dictionary<String, AnyObject>)
+                User.currentUser = user
                 self.loginCompletionHandler(user, nil)
 
             }, failure: { (operation: URLSessionDataTask?, error: Error) in
