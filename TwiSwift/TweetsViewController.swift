@@ -30,9 +30,6 @@ class TweetsViewController: UIViewController {
         User.currentUser?.logout()
     }
     
-    
-    
-
     /*
     // MARK: - Navigation
 

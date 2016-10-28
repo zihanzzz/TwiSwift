@@ -9,12 +9,11 @@
 import UIKit
 import BDBOAuth1Manager
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         
     }
 
@@ -28,12 +27,9 @@ class ViewController: UIViewController {
         TwiSwiftClient.sharedInstance?.loginWithCompletion(completionHandler: { (user: User?, error: Error?) in
             
             if user != nil {
-                
                 self.performSegue(withIdentifier: "loginSegue", sender: self)
-                
             } else {
-                
-                
+                print("Login failure with error: \(error)")
             }
         })
     }

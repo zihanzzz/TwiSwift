@@ -12,7 +12,7 @@
 		E17445341DC1C2BF00400278 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17445331DC1C2BF00400278 /* User.swift */; };
 		E17445361DC1C36800400278 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17445351DC1C36800400278 /* Tweet.swift */; };
 		E1A099341DC09EBD00E0AC36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A099331DC09EBD00E0AC36 /* AppDelegate.swift */; };
-		E1A099361DC09EBD00E0AC36 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A099351DC09EBD00E0AC36 /* ViewController.swift */; };
+		E1A099361DC09EBD00E0AC36 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A099351DC09EBD00E0AC36 /* LoginViewController.swift */; };
 		E1A099391DC09EBD00E0AC36 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1A099371DC09EBD00E0AC36 /* Main.storyboard */; };
 		E1A0993B1DC09EBD00E0AC36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1A0993A1DC09EBD00E0AC36 /* Assets.xcassets */; };
 		E1A0993E1DC09EBD00E0AC36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1A0993C1DC09EBD00E0AC36 /* LaunchScreen.storyboard */; };
@@ -28,7 +28,7 @@
 		E17445351DC1C36800400278 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		E1A099301DC09EBD00E0AC36 /* TwiSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TwiSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1A099331DC09EBD00E0AC36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E1A099351DC09EBD00E0AC36 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E1A099351DC09EBD00E0AC36 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E1A099381DC09EBD00E0AC36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E1A0993A1DC09EBD00E0AC36 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E1A0993D1DC09EBD00E0AC36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -65,6 +65,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E136A5881DC31736003BC365 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E1A099351DC09EBD00E0AC36 /* LoginViewController.swift */,
+				E15CF6941DC1EEFC005E5BF1 /* TweetsViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
 		E17445321DC1C29B00400278 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -97,9 +106,8 @@
 			children = (
 				E17445321DC1C29B00400278 /* Models */,
 				E1A099451DC0A39300E0AC36 /* API */,
+				E136A5881DC31736003BC365 /* View Controllers */,
 				E1A099331DC09EBD00E0AC36 /* AppDelegate.swift */,
-				E1A099351DC09EBD00E0AC36 /* ViewController.swift */,
-				E15CF6941DC1EEFC005E5BF1 /* TweetsViewController.swift */,
 				E1A099371DC09EBD00E0AC36 /* Main.storyboard */,
 				E1A0993A1DC09EBD00E0AC36 /* Assets.xcassets */,
 				E1A0993C1DC09EBD00E0AC36 /* LaunchScreen.storyboard */,
@@ -244,7 +252,7 @@
 				E17445361DC1C36800400278 /* Tweet.swift in Sources */,
 				E15CF6951DC1EEFC005E5BF1 /* TweetsViewController.swift in Sources */,
 				E1A099491DC0A52200E0AC36 /* TwiSwiftClient.swift in Sources */,
-				E1A099361DC09EBD00E0AC36 /* ViewController.swift in Sources */,
+				E1A099361DC09EBD00E0AC36 /* LoginViewController.swift in Sources */,
 				E1A099341DC09EBD00E0AC36 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

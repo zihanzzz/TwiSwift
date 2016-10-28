@@ -11,11 +11,11 @@ import BDBOAuth1Manager
 
 class TwiSwiftClient: BDBOAuth1SessionManager {
     
-    var loginCompletionHandler: (User?, Error?) -> () = {arg in}
-    
     static let twitterBaseURL = URL(string: "https://api.twitter.com")
     static let twitterConsumerKey = "GFsnqjiXQXiBWBrywEmxs38Be"
     static let twitterConsumerSecret = "rmPvY1awnl0GoGtxreNGhfqfBHdDJLWBCkoNEZmiLvYMVXVKM0"
+    
+    var loginCompletionHandler: (User?, Error?) -> () = {arg in}
     
     static let sharedInstance = TwiSwiftClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
     
@@ -24,7 +24,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         loginCompletionHandler = completionHandler
         
         // Fetch request token & redirect to authorization page
-        TwiSwiftClient.sharedInstance?.requestSerializer.removeAccessToken()
+        TwiSwiftClient.sharedInstance?.deauthorize()
         let callbackURL = URL(string: "twiswift://oauth")
         fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: callbackURL, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
             
@@ -32,9 +32,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
             UIApplication.shared.open(authURL, options: [:], completionHandler: nil)
             
         }, failure: { (error: Error?) -> Void in
-            
             self.loginCompletionHandler(nil, error)
-            
         })
     }
     
@@ -43,21 +41,13 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         self.get("1.1/statuses/home_timeline.json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
             
             if let tweetsJson = response as? [Dictionary<String, AnyObject>] {
-                
                 let tweets = Tweet.tweetsWithArray(array: tweetsJson)
                 completionHandler(tweets, nil)
-                
             }
 
-            
-            
         }, failure: { (operation: URLSessionDataTask?, error: Error) in
-            
             completionHandler(nil, error)
-            
         })
-        
-        
     }
     
     func openURL(url: URL) {
@@ -65,7 +55,6 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in
             
             self.requestSerializer.saveAccessToken(accessToken)
-            
             self.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
 
                 let user = User(dictionary: response as! Dictionary<String, AnyObject>)
@@ -73,11 +62,8 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
                 self.loginCompletionHandler(user, nil)
 
             }, failure: { (operation: URLSessionDataTask?, error: Error) in
-                
                 self.loginCompletionHandler(nil, error)
-                
             })
-            
         }, failure: { (error: Error?) in
             self.loginCompletionHandler(nil, error)
         })

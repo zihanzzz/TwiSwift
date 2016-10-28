@@ -20,8 +20,6 @@ enum UserEventEnum: String {
     }
 }
 
-
-
 class User: NSObject {
     
     var name: String?
@@ -32,16 +30,16 @@ class User: NSObject {
     
     class var currentUser: User? {
         get {
+            let defaults = UserDefaults.standard
+            
             if _currentUser == nil {
-                let data = UserDefaults.standard.object(forKey: currentUserKey)
-                if data != nil {
+                if let data = defaults.object(forKey: currentUserKey) as? Data {
+                    
                     do {
-                        if let data = UserDefaults.standard.object(forKey: currentUserKey) as? Data {
-                            let dictionary = try JSONSerialization.jsonObject(with: data, options: [])
-                            _currentUser = User(dictionary: dictionary as! Dictionary<String, AnyObject>)
-                        }
+                        let dictionary = try JSONSerialization.jsonObject(with: data, options: [])
+                        _currentUser = User(dictionary: dictionary as! Dictionary<String, AnyObject>)
                     } catch {
-                        
+                        print("JSON serialization error: \(error)")
                     }
                 }
             }
@@ -49,53 +47,33 @@ class User: NSObject {
         }
         set(user) {
             _currentUser = user
-            
+            let defaults = UserDefaults.standard
+
             if _currentUser != nil {
                 do {
                     let data = try JSONSerialization.data(withJSONObject: user?.dictionary as Any, options: [])
-                    UserDefaults.standard.set(data, forKey: currentUserKey)
-                    UserDefaults.standard.synchronize()
+                    defaults.set(data, forKey: currentUserKey)
                 } catch {
-                    UserDefaults.standard.set(nil, forKey: currentUserKey)
+                    print("JSON deserialization error: \(error)")
                 }
-                
             } else {
-                UserDefaults.standard.set(nil, forKey: currentUserKey)
+                defaults.removeObject(forKey: currentUserKey)
             }
-            UserDefaults.standard.synchronize()
-            
+            defaults.synchronize()
         }
     }
-    
     
     init(dictionary: Dictionary<String, AnyObject>) {
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
-        profileImageUrl = dictionary["profile_image_url"] as? String
+        profileImageUrl = dictionary["profile_image_url_https"] as? String
         tagline = dictionary["description"] as? String
         self.dictionary = dictionary
     }
     
     func logout() {
         User.currentUser = nil
-        TwiSwiftClient.sharedInstance?.requestSerializer.removeAccessToken()
+        TwiSwiftClient.sharedInstance?.deauthorize()
         NotificationCenter.default.post(name: UserEventEnum.didLogout.notification, object: nil)
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
 }
