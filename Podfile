@@ -8,5 +8,6 @@ target 'TwiSwift' do
   # Pods for TwiSwift
   pod 'Alamofire'
   pod 'BDBOAuth1Manager'
+  pod 'AFNetworking'
 
 end

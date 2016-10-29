@@ -17,6 +17,8 @@
 		E1A0993B1DC09EBD00E0AC36 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E1A0993A1DC09EBD00E0AC36 /* Assets.xcassets */; };
 		E1A0993E1DC09EBD00E0AC36 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1A0993C1DC09EBD00E0AC36 /* LaunchScreen.storyboard */; };
 		E1A099491DC0A52200E0AC36 /* TwiSwiftClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A099481DC0A52200E0AC36 /* TwiSwiftClient.swift */; };
+		E1A19FC31DC3331A008A610A /* UIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A19FC21DC3331A008A610A /* UIConstants.swift */; };
+		E1A19FC51DC33519008A610A /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A19FC41DC33519008A610A /* TweetCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +36,8 @@
 		E1A0993D1DC09EBD00E0AC36 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E1A0993F1DC09EBD00E0AC36 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E1A099481DC0A52200E0AC36 /* TwiSwiftClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwiSwiftClient.swift; sourceTree = "<group>"; };
+		E1A19FC21DC3331A008A610A /* UIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIConstants.swift; sourceTree = "<group>"; };
+		E1A19FC41DC33519008A610A /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +111,7 @@
 				E17445321DC1C29B00400278 /* Models */,
 				E1A099451DC0A39300E0AC36 /* API */,
 				E136A5881DC31736003BC365 /* View Controllers */,
+				E1A19FC11DC332F2008A610A /* Views */,
 				E1A099331DC09EBD00E0AC36 /* AppDelegate.swift */,
 				E1A099371DC09EBD00E0AC36 /* Main.storyboard */,
 				E1A0993A1DC09EBD00E0AC36 /* Assets.xcassets */,
@@ -122,6 +127,15 @@
 				E1A099481DC0A52200E0AC36 /* TwiSwiftClient.swift */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		E1A19FC11DC332F2008A610A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E1A19FC21DC3331A008A610A /* UIConstants.swift */,
+				E1A19FC41DC33519008A610A /* TweetCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +265,8 @@
 				E17445341DC1C2BF00400278 /* User.swift in Sources */,
 				E17445361DC1C36800400278 /* Tweet.swift in Sources */,
 				E15CF6951DC1EEFC005E5BF1 /* TweetsViewController.swift in Sources */,
+				E1A19FC51DC33519008A610A /* TweetCell.swift in Sources */,
+				E1A19FC31DC3331A008A610A /* UIConstants.swift in Sources */,
 				E1A099491DC0A52200E0AC36 /* TwiSwiftClient.swift in Sources */,
 				E1A099361DC09EBD00E0AC36 /* LoginViewController.swift in Sources */,
 				E1A099341DC09EBD00E0AC36 /* AppDelegate.swift in Sources */,
