@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D4530E5BBA7BC20FBC5BB276 /* Pods_TwiSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DA83E35FEDDD5F4B0FAC550 /* Pods_TwiSwift.framework */; };
+		E149A8671DC542A200918C9C /* TweetDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E149A8661DC542A200918C9C /* TweetDetailsViewController.swift */; };
 		E15CF6951DC1EEFC005E5BF1 /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15CF6941DC1EEFC005E5BF1 /* TweetsViewController.swift */; };
 		E17445341DC1C2BF00400278 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17445331DC1C2BF00400278 /* User.swift */; };
 		E17445361DC1C36800400278 /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17445351DC1C36800400278 /* Tweet.swift */; };
@@ -25,6 +26,7 @@
 		1DA83E35FEDDD5F4B0FAC550 /* Pods_TwiSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwiSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA18322D6AE2E16807797600 /* Pods-TwiSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwiSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwiSwift/Pods-TwiSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		E02D2B4461B1DBACE11B8818 /* Pods-TwiSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwiSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwiSwift/Pods-TwiSwift.release.xcconfig"; sourceTree = "<group>"; };
+		E149A8661DC542A200918C9C /* TweetDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailsViewController.swift; sourceTree = "<group>"; };
 		E15CF6941DC1EEFC005E5BF1 /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		E17445331DC1C2BF00400278 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E17445351DC1C36800400278 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			children = (
 				E1A099351DC09EBD00E0AC36 /* LoginViewController.swift */,
 				E15CF6941DC1EEFC005E5BF1 /* TweetsViewController.swift */,
+				E149A8661DC542A200918C9C /* TweetDetailsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				E17445361DC1C36800400278 /* Tweet.swift in Sources */,
 				E15CF6951DC1EEFC005E5BF1 /* TweetsViewController.swift in Sources */,
 				E1A19FC51DC33519008A610A /* TweetCell.swift in Sources */,
+				E149A8671DC542A200918C9C /* TweetDetailsViewController.swift in Sources */,
 				E1A19FC31DC3331A008A610A /* UIConstants.swift in Sources */,
 				E1A099491DC0A52200E0AC36 /* TwiSwiftClient.swift in Sources */,
 				E1A099361DC09EBD00E0AC36 /* LoginViewController.swift in Sources */,
@@ -406,6 +410,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jameszhou.mobile.TwiSwift;
 				PRODUCT_NAME = TwitterLite;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -421,6 +426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jameszhou.mobile.TwiSwift;
 				PRODUCT_NAME = TwitterLite;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -1,6 +1,6 @@
-# Project 3 - *TwiSwift*
+# Project 3 - *TwitterLite*
 
-**TwiSwift** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
+**TwitterLite** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
 
 Time spent: **X** hours spent in total
 

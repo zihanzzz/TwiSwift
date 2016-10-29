@@ -1,0 +1,81 @@
+//
+//  TweetDetailsViewController.swift
+//  TwiSwift
+//
+//  Created by James Zhou on 10/29/16.
+//  Copyright © 2016 James Zhou. All rights reserved.
+//
+
+import UIKit
+
+class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+
+    @IBOutlet weak var detailsTableView: UITableView!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        UIConstants.configureNavBarStyle(forViewController: self, withTitle: "Tweet")
+        
+        detailsTableView.dataSource = self
+        detailsTableView.delegate = self
+
+        detailsTableView.rowHeight = UITableViewAutomaticDimension
+        detailsTableView.estimatedRowHeight = 120
+        detailsTableView.showsVerticalScrollIndicator = false
+        
+        // remove empty cells
+        detailsTableView.tableFooterView = UIView()
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    // MARK: - Table View
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        var reuseIdentifier = ""
+        
+        switch indexPath.row {
+        case 0:
+            reuseIdentifier = "TweetContent"
+            break
+        case 1:
+            reuseIdentifier = "TweetNumbers"
+            break
+        case 2:
+            reuseIdentifier = "TweetActions"
+            break
+        default:
+            break
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
+        
+        
+        return cell
+    }
+
+    
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
