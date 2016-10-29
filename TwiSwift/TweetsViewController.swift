@@ -17,10 +17,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let logoImageView = UIImageView(image: UIImage(named: "twitter_logo"))
-        logoImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        logoImageView.contentMode = .scaleAspectFit
-        self.navigationItem.titleView = logoImageView
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: .valueChanged)
+        tweetsTableView.insertSubview(refreshControl, at: 0)
+
+        UIConstants.configureNavBarStyle(forViewController: self, withTitle: "Home")
         
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self
@@ -59,6 +60,17 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         return cell
     }
+    
+    // MARK: - Refresh Control
+    func refreshControlAction(refreshControl: UIRefreshControl) {
+        TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: nil, completionHandler: { (tweets: [Tweet]?, errlr: Error?) in
+            self.tweets = tweets
+            self.tweetsTableView.reloadData()
+            refreshControl.endRefreshing()
+        })
+    }
+    
+    
 
     
     

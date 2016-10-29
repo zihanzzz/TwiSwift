@@ -11,6 +11,17 @@ import SwiftDate
 
 class UIConstants: NSObject {
     
+    // MARK : - Nav Bar
+    static func configureNavBarStyle(forViewController viewController: UIViewController, withTitle: String) {
+        viewController.navigationController?.navigationBar.barTintColor = UIConstants.twitterPrimaryBlue
+        viewController.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white,
+                                                                                  NSFontAttributeName: getTitleFont()]
+        viewController.navigationController?.navigationBar.tintColor = UIColor.white
+        viewController.navigationController?.navigationBar.isTranslucent = false
+        viewController.navigationItem.title = withTitle
+        viewController.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: getBarButtonItemFont()], for: .normal)
+        viewController.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: getBarButtonItemFont()], for: .normal)
+    }
     
     // MARK : - Colors
     
@@ -22,6 +33,14 @@ class UIConstants: NSObject {
     
     
     // MARK : - Fonts
+    static func getBarButtonItemFont() -> UIFont {
+        return UIFont(name: getTextFontNameBold(), size: 16)!
+    }
+    
+    static func getTitleFont() -> UIFont {
+        return UIFont(name: getTextFontNameBold(), size: 20)!
+    }
+    
     static func getTextFontNameBold() -> String {
         return "HelveticaNeue-Bold"
     }
