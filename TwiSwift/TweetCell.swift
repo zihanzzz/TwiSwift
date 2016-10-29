@@ -65,6 +65,13 @@ class TweetCell: UITableViewCell {
                     topRTImageView.isHidden = true
                     topRTLabel.isHidden = true
                 }
+            }
+            
+            if let date = tweet.createdAt {
+                
+                
+                
+                timeLabel.text = UIConstants.getTimeLabel(date: date)
                 
             }
             
@@ -84,9 +91,16 @@ class TweetCell: UITableViewCell {
     
     func setUpLabelAppearances() {
         
-        topRTLabel.textColor = UIConstants.twitterLightGray
-        topRTLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 13)
+        for label in [topRTLabel, usernameLabel, timeLabel] {
+            label?.textColor = UIConstants.twitterLightGray
+            label?.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 14)
+        }
         
+        nameLabel.textColor = UIColor.black
+        nameLabel.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 15)
+        
+        tweetTextLabel.textColor = UIColor.black
+        tweetTextLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 18)
     }
     
     func clearCellState() {

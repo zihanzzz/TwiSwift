@@ -92,7 +92,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@RobMayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-GU-PL3">
-                                                    <rect key="frame" x="164" y="31" width="89" height="17"/>
+                                                    <rect key="frame" x="164" y="31" width="88.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.6568221275252526" green="0.6568221275252526" blue="0.6568221275252526" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -129,10 +129,10 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEG-t8-hEw">
-                                                    <rect key="frame" x="342" y="31" width="25" height="21"/>
+                                                    <rect key="frame" x="332" y="27" width="35" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="P4V-5B-J8i"/>
-                                                        <constraint firstAttribute="width" constant="25" id="zDd-6L-sh4"/>
+                                                        <constraint firstAttribute="width" constant="35" id="zDd-6L-sh4"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.6568221275252526" green="0.6568221275252526" blue="0.6568221275252526" alpha="1" colorSpace="calibratedRGB"/>
@@ -162,12 +162,12 @@
                                                 <constraint firstItem="hAu-cv-8M8" firstAttribute="leading" secondItem="ub7-Dc-myo" secondAttribute="leading" constant="39" id="YdT-6S-V3d"/>
                                                 <constraint firstAttribute="trailing" secondItem="hAu-cv-8M8" secondAttribute="trailing" id="aec-UI-ur3"/>
                                                 <constraint firstItem="hAu-cv-8M8" firstAttribute="top" secondItem="ub7-Dc-myo" secondAttribute="top" constant="8" id="bXU-Tx-uZN"/>
+                                                <constraint firstItem="uvz-GU-PL3" firstAttribute="bottom" secondItem="atf-sR-dAZ" secondAttribute="bottom" id="eBP-m8-f1y"/>
                                                 <constraint firstItem="ms4-bN-bSG" firstAttribute="top" secondItem="atf-sR-dAZ" secondAttribute="bottom" constant="8" id="fKs-JL-8HA"/>
-                                                <constraint firstItem="uvz-GU-PL3" firstAttribute="top" secondItem="4P0-Ey-wCB" secondAttribute="top" id="nS2-UH-Xn4"/>
                                                 <constraint firstItem="4P0-Ey-wCB" firstAttribute="top" secondItem="hAu-cv-8M8" secondAttribute="bottom" constant="8" id="olB-y2-UNE"/>
                                                 <constraint firstItem="ms4-bN-bSG" firstAttribute="leading" secondItem="4P0-Ey-wCB" secondAttribute="trailing" constant="8" id="pEF-ZX-xzB"/>
                                                 <constraint firstAttribute="trailing" secondItem="yEG-t8-hEw" secondAttribute="trailing" constant="8" id="vNx-Fk-zD7"/>
-                                                <constraint firstItem="yEG-t8-hEw" firstAttribute="top" secondItem="uvz-GU-PL3" secondAttribute="top" id="zEr-JI-rNY"/>
+                                                <constraint firstItem="yEG-t8-hEw" firstAttribute="bottom" secondItem="atf-sR-dAZ" secondAttribute="bottom" id="yex-dN-P9P"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

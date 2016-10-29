@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftDate
 
 class UIConstants: NSObject {
     
@@ -27,6 +28,28 @@ class UIConstants: NSObject {
     
     static func getTextFontNameLight() -> String {
         return "HelveticaNeue-Light"
+    }
+    
+    // MARK: - Strings
+    static func getTimeLabel(date: Date) -> String {
+        
+        let componentsDictionary = date.timeIntervalSinceNow.in([.day, .hour, .minute, .second])
+        
+        let day = componentsDictionary[Calendar.Component.day] ?? 0
+        let hour = componentsDictionary[Calendar.Component.hour] ?? 0
+        let minute = componentsDictionary[Calendar.Component.minute] ?? 0
+        let second = componentsDictionary[Calendar.Component.second] ?? 0
+
+        if abs(day) > 0 {
+            return "\(abs(day))d"
+        } else if abs(hour) > 0 {
+            return "\(abs(hour))h"
+        } else if abs(minute) > 0 {
+            return "\(abs(minute))m"
+        } else if abs(second) > 0 {
+            return "\(abs(second))s"
+        }        
+        return ""
     }
     
     
