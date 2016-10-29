@@ -90,7 +90,7 @@ class TweetCell: UITableViewCell {
     }
     
     func clearCellState() {
-        
+        avatarImageView.image = nil
         topRTImageView.isHidden = false
         topRTLabel.isHidden = false
         
