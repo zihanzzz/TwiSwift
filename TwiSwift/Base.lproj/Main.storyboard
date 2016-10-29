@@ -176,7 +176,7 @@
                                             <outlet property="bottomRTImageView" destination="iTg-g8-flL" id="kc8-mA-yVa"/>
                                             <outlet property="bottomReplyImageView" destination="vDz-Y5-xl4" id="WKy-pu-AlF"/>
                                             <outlet property="nameLabel" destination="atf-sR-dAZ" id="oqB-XC-ehT"/>
-                                            <outlet property="timeLabel" destination="yEG-t8-hEw" id="y42-af-alf"/>
+                                            <outlet property="timeAgoLabel" destination="yEG-t8-hEw" id="veQ-Wf-HIn"/>
                                             <outlet property="topRTImageView" destination="9g1-V3-RQR" id="yfU-jA-Mhe"/>
                                             <outlet property="topRTLabel" destination="f7E-hL-MTn" id="QEr-uC-Stq"/>
                                             <outlet property="tweetTextLabel" destination="ms4-bN-bSG" id="koh-SU-2XN"/>
@@ -227,58 +227,105 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetContent" rowHeight="237" id="SzY-se-pLt" userLabel="tweet content cell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetContent" rowHeight="237" id="SzY-se-pLt" userLabel="tweet content cell" customClass="TweetCell" customModule="TwiSwift" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="237"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SzY-se-pLt" id="STs-Qp-XOj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-0x-fQt">
-                                                    <rect key="frame" x="63" y="13" width="15" height="15"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3nt-gD-JQo">
+                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vy-nn-o3b">
+                                                    <rect key="frame" x="47" y="13" width="328" height="15"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k4U-0x-fQt">
+                                                            <rect key="frame" x="0.0" y="0.0" width="15" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="15" id="Dzz-zU-kmW"/>
+                                                                <constraint firstAttribute="height" constant="15" id="Kw0-8q-u6a"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NBC Bay Area Retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKT-zU-xHf">
+                                                            <rect key="frame" x="15" y="0.0" width="313" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" priority="999" constant="194" id="c1q-nQ-cLA"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" red="0.67682686237373735" green="0.67682686237373735" blue="0.67682686237373735" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3nt-gD-JQo">
                                                     <rect key="frame" x="18" y="36" width="60" height="60"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="60" id="9lW-OV-tt8"/>
+                                                        <constraint firstAttribute="height" constant="60" id="ojP-fD-Qgt"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Rob Mayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLG-7T-ONS">
-                                                    <rect key="frame" x="93" y="42" width="95" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rob Mayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YLG-7T-ONS">
+                                                    <rect key="frame" x="86" y="42" width="200" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="vuA-7Q-4wy"/>
+                                                        <constraint firstAttribute="width" constant="200" id="yFb-Vq-FoJ"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@RobMayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-oq-xcs">
-                                                    <rect key="frame" x="93" y="71" width="106" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Steady overnight rain = ponding on some freeways, use caution on the morning commute. #cawx" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQT-Db-4IU">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Steady overnight rain = ponding on some freeways, use caution on the morning commute. #cawx" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQT-Db-4IU">
                                                     <rect key="frame" x="18" y="104" width="349" height="85"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10/29/16 08:22 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dL-S2-alF">
-                                                    <rect key="frame" x="18" y="197" width="147" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10/29/16 08:22 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dL-S2-alF">
+                                                    <rect key="frame" x="18" y="187" width="209" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="209" id="1Ho-J4-tWX"/>
+                                                        <constraint firstAttribute="height" constant="21" id="ihr-AG-eKH"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.67682686237373735" green="0.67682686237373735" blue="0.67682686237373735" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="NBC Bay Area Retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eKT-zU-xHf">
-                                                    <rect key="frame" x="86" y="10" width="194" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@RobMayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uM8-oq-xcs">
+                                                    <rect key="frame" x="86" y="67" width="200" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="VeF-Qz-Dbk"/>
+                                                        <constraint firstAttribute="width" constant="200" id="qJa-3c-nTv"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <color key="textColor" red="0.67682686237373735" green="0.67682686237373735" blue="0.67682686237373735" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="6dL-S2-alF" firstAttribute="leading" secondItem="tQT-Db-4IU" secondAttribute="leading" id="4yb-Hm-eX3"/>
+                                                <constraint firstItem="uM8-oq-xcs" firstAttribute="top" secondItem="YLG-7T-ONS" secondAttribute="bottom" constant="4" id="6WQ-lO-V2T"/>
+                                                <constraint firstItem="3nt-gD-JQo" firstAttribute="leading" secondItem="STs-Qp-XOj" secondAttribute="leading" constant="18" id="7sd-VS-UdT"/>
+                                                <constraint firstItem="tQT-Db-4IU" firstAttribute="leading" secondItem="STs-Qp-XOj" secondAttribute="leading" constant="18" id="8al-bV-srV"/>
+                                                <constraint firstItem="9Vy-nn-o3b" firstAttribute="top" secondItem="STs-Qp-XOj" secondAttribute="top" constant="13" id="Hop-gR-RzQ"/>
+                                                <constraint firstItem="YLG-7T-ONS" firstAttribute="leading" secondItem="3nt-gD-JQo" secondAttribute="trailing" constant="8" id="IFg-IM-Fvu"/>
+                                                <constraint firstItem="tQT-Db-4IU" firstAttribute="top" secondItem="3nt-gD-JQo" secondAttribute="bottom" constant="8" id="b0F-Jb-KZj"/>
+                                                <constraint firstAttribute="trailing" secondItem="tQT-Db-4IU" secondAttribute="trailing" constant="8" id="bs4-Em-ZI1"/>
+                                                <constraint firstItem="9Vy-nn-o3b" firstAttribute="leading" secondItem="STs-Qp-XOj" secondAttribute="leading" constant="47" id="gAV-TV-4cu"/>
+                                                <constraint firstItem="3nt-gD-JQo" firstAttribute="top" secondItem="9Vy-nn-o3b" secondAttribute="bottom" constant="8" id="mQW-co-aOg"/>
+                                                <constraint firstAttribute="trailing" secondItem="9Vy-nn-o3b" secondAttribute="trailing" id="n4H-7o-8IS"/>
+                                                <constraint firstItem="6dL-S2-alF" firstAttribute="top" secondItem="tQT-Db-4IU" secondAttribute="bottom" constant="5" id="oxe-Sh-VxH"/>
+                                                <constraint firstItem="uM8-oq-xcs" firstAttribute="leading" secondItem="YLG-7T-ONS" secondAttribute="leading" id="qjg-yS-pDf"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="6dL-S2-alF" secondAttribute="bottom" constant="10" id="rpF-Fv-Cwp"/>
+                                                <constraint firstItem="YLG-7T-ONS" firstAttribute="top" secondItem="3nt-gD-JQo" secondAttribute="top" constant="6" id="xz8-QJ-O11"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="avatarImageView" destination="3nt-gD-JQo" id="9GQ-hM-46n"/>
+                                            <outlet property="nameLabel" destination="YLG-7T-ONS" id="Ayz-tf-l9y"/>
+                                            <outlet property="timestampLabel" destination="6dL-S2-alF" id="fz6-fA-mTx"/>
+                                            <outlet property="topRTImageView" destination="k4U-0x-fQt" id="A4F-4D-fcl"/>
+                                            <outlet property="topRTLabel" destination="eKT-zU-xHf" id="fbp-kp-79u"/>
+                                            <outlet property="tweetTextLabel" destination="tQT-Db-4IU" id="XG5-4S-4FD"/>
+                                            <outlet property="usernameLabel" destination="uM8-oq-xcs" id="Ayh-zO-20T"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetNumbers" rowHeight="87" id="1nX-2t-E0R" userLabel="numbers cell">
                                         <rect key="frame" x="0.0" y="265" width="375" height="87"/>
@@ -314,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8as-gB-eco" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2485.5999999999999" y="78.710644677661179"/>
+            <point key="canvasLocation" x="2360.8000000000002" y="71.514242878560722"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ztp-qG-XL2">

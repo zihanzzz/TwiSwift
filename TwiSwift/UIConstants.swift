@@ -50,7 +50,11 @@ class UIConstants: NSObject {
     }
     
     // MARK: - Strings
-    static func getTimeLabel(date: Date) -> String {
+    static func getTimeStampLabel(date: Date) -> String {
+        return date.string(dateStyle: .short, timeStyle: .short, in: nil)
+    }
+    
+    static func getTimeAgoLabel(date: Date) -> String {
         
         let componentsDictionary = date.timeIntervalSinceNow.in([.day, .hour, .minute, .second])
         

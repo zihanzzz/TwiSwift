@@ -11,6 +11,8 @@ import UIKit
 class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var detailsTableView: UITableView!
+    
+    var tweet: Tweet!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,7 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         detailsTableView.rowHeight = UITableViewAutomaticDimension
         detailsTableView.estimatedRowHeight = 120
         detailsTableView.showsVerticalScrollIndicator = false
+        
         
         // remove empty cells
         detailsTableView.tableFooterView = UIView()
@@ -44,24 +47,25 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        var reuseIdentifier = ""
+        var cell = UITableViewCell()
         
         switch indexPath.row {
         case 0:
-            reuseIdentifier = "TweetContent"
+            cell = tableView.dequeueReusableCell(withIdentifier: "TweetContent", for: indexPath) as! TweetCell
+            let cell = cell as! TweetCell
+            cell.tweet = self.tweet
             break
         case 1:
-            reuseIdentifier = "TweetNumbers"
+            cell = tableView.dequeueReusableCell(withIdentifier: "TweetNumbers", for: indexPath)
             break
         case 2:
-            reuseIdentifier = "TweetActions"
+            cell = tableView.dequeueReusableCell(withIdentifier: "TweetActions", for: indexPath)
             break
         default:
             break
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier, for: indexPath)
-        
+        cell.selectionStyle = .none
         
         return cell
     }
