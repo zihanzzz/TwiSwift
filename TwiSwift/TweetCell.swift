@@ -53,6 +53,10 @@ class TweetCell: UITableViewCell {
             }
             
             
+            topRTImageView.image = UIImage(named: "retweet")
+            bottomRTImageView.image = UIImage(named: "retweet")
+            bottomLikeImageView.image = UIImage(named: "retweet")
+            bottomReplyImageView.image = UIImage(named: "retweet")
             
             
             
@@ -66,6 +70,8 @@ class TweetCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        tweetTextLabel.layer.borderColor = UIColor.red.cgColor
+        tweetTextLabel.layer.borderWidth = 2.0
         
         
         

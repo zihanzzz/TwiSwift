@@ -17,10 +17,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let logoImageView = UIImageView(image: UIImage(named: "twitter_logo"))
+        logoImageView.frame = CGRect(x: 0, y: 0, width: 0, height: 40)
+        logoImageView.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = logoImageView
+        
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self
         tweetsTableView.rowHeight = UITableViewAutomaticDimension
-        tweetsTableView.estimatedRowHeight = 100
+        tweetsTableView.estimatedRowHeight = 120
         
         // Do any additional setup after loading the view.
         TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: nil, completionHandler: { (tweets: [Tweet]?, error: Error?) in

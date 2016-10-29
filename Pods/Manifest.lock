@@ -17,17 +17,20 @@ PODS:
   - Alamofire (4.0.1)
   - BDBOAuth1Manager (2.0.0):
     - AFNetworking/NSURLSession (~> 3.0.0)
+  - SwiftDate (4.0.6)
 
 DEPENDENCIES:
   - AFNetworking
   - Alamofire
   - BDBOAuth1Manager
+  - SwiftDate
 
 SPEC CHECKSUMS:
   AFNetworking: a0075feb321559dc78d9d85b55d11caa19eabb93
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   BDBOAuth1Manager: 92d17d06f8a648602962304cd2f35ae7394fa001
+  SwiftDate: 549729eaa54bd9f64fd80abfd12ddd3d44ff5098
 
-PODFILE CHECKSUM: 9c314831a561c7e3656167a0e8aa93c313393986
+PODFILE CHECKSUM: 00bd1f76b0ac10b9dd4f3e519c5fd62658364295
 
 COCOAPODS: 1.1.0.rc.2

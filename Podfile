@@ -9,5 +9,6 @@ target 'TwiSwift' do
   pod 'Alamofire'
   pod 'BDBOAuth1Manager'
   pod 'AFNetworking'
+  pod 'SwiftDate'
 
 end

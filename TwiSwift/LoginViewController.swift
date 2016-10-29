@@ -11,9 +11,15 @@ import BDBOAuth1Manager
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var loginButton: UIButton!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        self.loginButton.backgroundColor = UIConstants.twitterPrimaryBlue
+        self.loginButton.setTitleColor(UIColor.white, for: .normal)
+        self.loginButton.titleLabel?.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 24)
         
     }
 
