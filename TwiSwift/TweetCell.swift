@@ -30,6 +30,7 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var bottomReplyImageView: UIImageView! //
     
+    var isLiked: Bool = false
     
     var tweet: Tweet! {
         didSet {
@@ -55,12 +56,9 @@ class TweetCell: UITableViewCell {
                 
                 
                 if (tweet.isRetweeted() && tweet.sender != nil) {
-                    
                     if let senderName = tweet.sender?.name! {
                         topRTLabel.text = "\(senderName) Retweeted"
                     }
-
-                    
                 } else {
                     topRTImageView.isHidden = true
                     topRTLabel.isHidden = true
@@ -68,21 +66,23 @@ class TweetCell: UITableViewCell {
             }
             
             if let date = tweet.createdAt {
-                
-                
-                
                 timeLabel.text = UIConstants.getTimeLabel(date: date)
-                
             }
             
             if let text = tweet.text {
                 tweetTextLabel.text = text
             }
-            
-            
+
             topRTImageView.image = UIImage(named: "retweet")
             bottomRTImageView.image = UIImage(named: "retweet")
-            bottomLikeImageView.image = UIImage(named: "like")
+            
+            isLiked = tweet.favorited ?? false
+            
+            if (!isLiked) {
+                setLikeImage(selected: false)
+            } else {
+                setLikeImage(selected: true)
+            }
             bottomReplyImageView.image = UIImage(named: "reply")
             
             setUpLabelAppearances()
@@ -109,18 +109,86 @@ class TweetCell: UITableViewCell {
         topRTLabel.isHidden = false
         
     }
-    
-    
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-    }
 
+        let singleTap0 = UITapGestureRecognizer(target: self, action: #selector(bottomButton0Tapped))
+        singleTap0.numberOfTapsRequired = 1
+        bottomRTImageView.isUserInteractionEnabled = true
+        bottomRTImageView.addGestureRecognizer(singleTap0)
+        
+        let singleTap1 = UITapGestureRecognizer(target: self, action: #selector(bottomButton1Tapped))
+        singleTap1.numberOfTapsRequired = 1
+        bottomLikeImageView.isUserInteractionEnabled = true
+        bottomLikeImageView.addGestureRecognizer(singleTap1)
+        
+        let singleTap2 = UITapGestureRecognizer(target: self, action: #selector(bottomButton2Tapped))
+        singleTap2.numberOfTapsRequired = 1
+        bottomReplyImageView.isUserInteractionEnabled = true
+        bottomReplyImageView.addGestureRecognizer(singleTap2)
+    }
+    
+    // RT
+    func bottomButton0Tapped() {
+        
+    }
+    
+    // Like
+    func bottomButton1Tapped() {
+        toggleLikeButton()
+    }
+    
+    // Reply
+    func bottomButton2Tapped() {
+        
+    }
+    
+    func toggleLikeButton() {
+        
+        if (!isLiked) {
+            UIView.animate(withDuration: 0.1, animations: {
+                
+                self.bottomLikeImageView.transform = CGAffineTransform(scaleX: 4, y: 4)
+                self.setLikeImage(selected: true)
+                
+            }, completion: { (finish) in
+                
+                UIView.animate(withDuration: 0.1, animations: { 
+                    self.bottomLikeImageView.transform = CGAffineTransform(scaleX: 1, y: 1)
+                })
+            })
+            
+            TwiSwiftClient.sharedInstance?.createFavorite(tweet: self.tweet, completionHandler: { (finish: Bool?) in
+                if (!finish!) {
+                    self.setLikeImage(selected: false)
+                }
+            })
+        } else {
+            setLikeImage(selected: false)
+            TwiSwiftClient.sharedInstance?.destroyFavorite(tweet: self.tweet, completionHandler: { (finish: Bool?) in
+                if (!finish!) {
+                    self.setLikeImage(selected: true)
+                }
+            })
+        }
+        isLiked = !isLiked
+    }
+    
+    func setLikeImage(selected: Bool) {
+        if (selected) {
+            bottomLikeImageView.image = UIImage(named: "like-selected")
+        } else {
+            bottomLikeImageView.image = UIImage(named: "like-unselected")
+        }
+    }
+    
+
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
-
 }

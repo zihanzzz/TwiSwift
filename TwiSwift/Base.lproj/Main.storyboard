@@ -79,10 +79,10 @@
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iTg-g8-flL">
-                                                    <rect key="frame" x="76" y="125" width="15" height="15"/>
+                                                    <rect key="frame" x="76" y="125" width="18" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="15" id="5U0-uD-zG1"/>
-                                                        <constraint firstAttribute="width" constant="15" id="V2a-hR-k4K"/>
+                                                        <constraint firstAttribute="height" constant="18" id="5U0-uD-zG1"/>
+                                                        <constraint firstAttribute="width" constant="18" id="V2a-hR-k4K"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rob Mayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atf-sR-dAZ">
@@ -104,10 +104,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xEl-g3-ec5">
-                                                    <rect key="frame" x="121" y="125" width="15" height="15"/>
+                                                    <rect key="frame" x="124" y="125" width="18" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="15" id="bld-3R-mfU"/>
-                                                        <constraint firstAttribute="height" constant="15" id="o7s-oR-7h4"/>
+                                                        <constraint firstAttribute="width" constant="18" id="bld-3R-mfU"/>
+                                                        <constraint firstAttribute="height" constant="18" id="o7s-oR-7h4"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAu-cv-8M8">
@@ -139,10 +139,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vDz-Y5-xl4">
-                                                    <rect key="frame" x="168" y="125" width="15" height="15"/>
+                                                    <rect key="frame" x="174" y="125" width="18" height="18"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="15" id="gB4-TX-508"/>
-                                                        <constraint firstAttribute="height" constant="15" id="xyY-qZ-nCT"/>
+                                                        <constraint firstAttribute="width" constant="18" id="gB4-TX-508"/>
+                                                        <constraint firstAttribute="height" constant="18" id="xyY-qZ-nCT"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>

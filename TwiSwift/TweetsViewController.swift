@@ -42,11 +42,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBAction func onLogOut(_ sender: Any) {
         User.currentUser?.logout()
     }
-    
-    
 
-    
-    // MARK: - Table View
     // MARK: - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets?.count ?? 10
@@ -54,7 +50,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
-        
+        cell.selectionStyle = .none
         cell.clearCellState()
         
         if let tweet = tweets?[indexPath.row] {

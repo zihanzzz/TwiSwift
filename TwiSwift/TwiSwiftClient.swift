@@ -50,6 +50,26 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    func createFavorite(tweet: Tweet, completionHandler: @escaping (Bool?) -> ()) {
+        if let remoteId = tweet.remoteId {
+            self.post("1.1/favorites/create.json?id=\(remoteId)", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+                completionHandler(true)
+            }, failure: { (operation: URLSessionDataTask?, error: Error) in
+                completionHandler(false)
+            })
+        }
+    }
+    
+    func destroyFavorite(tweet: Tweet, completionHandler: @escaping (Bool?) -> ()) {
+        if let remoteId = tweet.remoteId {
+            self.post("1.1/favorites/destroy.json?id=\(remoteId)", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+                completionHandler(true)
+            }, failure: { (operation: URLSessionDataTask?, error: Error) in
+                completionHandler(false)
+            })
+        }
+    }
+    
     func openURL(url: URL) {
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in

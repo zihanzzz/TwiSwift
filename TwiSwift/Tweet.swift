@@ -16,10 +16,11 @@ class Tweet: NSObject {
     var createdAtString: String?
     var createdAt: Date?
     var rtStatus: Dictionary<String, AnyObject>?
+    var favorited: Bool?
+    var remoteId: Int64?
 
     init(dictionary: Dictionary<String, AnyObject>) {
 
-        
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
         rtStatus = dictionary["retweeted_status"] as? Dictionary<String, AnyObject>
@@ -37,7 +38,9 @@ class Tweet: NSObject {
         } else {
             originalComposer = sender
         }
-
+        
+        favorited = dictionary["favorited"] as? Bool
+        remoteId = dictionary["id"] as? Int64
     }
 
     class func tweetsWithArray(array: [Dictionary<String, AnyObject>]) -> [Tweet] {
