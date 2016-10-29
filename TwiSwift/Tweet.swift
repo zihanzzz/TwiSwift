@@ -10,6 +10,7 @@ import UIKit
 
 class Tweet: NSObject {
     
+    var sender: User?
     var originalComposer: User?
     var text: String?
     var createdAtString: String?
@@ -29,10 +30,12 @@ class Tweet: NSObject {
             createdAt = formatter.date(from: createdAtString)
         }
 
+        sender = User(dictionary: dictionary["user"] as! Dictionary<String, AnyObject>)
+        
         if let rtDictionary = rtStatus {
             originalComposer = User(dictionary: rtDictionary["user"] as! Dictionary<String, AnyObject>)
         } else {
-            originalComposer = User(dictionary: dictionary["user"] as! Dictionary<String, AnyObject>)
+            originalComposer = sender
         }
 
     }

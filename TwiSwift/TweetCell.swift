@@ -10,32 +10,32 @@ import UIKit
 
 class TweetCell: UITableViewCell {
     
-    @IBOutlet weak var topRTImageView: UIImageView!
+    @IBOutlet weak var topRTImageView: UIImageView! //
     
     @IBOutlet weak var topRTLabel: UILabel!
     
-    @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var avatarImageView: UIImageView! //
     
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel! //
     
-    @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var usernameLabel: UILabel! //
     
     @IBOutlet weak var timeLabel: UILabel!
     
     @IBOutlet weak var tweetTextLabel: UILabel! //
     
-    @IBOutlet weak var bottomRTImageView: UIImageView!
+    @IBOutlet weak var bottomRTImageView: UIImageView! //
     
-    @IBOutlet weak var bottomLikeImageView: UIImageView!
+    @IBOutlet weak var bottomLikeImageView: UIImageView! //
     
-    @IBOutlet weak var bottomReplyImageView: UIImageView!
+    @IBOutlet weak var bottomReplyImageView: UIImageView! //
     
     
     var tweet: Tweet! {
         didSet {
             
             if let user = tweet.originalComposer {
-                
+
                 avatarImageView.layer.cornerRadius = 3.0
                 avatarImageView.layer.masksToBounds = true
                 if let normalImageUrl = user.profileImageUrl {
@@ -44,9 +44,29 @@ class TweetCell: UITableViewCell {
                         avatarImageView.setImageWith(url)
                     }
                 }
+                
+                if let name = user.name {
+                    nameLabel.text = name
+                }
+                
+                if let username = user.screenname {
+                    usernameLabel.text = "@\(username)"
+                }
+                
+                
+                if (tweet.isRetweeted() && tweet.sender != nil) {
+                    
+                    if let senderName = tweet.sender?.name! {
+                        topRTLabel.text = "\(senderName) Retweeted"
+                    }
 
+                    
+                } else {
+                    topRTImageView.isHidden = true
+                    topRTLabel.isHidden = true
+                }
+                
             }
-            
             
             if let text = tweet.text {
                 tweetTextLabel.text = text
@@ -55,13 +75,25 @@ class TweetCell: UITableViewCell {
             
             topRTImageView.image = UIImage(named: "retweet")
             bottomRTImageView.image = UIImage(named: "retweet")
-            bottomLikeImageView.image = UIImage(named: "retweet")
-            bottomReplyImageView.image = UIImage(named: "retweet")
+            bottomLikeImageView.image = UIImage(named: "like")
+            bottomReplyImageView.image = UIImage(named: "reply")
             
-            
-            
-            
+            setUpLabelAppearances()
         }
+    }
+    
+    func setUpLabelAppearances() {
+        
+        topRTLabel.textColor = UIConstants.twitterLightGray
+        topRTLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 13)
+        
+    }
+    
+    func clearCellState() {
+        
+        topRTImageView.isHidden = false
+        topRTLabel.isHidden = false
+        
     }
     
     
@@ -69,12 +101,6 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
-        tweetTextLabel.layer.borderColor = UIColor.red.cgColor
-        tweetTextLabel.layer.borderWidth = 2.0
-        
-        
-        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

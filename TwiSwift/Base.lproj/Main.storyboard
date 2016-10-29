@@ -72,59 +72,59 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4P0-Ey-wCB">
-                                                    <rect key="frame" x="8" y="38" width="60" height="60"/>
+                                                    <rect key="frame" x="8" y="33" width="60" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="C7k-pQ-Mjm"/>
                                                         <constraint firstAttribute="width" constant="60" id="RzF-fa-6C6"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iTg-g8-flL">
-                                                    <rect key="frame" x="76" y="132" width="20" height="20"/>
+                                                    <rect key="frame" x="76" y="127" width="15" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="5U0-uD-zG1"/>
-                                                        <constraint firstAttribute="width" constant="20" id="V2a-hR-k4K"/>
+                                                        <constraint firstAttribute="height" constant="15" id="5U0-uD-zG1"/>
+                                                        <constraint firstAttribute="width" constant="15" id="V2a-hR-k4K"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NBC Bay Area Retweeted" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f7E-hL-MTn">
-                                                    <rect key="frame" x="74" y="9" width="143" height="15"/>
+                                                    <rect key="frame" x="69" y="4" width="143" height="15"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <color key="textColor" red="0.6568221275252526" green="0.6568221275252526" blue="0.6568221275252526" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rob Mayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="atf-sR-dAZ">
-                                                    <rect key="frame" x="76" y="38" width="80" height="17"/>
+                                                    <rect key="frame" x="76" y="33" width="80" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@RobMayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-GU-PL3">
-                                                    <rect key="frame" x="164" y="38" width="89" height="17"/>
+                                                    <rect key="frame" x="164" y="33" width="89" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.6568221275252526" green="0.6568221275252526" blue="0.6568221275252526" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Steady overnight rain = ponding on some freeways, use caution on the morning commute. #cawx" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ms4-bN-bSG" userLabel="tweetText Label">
-                                                    <rect key="frame" x="76" y="63" width="291" height="61"/>
+                                                    <rect key="frame" x="76" y="58" width="291" height="61"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xEl-g3-ec5">
-                                                    <rect key="frame" x="126" y="132" width="20" height="20"/>
+                                                    <rect key="frame" x="121" y="127" width="15" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="bld-3R-mfU"/>
-                                                        <constraint firstAttribute="height" constant="20" id="o7s-oR-7h4"/>
+                                                        <constraint firstAttribute="width" constant="15" id="bld-3R-mfU"/>
+                                                        <constraint firstAttribute="height" constant="15" id="o7s-oR-7h4"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9g1-V3-RQR">
-                                                    <rect key="frame" x="39" y="8" width="20" height="20"/>
+                                                    <rect key="frame" x="39" y="8" width="15" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="20" id="Rwh-nF-u17"/>
-                                                        <constraint firstAttribute="width" constant="20" id="tXd-ia-oL2"/>
+                                                        <constraint firstAttribute="height" constant="15" id="Rwh-nF-u17"/>
+                                                        <constraint firstAttribute="width" constant="15" id="tXd-ia-oL2"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yEG-t8-hEw">
-                                                    <rect key="frame" x="342" y="38" width="25" height="21"/>
+                                                    <rect key="frame" x="342" y="33" width="25" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="P4V-5B-J8i"/>
                                                         <constraint firstAttribute="width" constant="25" id="zDd-6L-sh4"/>
@@ -134,10 +134,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vDz-Y5-xl4">
-                                                    <rect key="frame" x="178" y="132" width="20" height="20"/>
+                                                    <rect key="frame" x="168" y="127" width="15" height="15"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="gB4-TX-508"/>
-                                                        <constraint firstAttribute="height" constant="20" id="xyY-qZ-nCT"/>
+                                                        <constraint firstAttribute="width" constant="15" id="gB4-TX-508"/>
+                                                        <constraint firstAttribute="height" constant="15" id="xyY-qZ-nCT"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
@@ -172,7 +172,6 @@
                                             <outlet property="bottomRTImageView" destination="iTg-g8-flL" id="kc8-mA-yVa"/>
                                             <outlet property="bottomReplyImageView" destination="vDz-Y5-xl4" id="WKy-pu-AlF"/>
                                             <outlet property="nameLabel" destination="atf-sR-dAZ" id="oqB-XC-ehT"/>
-                                            <outlet property="textLabel" destination="ms4-bN-bSG" id="wMS-z1-An8"/>
                                             <outlet property="timeLabel" destination="yEG-t8-hEw" id="y42-af-alf"/>
                                             <outlet property="topRTImageView" destination="9g1-V3-RQR" id="yfU-jA-Mhe"/>
                                             <outlet property="topRTLabel" destination="f7E-hL-MTn" id="QEr-uC-Stq"/>
@@ -197,6 +196,7 @@
                                 <action selector="onLogOut:" destination="iIP-M2-gbp" id="sGD-On-cIf"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="New" id="SjA-Ej-2hY"/>
                     </navigationItem>
                     <connections>
                         <outlet property="tweetsTableView" destination="NPu-0m-IlK" id="3Tn-Ie-69t"/>

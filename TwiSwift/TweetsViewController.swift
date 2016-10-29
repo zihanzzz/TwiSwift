@@ -18,7 +18,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         
         let logoImageView = UIImageView(image: UIImage(named: "twitter_logo"))
-        logoImageView.frame = CGRect(x: 0, y: 0, width: 0, height: 40)
+        logoImageView.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
         logoImageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = logoImageView
         
@@ -54,6 +54,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        
+        cell.clearCellState()
         
         if let tweet = tweets?[indexPath.row] {
             cell.tweet = tweet
