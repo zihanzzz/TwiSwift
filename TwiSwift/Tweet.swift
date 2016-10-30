@@ -66,5 +66,4 @@ class Tweet: NSObject {
             return false
         }
     }
-    
 }
