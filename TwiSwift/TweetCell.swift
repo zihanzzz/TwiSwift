@@ -162,22 +162,13 @@ class TweetCell: UITableViewCell {
                     }, completion: { (finish) in
                         
                         TwiSwiftClient.sharedInstance?.reweet(tweetIdString: "\(self.tweet.remoteId!)", completionHandler: { (finish) in
-                            
                             if (!finish!) {
-                                
                                 self.setRetweetImage(selected: false)
                                 self.tweet.retweetedByMe = false
-                                
                             }
-                            
                         })
-                        
-                        
-                        
                     })
-                    
                 })
-                
             }))
         } else {
             retweetAlert.addAction(UIAlertAction(title: "Undo Retweet", style: .destructive, handler: { (action) in
@@ -185,9 +176,15 @@ class TweetCell: UITableViewCell {
                 self.tweet.retweetedByMe = false
                 self.setRetweetImage(selected: false)
                 
-                
-                
-                
+                // unretweet
+                let originalRemoteIdString = self.tweet.originalTweetIdStr
+                TwiSwiftClient.sharedInstance?.findMyRetweet(originalTweetIdString: originalRemoteIdString!, completionHandler: { (finish) in
+                    
+                    if (!finish!) {
+                        self.tweet.retweetedByMe = true
+                        self.setRetweetImage(selected: true)
+                    }
+                })
             }))
         }
         
@@ -251,10 +248,8 @@ class TweetCell: UITableViewCell {
     
     func setRetweetImage(selected: Bool) {
         if (selected) {
-            print("setting selected")
             bottomRTImageView?.image = UIImage(named: "retweet-selected")
         } else {
-            print("setting unselected")
             bottomRTImageView?.image = UIImage(named: "retweet-unselected")
         }
     }

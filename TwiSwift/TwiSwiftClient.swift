@@ -115,6 +115,51 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    func findMyRetweet(originalTweetIdString: String, completionHandler: @escaping (Bool?) -> ()) {
+        
+        let params = ["include_my_retweet" : true]
+        
+        self.get("1.1/statuses/show/\(originalTweetIdString).json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+            
+            if let tweetDict = response as? Dictionary<String, AnyObject> {
+                
+                if let currentUserRTDict = tweetDict["current_user_retweet"] as? Dictionary<String, AnyObject> {
+                    
+                    if let myOwnRTIdStr = currentUserRTDict["id_str"] as? String {
+                        
+                        self.deleteTweet(tweetIdString: myOwnRTIdStr, completionHandler: { (tweet: Tweet?, error: Error?) in
+                            
+                            if (tweet != nil) {
+                                completionHandler(true)
+                            } else {
+                                completionHandler(false)
+                            }
+                            
+                        })
+                        
+                    }
+                    
+                    
+                }
+                
+            }
+
+            
+            
+            
+            
+        }, failure: { (operation: URLSessionDataTask?, error: Error) in
+            
+            print(error.localizedDescription)
+            completionHandler(false)
+            
+            
+        })
+        
+      
+        
+    }
+    
     func openURL(url: URL) {
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in

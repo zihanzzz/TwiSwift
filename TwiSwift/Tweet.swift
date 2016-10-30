@@ -21,6 +21,8 @@ class Tweet: NSObject {
     var remoteId: Int64?
     var favoriteCount: Int?
     var retweetCount: Int?
+    var remoteIdStr: String?
+    var originalTweetIdStr: String?
 
     init(dictionary: Dictionary<String, AnyObject>) {
 
@@ -47,8 +49,19 @@ class Tweet: NSObject {
         favorited = dictionary["favorited"] as? Bool
         retweetedByMe = dictionary["retweeted"] as? Bool
         remoteId = dictionary["id"] as? Int64
+        remoteIdStr = dictionary["id_str"] as? String
         favoriteCount = dictionary["favorite_count"] as? Int
         retweetCount = dictionary["retweet_count"] as? Int
+        
+        if rtStatus != nil {
+            
+            originalTweetIdStr = rtStatus?["id_str"] as? String
+            
+        } else {
+            
+            originalTweetIdStr = remoteIdStr
+            
+        }
     }
 
     class func tweetsWithArray(array: [Dictionary<String, AnyObject>]) -> [Tweet] {
