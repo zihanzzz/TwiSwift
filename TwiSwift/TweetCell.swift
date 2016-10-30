@@ -8,7 +8,11 @@
 
 import UIKit
 
-class TweetCell: UITableViewCell {
+@objc protocol TweetCellDelegate {
+    @objc optional func tweetCell(tweetCell: TweetCell, didTapRetweetButton tweet: Tweet, retweetAvailable: Bool)
+}
+
+class TweetCell: UITableViewCell, TweetsViewControllerDelegate {
     
     @IBOutlet weak var topRTImageView: UIImageView? //
     
@@ -32,11 +36,18 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var timestampLabel: UILabel?
     
+    weak var delegate: TweetCellDelegate?
+    
+    var tweetsViewController: TweetsViewController?
     
     var isLiked: Bool = false
     
+    var isRetweetedByMe: Bool = false
+    
     var tweet: Tweet! {
         didSet {
+            
+            tweetsViewController?.delegate = self
             
             if let user = tweet.originalComposer {
 
@@ -57,10 +68,12 @@ class TweetCell: UITableViewCell {
                     usernameLabel?.text = "@\(username)"
                 }
                 
-                
                 if (tweet.isRetweeted() && tweet.sender != nil) {
                     if let senderName = tweet.sender?.name! {
                         topRTLabel?.text = "\(senderName) Retweeted"
+                        if (User.isCurrentUser(user: tweet.sender!)) {
+                            topRTLabel?.text = "You Retweeted"
+                        }
                     }
                 } else {
                     topRTImageView?.isHidden = true
@@ -81,12 +94,20 @@ class TweetCell: UITableViewCell {
             bottomRTImageView?.image = UIImage(named: "retweet")
             
             isLiked = tweet.favorited ?? false
+            isRetweetedByMe = tweet.retweetedByMe ?? false
             
             if (!isLiked) {
                 setLikeImage(selected: false)
             } else {
                 setLikeImage(selected: true)
             }
+            
+            if (!isRetweetedByMe) {
+                setRetweetImage(selected: false)
+            } else {
+                setRetweetImage(selected: true)
+            }
+            
             bottomReplyImageView?.image = UIImage(named: "reply")
             
             setUpLabelAppearances()
@@ -135,7 +156,8 @@ class TweetCell: UITableViewCell {
     
     // RT
     func bottomButton0Tapped() {
-        
+        let retweetAvailability = !tweet.retweetedByMe!
+        delegate?.tweetCell?(tweetCell: self, didTapRetweetButton: self.tweet, retweetAvailable: retweetAvailability)
     }
     
     // Like
@@ -146,6 +168,32 @@ class TweetCell: UITableViewCell {
     // Reply
     func bottomButton2Tapped() {
         
+    }
+    
+    func tweetsViewController(tweetsViewController: TweetsViewController, didChooseRetweet tweet: Tweet) {
+        if (!isRetweetedByMe) {
+            print("animation effect")
+            self.tweet.retweetedByMe = true
+            UIView.animate(withDuration: 1, animations: {
+                
+                self.bottomRTImageView?.transform = CGAffineTransform(scaleX: 4, y: 4)
+                self.setRetweetImage(selected: true)
+                
+            }, completion: { (finish) in
+                
+                UIView.animate(withDuration: 1, animations: {
+                    self.bottomRTImageView?.transform = CGAffineTransform(scaleX: 1, y: 1)
+                })
+            })
+            
+            
+        } else {
+            print("no animation effect")
+            self.tweet.favorited = false
+            setRetweetImage(selected: false)
+        }
+        
+        isRetweetedByMe = !isRetweetedByMe
     }
     
     func toggleLikeButton() {
@@ -188,6 +236,14 @@ class TweetCell: UITableViewCell {
             bottomLikeImageView?.image = UIImage(named: "like-selected")
         } else {
             bottomLikeImageView?.image = UIImage(named: "like-unselected")
+        }
+    }
+    
+    func setRetweetImage(selected: Bool) {
+        if (selected) {
+            bottomRTImageView?.image = UIImage(named: "retweet-selected")
+        } else {
+            bottomRTImageView?.image = UIImage(named: "retweet-unselected")
         }
     }
     

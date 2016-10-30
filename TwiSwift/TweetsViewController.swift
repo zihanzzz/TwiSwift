@@ -8,11 +8,17 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
+@objc protocol TweetsViewControllerDelegate {
+    @objc optional func tweetsViewController(tweetsViewController: TweetsViewController, didChooseRetweet tweet: Tweet)
+}
+
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate, TweetCellDelegate {
     
     var tweets: [Tweet]?
     
     @IBOutlet weak var tweetsTableView: UITableView!
+    
+    weak var delegate: TweetsViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +32,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         logoImageView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
         logoImageView.contentMode = .scaleAspectFit
         self.navigationItem.titleView = logoImageView
-        
         
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self
@@ -101,10 +106,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         cell.selectionStyle = .none
         cell.clearCellState()
         
+        cell.delegate = self
+        cell.tweetsViewController = self
+        
         if let tweet = tweets?[indexPath.row] {
             cell.tweet = tweet
         }
-        
+
         return cell
     }
     
@@ -128,6 +136,25 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
+    // MARK: - Tweet Cell Delegate for Retweets
+    func tweetCell(tweetCell: TweetCell, didTapRetweetButton tweet: Tweet, retweetAvailable: Bool) {
+        let retweetAlert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        if (retweetAvailable) {
+            retweetAlert.addAction(UIAlertAction(title: "Retweet", style: .default, handler: { (action) in
+                self.delegate?.tweetsViewController?(tweetsViewController: self, didChooseRetweet: tweet)
+            }))
+        } else {
+            retweetAlert.addAction(UIAlertAction(title: "Undo Retweet", style: .destructive, handler: { (action) in
+                self.delegate?.tweetsViewController?(tweetsViewController: self, didChooseRetweet: tweet)
+            }))
+            
+        }
+        retweetAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            // Nothing here
+        }))
+        present(retweetAlert, animated: true, completion: nil)
+    }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -86,7 +86,7 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             self.dismiss(animated: true, completion: nil)
         }
         
-        let deleteAction = UIPreviewAction(title: "Delete Tweet", style: .default) { (previewAction, viewController) in
+        let deleteAction = UIPreviewAction(title: "Delete Tweet", style: .destructive) { (previewAction, viewController) in
             
             TwiSwiftClient.sharedInstance?.deleteTweet(tweetIdString: "\(self.tweet.remoteId!)", completionHandler: { (tweet: Tweet?, error: Error?) in
                 if (tweet != nil) {
@@ -100,8 +100,7 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         actions.append(twitterAction)
         actions.append(dismissAction)
         
-        
-        if tweet.originalComposer?.idString == User.currentUser?.idString {
+        if User.isCurrentUser(user: tweet.originalComposer!) {
             actions.insert(deleteAction, at: 0)
         }
 

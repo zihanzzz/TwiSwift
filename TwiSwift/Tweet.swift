@@ -17,6 +17,7 @@ class Tweet: NSObject {
     var createdAt: Date?
     var rtStatus: Dictionary<String, AnyObject>?
     var favorited: Bool?
+    var retweetedByMe: Bool?
     var remoteId: Int64?
     var favoriteCount: Int?
     var retweetCount: Int?
@@ -44,6 +45,7 @@ class Tweet: NSObject {
         }
         
         favorited = dictionary["favorited"] as? Bool
+        retweetedByMe = dictionary["retweeted"] as? Bool
         remoteId = dictionary["id"] as? Int64
         favoriteCount = dictionary["favorite_count"] as? Int
         retweetCount = dictionary["retweet_count"] as? Int

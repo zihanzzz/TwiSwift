@@ -78,4 +78,8 @@ class User: NSObject {
         TwiSwiftClient.sharedInstance?.deauthorize()
         NotificationCenter.default.post(name: UserEventEnum.didLogout.notification, object: nil)
     }
+    
+    class func isCurrentUser(user: User) -> Bool{
+        return user.idString == User.currentUser?.idString
+    }
 }

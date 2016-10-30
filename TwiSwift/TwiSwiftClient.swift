@@ -86,6 +86,21 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    func reweet(tweetIdString: String, completionHandler: @escaping (Tweet?, Error?) -> ()) {
+        
+        self.post("1.1/statuses/retweet/\(tweetIdString).json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+            
+            let retweetedTweet = Tweet(dictionary: response as! Dictionary<String, AnyObject>)
+            completionHandler(retweetedTweet, nil)
+            
+        }, failure: { (operation: URLSessionDataTask?, error: Error) in
+            
+            print(error.localizedDescription)
+            completionHandler(nil, error)
+            
+        })
+    }
+    
     func deleteTweet(tweetIdString: String, completionHandler: @escaping (Tweet?, Error?) -> ()) {
 
         self.post("1.1/statuses/destroy/\(tweetIdString).json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in

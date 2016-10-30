@@ -2,7 +2,7 @@
 
 **TwitterLite** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **X** hours spent in total
+Time spent: **20+** hours spent in total
 
 ## User Stories
 
@@ -27,7 +27,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [x] Use **Stack View** to implement the RT view at the top of each TweetCell which matches the real Twitter App behaviors.
+- [x] Use **Stack View** to implement the Retweet-related views at the top of each TweetCell which matches the real Twitter App behaviors.
 - [x] Implement **animation effect** when the user clicks the favorite icon using CGAffineTransform.
 - [x] If favorite/destroy call on a Tweet fails, the favorite button will **fall back** to it's original color/state before the favorite/destroy call. In other words, making the user thinks it's really fast.
 
