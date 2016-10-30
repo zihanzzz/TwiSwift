@@ -138,8 +138,24 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
     }
     
     func sendTweet() {
+        composeTextView.resignFirstResponder()
+        self.dismiss(animated: true, completion: nil)
         
+        let newTweet = Tweet(dictionary: Dictionary<String, AnyObject>())
+        newTweet.sender = User.currentUser
+        newTweet.originalComposer = User.currentUser
+        newTweet.text = composeTextView.text
+        newTweet.createdAt = Date()
+        newTweet.retweetCount = 0
+        newTweet.favoriteCount = 0
         
+        let userInfo:[String: Tweet] = ["tweet": newTweet]
+        
+        NotificationCenter.default.post(name: UserEventEnum.newTweet.notification, object: nil, userInfo: userInfo)
+        
+        TwiSwiftClient.sharedInstance?.update(status: composeTextView.text, completionHandler: { (tweet: Tweet?, error: Error?) in
+            
+        })
     }
     
     // MARK: - Text View delegate methods

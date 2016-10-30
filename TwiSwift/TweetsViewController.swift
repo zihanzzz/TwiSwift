@@ -42,6 +42,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 // but don't self.businessTableView and self.view have the same frame? No they don't (different width and height)
             }
         }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNewTweet(_:)), name: UserEventEnum.newTweet.notification, object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,6 +92,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tweetsTableView.reloadData()
             refreshControl.endRefreshing()
         })
+    }
+    
+    // MARK: - New Tweet
+    func handleNewTweet(_ notification: NSNotification) {
+        if let newTweet = notification.userInfo?["tweet"] as? Tweet {
+            tweets?.insert(newTweet, at: 0)
+            tweetsTableView.reloadData()
+        }
     }
     
     

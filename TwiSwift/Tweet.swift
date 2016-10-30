@@ -33,7 +33,9 @@ class Tweet: NSObject {
             createdAt = formatter.date(from: createdAtString)
         }
 
-        sender = User(dictionary: dictionary["user"] as! Dictionary<String, AnyObject>)
+        if let userDict = dictionary["user"] as? Dictionary<String, AnyObject> {
+            sender = User(dictionary: userDict)
+        }
         
         if let rtDictionary = rtStatus {
             originalComposer = User(dictionary: rtDictionary["user"] as! Dictionary<String, AnyObject>)
