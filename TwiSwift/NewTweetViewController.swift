@@ -18,6 +18,9 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var composeTextView: UITextView!
     
+    var placeholderLabel: UILabel!
+
+    var isReadyToTweet = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +51,15 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
         dismissTap.numberOfTapsRequired = 1
         dismissImageView.addGestureRecognizer(dismissTap)
         
+        // placeholder
+        placeholderLabel = UILabel()
+        placeholderLabel.frame = CGRect(x: 8, y: 9, width: 280, height: 30)
+        placeholderLabel.text = "What's happening?"
+        placeholderLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 26)
+        placeholderLabel.textColor = UIConstants.twitterLightGray
         
+        composeTextView.addSubview(placeholderLabel)
+
         // text view
         // Spend 2+ hours on this line... just to make UITextView starts typing at the very top...
         self.automaticallyAdjustsScrollViewInsets = false
@@ -83,7 +94,7 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
         tweetButton.titleLabel?.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 16)
         tweetButton.layer.cornerRadius = 4
         tweetButton.layer.masksToBounds = true
-        setTweetButton(ready: false)
+        setTweetButton(ready: isReadyToTweet)
         
         tweetButton.addTarget(self, action: #selector(sendTweet), for: .touchUpInside)
         
@@ -112,12 +123,14 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
     
     func setTweetButton(ready: Bool) {
         if (!ready) {
+            isReadyToTweet = false
             tweetButton.backgroundColor = UIColor.white
             tweetButton.setTitleColor(UIConstants.twitterDarkGray, for: .normal)
             tweetButton.layer.borderColor = UIConstants.twitterDarkGray.cgColor
             tweetButton.layer.borderWidth = 0.5
             tweetButton.isUserInteractionEnabled = false
         } else {
+            isReadyToTweet = true
             tweetButton.backgroundColor = UIConstants.twitterPrimaryBlue
             tweetButton.setTitleColor(UIColor.white, for: .normal)
             tweetButton.isUserInteractionEnabled = true
@@ -126,20 +139,31 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
     
     func sendTweet() {
         
+        
     }
     
     // MARK: - Text View delegate methods
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textViewDidChange(_ textView: UITextView) {
+        let currentCount = textView.text.characters.count
+        
+        if (currentCount > 0) {
+            placeholderLabel.isHidden = true
+        } else {
+            placeholderLabel.isHidden = false
+        }
+        
+        let charactersLeft = 140 - currentCount
+        setCharactersLeftLabel(left: charactersLeft)
+        
+        if (isReadyToTweet) {
+            if (charactersLeft < 0 || charactersLeft > 139) {
+                setTweetButton(ready: false)
+            }
+        } else {
+            if (charactersLeft < 140 && charactersLeft > -1) {
+                setTweetButton(ready: true)
+            }
+        }
     }
-    */
 
 }
