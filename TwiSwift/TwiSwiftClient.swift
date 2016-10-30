@@ -72,9 +72,14 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         }
     }
     
-    func update(status: String, completionHandler: @escaping (Tweet?, Error?) -> ()) {
+    func update(status: String, inReplyToStatusId: String?, completionHandler: @escaping (Tweet?, Error?) -> ()) {
         
-        let params = ["status": status]
+        var params = ["status": status]
+        
+        if let replyIdStr = inReplyToStatusId {
+            params["in_reply_to_status"] = replyIdStr
+        }
+        
         self.post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
             
             let newTweet = Tweet(dictionary: response as! Dictionary<String, AnyObject>)

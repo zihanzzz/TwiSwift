@@ -160,14 +160,16 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
         newTweet.createdAt = Date()
         newTweet.retweetCount = 0
         newTweet.favoriteCount = 0
+        newTweet.retweetedByMe = false
         
         let userInfo:[String: Tweet] = ["tweet": newTweet]
         
         NotificationCenter.default.post(name: UserEventEnum.newTweet.notification, object: nil, userInfo: userInfo)
         
-        TwiSwiftClient.sharedInstance?.update(status: composeTextView.text, completionHandler: { (tweet: Tweet?, error: Error?) in
+        TwiSwiftClient.sharedInstance?.update(status: composeTextView.text, inReplyToStatusId: replyingTweet?.remoteIdStr, completionHandler: { (tweet: Tweet?, error: Error?) in
             
         })
+
     }
     
     // MARK: - Text View delegate methods
