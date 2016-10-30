@@ -74,6 +74,13 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     override var previewActionItems: [UIPreviewActionItem] {
         
         var actions = [UIPreviewAction]()
+
+        let screenname = (tweet.originalComposer?.screenname!)!
+        let twitterAction = UIPreviewAction(title: "@\(screenname) in Twitter", style: .default) { (previewAction, viewController) in
+            if (UIApplication.shared.canOpenURL(URL(string: "twitter://")!)) {
+                UIApplication.shared.open(URL(string: "twitter://user?screen_name=\(screenname)")!, options: [:], completionHandler: nil)
+            }
+        }
         
         let dismissAction = UIPreviewAction(title: "Cancel", style: .default) { (previewAction, viewController) in
             self.dismiss(animated: true, completion: nil)
@@ -90,7 +97,9 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             })
         }
         
+        actions.append(twitterAction)
         actions.append(dismissAction)
+        
         
         if tweet.originalComposer?.idString == User.currentUser?.idString {
             actions.insert(deleteAction, at: 0)
