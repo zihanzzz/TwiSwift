@@ -61,14 +61,15 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             cell.tweet = self.tweet
             break
         case 2:
-            cell = tableView.dequeueReusableCell(withIdentifier: "TweetActions", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "TweetActions", for: indexPath) as! TweetCell
+            let cell = cell as! TweetCell
+            cell.tweet = self.tweet
             break
         default:
             break
         }
         
         cell.selectionStyle = .none
-        
         return cell
     }
 
