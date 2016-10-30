@@ -18,7 +18,9 @@ class UIConstants: NSObject {
                                                                                   NSFontAttributeName: getTitleFont()]
         viewController.navigationController?.navigationBar.tintColor = UIColor.white
         viewController.navigationController?.navigationBar.isTranslucent = false
-        viewController.navigationItem.title = withTitle
+        if withTitle.characters.count > 0 {
+            viewController.navigationItem.title = withTitle
+        }
         viewController.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: getBarButtonItemFont()], for: .normal)
         viewController.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: getBarButtonItemFont()], for: .normal)
     }

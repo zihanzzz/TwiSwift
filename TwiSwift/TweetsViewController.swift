@@ -42,7 +42,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 // but don't self.businessTableView and self.view have the same frame? No they don't (different width and height)
             }
         }
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,8 +50,21 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     @IBAction func onLogOut(_ sender: Any) {
-        User.currentUser?.logout()
+        let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure to log out of TwitterLite?", preferredStyle: .alert)
+        logoutAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+            logoutAlert.dismiss(animated: true, completion: nil)
+        }))
+        logoutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            User.currentUser?.logout()
+        }))
+        present(logoutAlert, animated: true, completion: nil)
     }
+    
+    @IBAction func onNewTweet(_ sender: Any) {
+        
+    }
+    
+    
 
     // MARK: - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

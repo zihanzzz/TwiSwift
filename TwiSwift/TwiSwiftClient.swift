@@ -70,11 +70,26 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         }
     }
     
+    func update(status: String, completionHandler: @escaping (Tweet?, Error?) -> ()) {
+        
+        let params = ["status": status]
+        self.post("1.1/statuses/update.json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+            
+            let newTweet = Tweet(dictionary: response as! Dictionary<String, AnyObject>)
+            completionHandler(newTweet, nil)
+
+        }, failure: { (operation: URLSessionDataTask?, error: Error) in
+            completionHandler(nil, error)
+            print(error.localizedDescription)
+        })
+    }
+    
     func openURL(url: URL) {
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in
             
-            self.requestSerializer.saveAccessToken(accessToken)
+            let saveResult = self.requestSerializer.saveAccessToken(accessToken)
+            print("saving token result: \(saveResult)")
             self.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
 
                 let user = User(dictionary: response as! Dictionary<String, AnyObject>)
@@ -88,6 +103,4 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
             self.loginCompletionHandler(nil, error)
         })
     }
-    
-    
 }
