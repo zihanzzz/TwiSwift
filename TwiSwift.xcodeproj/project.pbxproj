@@ -33,7 +33,6 @@
 		E149A8681DC5586100918C9C /* TweetNumbersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetNumbersCell.swift; sourceTree = "<group>"; };
 		E149A86A1DC5733400918C9C /* TweetActionsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetActionsCell.swift; sourceTree = "<group>"; };
 		E149A86C1DC57DDB00918C9C /* NewTweetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTweetViewController.swift; sourceTree = "<group>"; };
-		E149A86F1DC5851900918C9C /* TwitterLite.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TwitterLite.entitlements; sourceTree = "<group>"; };
 		E15CF6941DC1EEFC005E5BF1 /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 		E17445331DC1C2BF00400278 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		E17445351DC1C36800400278 /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
@@ -119,7 +118,6 @@
 		E1A099321DC09EBD00E0AC36 /* TwiSwift */ = {
 			isa = PBXGroup;
 			children = (
-				E149A86F1DC5851900918C9C /* TwitterLite.entitlements */,
 				E17445321DC1C29B00400278 /* Models */,
 				E1A099451DC0A39300E0AC36 /* API */,
 				E136A5881DC31736003BC365 /* View Controllers */,
@@ -191,7 +189,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -423,7 +421,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TwiSwift/TwitterLite.entitlements;
 				DEVELOPMENT_TEAM = EEV6AZHDW2;
 				INFOPLIST_FILE = TwiSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -440,7 +437,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = TwiSwift/TwitterLite.entitlements;
 				DEVELOPMENT_TEAM = EEV6AZHDW2;
 				INFOPLIST_FILE = TwiSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
