@@ -152,6 +152,7 @@ class TweetCell: UITableViewCell {
     func toggleLikeButton() {
         
         if (!isLiked) {
+            self.tweet.favorited = true
             UIView.animate(withDuration: 0.1, animations: {
                 
                 self.bottomLikeImageView?.transform = CGAffineTransform(scaleX: 4, y: 4)
@@ -167,12 +168,15 @@ class TweetCell: UITableViewCell {
             TwiSwiftClient.sharedInstance?.createFavorite(tweet: self.tweet, completionHandler: { (finish: Bool?) in
                 if (!finish!) {
                     self.setLikeImage(selected: false)
+                    self.tweet.favorited = false
                 }
             })
         } else {
+            self.tweet.favorited = false
             setLikeImage(selected: false)
             TwiSwiftClient.sharedInstance?.destroyFavorite(tweet: self.tweet, completionHandler: { (finish: Bool?) in
                 if (!finish!) {
+                    self.tweet.favorited = true
                     self.setLikeImage(selected: true)
                 }
             })

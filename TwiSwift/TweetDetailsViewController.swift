@@ -56,7 +56,9 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             cell.tweet = self.tweet
             break
         case 1:
-            cell = tableView.dequeueReusableCell(withIdentifier: "TweetNumbers", for: indexPath)
+            cell = tableView.dequeueReusableCell(withIdentifier: "TweetNumbers", for: indexPath) as! TweetNumbersCell
+            let cell = cell as! TweetNumbersCell
+            cell.tweet = self.tweet
             break
         case 2:
             cell = tableView.dequeueReusableCell(withIdentifier: "TweetActions", for: indexPath)
