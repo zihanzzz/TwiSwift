@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
     
     var tweets: [Tweet]?
     
@@ -33,6 +33,16 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tweets = tweets
             self.tweetsTableView.reloadData()
         })
+        
+        if #available(iOS 9, *) {
+            if (traitCollection.forceTouchCapability == UIForceTouchCapability.available) {
+                registerForPreviewing(with: self, sourceView: self.tweetsTableView)
+                // It's important that the sourceView is set to the tableView instead of self.view
+                // Otherwise previewingContext.sourceRect will cause issues! (different coordinate system)
+                // but don't self.businessTableView and self.view have the same frame? No they don't (different width and height)
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,20 +85,34 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let tweetDetailsViewController = segue.destination as? TweetDetailsViewController {
-            
             if let tweetCell = sender as? TweetCell {
-                
                 tweetDetailsViewController.tweet = tweetCell.tweet
-                
             }
-            
-            
         }
-        
-        
-        
-        
     }
     
+    // MARK: - 3D Touch Preview
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        guard let indexPath = self.tweetsTableView.indexPathForRow(at: location) else {return nil}
+        guard let cell = self.tweetsTableView.cellForRow(at: indexPath) else {return nil}
+        
+        previewingContext.sourceRect = cell.frame
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "TweetDetailsViewController") as! TweetDetailsViewController
+        
+        vc.tweet = self.tweets?[indexPath.row]
+
+        let preferredWidth = self.view.frame.size.width - 50
+        vc.preferredContentSize = CGSize(width: preferredWidth, height: preferredWidth)
+        
+        return vc
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController?.pushViewController(viewControllerToCommit, animated: true)
+    }
+
 
 }

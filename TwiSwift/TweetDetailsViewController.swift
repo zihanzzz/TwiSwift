@@ -26,7 +26,6 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         detailsTableView.estimatedRowHeight = 120
         detailsTableView.showsVerticalScrollIndicator = false
         
-        
         // remove empty cells
         detailsTableView.tableFooterView = UIView()
     }
@@ -71,6 +70,18 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         
         cell.selectionStyle = .none
         return cell
+    }
+    
+    // MARK: - Preview
+    override var previewActionItems: [UIPreviewActionItem] {
+        
+        
+        let dismissAction = UIPreviewAction(title: "Cancel", style: .default) { (previewAction, viewController) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        return [dismissAction]
+
     }
 
     

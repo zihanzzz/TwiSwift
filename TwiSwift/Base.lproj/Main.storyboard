@@ -214,7 +214,7 @@
         <!--Tweet Details View Controller-->
         <scene sceneID="07e-1l-gJu">
             <objects>
-                <viewController id="iPr-ta-BD3" customClass="TweetDetailsViewController" customModule="TwiSwift" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TweetDetailsViewController" id="iPr-ta-BD3" customClass="TweetDetailsViewController" customModule="TwiSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mFV-cu-yRN"/>
                         <viewControllerLayoutGuide type="bottom" id="VbH-Wc-lLh"/>
