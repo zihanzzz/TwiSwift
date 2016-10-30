@@ -8,6 +8,12 @@
 
 import UIKit
 
+@objc protocol TweetCellDelegate {
+    
+    @objc optional func tweetCell(tweetCell: TweetCell, didTapReply tweet: Tweet)
+    
+}
+
 class TweetCell: UITableViewCell {
     
     @IBOutlet weak var topRTImageView: UIImageView? //
@@ -31,6 +37,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var bottomReplyImageView: UIImageView? //
     
     @IBOutlet weak var timestampLabel: UILabel?
+    
+    weak var delegate: TweetCellDelegate?
     
     var tweetsViewController: TweetsViewController?
     
@@ -200,6 +208,8 @@ class TweetCell: UITableViewCell {
     
     // Reply
     func bottomButton2Tapped() {
+        
+        delegate?.tweetCell?(tweetCell: self, didTapReply: self.tweet)
         
     }
     

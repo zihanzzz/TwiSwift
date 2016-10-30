@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TweetCellDelegate {
 
     @IBOutlet weak var detailsTableView: UITableView!
     
@@ -26,6 +26,37 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         
         // remove empty cells
         detailsTableView.tableFooterView = UIView()
+        
+        //reply button
+        let replyImageView = UIImageView(image: UIImage(named: "reply-colored"))
+        replyImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        let rightBarButton = UIBarButtonItem.init(customView: replyImageView)
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        let replyTap = UITapGestureRecognizer(target: self, action: #selector(onReply))
+        replyTap.numberOfTapsRequired = 1
+        replyImageView.addGestureRecognizer(replyTap)
+    }
+    
+    func onReply() {
+        
+        onReplyWithTweet(tweet: self.tweet)
+        
+    }
+    
+    func onReplyWithTweet(tweet: Tweet) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "NewTweet") as! UINavigationController
+        
+        if let newTweetViewController = vc.topViewController as? NewTweetViewController {
+            
+            newTweetViewController.replyingTweet = tweet
+            
+        }
+        
+        self.present(vc, animated: true, completion: nil)
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,6 +92,7 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             cell = tableView.dequeueReusableCell(withIdentifier: "TweetActions", for: indexPath) as! TweetCell
             let cell = cell as! TweetCell
             cell.tweet = self.tweet
+            cell.delegate = self
             break
         default:
             break
@@ -68,6 +100,14 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         
         cell.selectionStyle = .none
         return cell
+    }
+    
+    // MARK: - Tweet Cell Delegate
+    func tweetCell(tweetCell: TweetCell, didTapReply tweet: Tweet) {
+        
+        onReplyWithTweet(tweet: tweet)
+        
+        
     }
     
     // MARK: - Preview

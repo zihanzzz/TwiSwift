@@ -92,7 +92,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9v8-Hx-fGL" id="ub7-Dc-myo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4P0-Ey-wCB">
@@ -116,7 +116,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@RobMayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-GU-PL3">
-                                                    <rect key="frame" x="164" y="31" width="89" height="17"/>
+                                                    <rect key="frame" x="164" y="31" width="88.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.6568221275252526" green="0.6568221275252526" blue="0.6568221275252526" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -286,7 +286,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="237"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SzY-se-pLt" id="STs-Qp-XOj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="236.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vy-nn-o3b">
@@ -386,7 +386,7 @@
                                         <rect key="frame" x="0.0" y="265" width="375" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1nX-2t-E0R" id="hff-j9-e6v">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPN-CR-HoV">
@@ -452,7 +452,7 @@
                                         <rect key="frame" x="0.0" y="314" width="375" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hA-8H-jZU" id="vEq-Th-KjI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="giW-MG-NBW">
@@ -516,7 +516,7 @@
         <!--Navigation Controller-->
         <scene sceneID="gY2-NN-zZv">
             <objects>
-                <navigationController storyboardIdentifier="QA" automaticallyAdjustsScrollViewInsets="NO" id="GxB-Lj-rBP" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="NewTweet" automaticallyAdjustsScrollViewInsets="NO" id="GxB-Lj-rBP" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ahE-Rc-BQi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

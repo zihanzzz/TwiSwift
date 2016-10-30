@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate {
+class TweetsViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIViewControllerPreviewingDelegate, TweetCellDelegate {
     
     var tweets: [Tweet]?
     
@@ -99,6 +99,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
         cell.selectionStyle = .none
         cell.clearCellState()
+        
+        cell.delegate = self
 
         cell.tweetsViewController = self
         
@@ -137,6 +139,22 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 tweetDetailsViewController.tweet = tweetCell.tweet
             }
         }
+    }
+    
+    // MARK: - Tweet Cell Delegate
+    func tweetCell(tweetCell: TweetCell, didTapReply tweet: Tweet) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "NewTweet") as! UINavigationController
+        
+        if let newTweetViewController = vc.topViewController as? NewTweetViewController {
+            
+            newTweetViewController.replyingTweet = tweet
+            
+        }
+        
+        self.present(vc, animated: true, completion: nil)
+
     }
     
     // MARK: - 3D Touch Preview

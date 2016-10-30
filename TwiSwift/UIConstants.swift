@@ -27,6 +27,7 @@ class UIConstants: NSObject {
     
     // MARK : - Colors
     
+    // Hex is 1DA1F2
     static let twitterPrimaryBlue = UIColor(red: 29/255, green: 161/255, blue: 242/255, alpha: 1)
     
     static let twitterDarkGray = UIColor(red: 101/255, green: 119/255, blue: 134/255, alpha: 1)

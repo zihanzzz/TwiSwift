@@ -22,9 +22,11 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
 
     var isReadyToTweet = false
     
+    var replyingTweet: Tweet?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         if let profileImageUrl = composer?.profileImageUrl {
             let largeImageUrl = profileImageUrl.replacingOccurrences(of: "normal", with: "200x200")
             
@@ -99,6 +101,15 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
         tweetButton.addTarget(self, action: #selector(sendTweet), for: .touchUpInside)
         
         customView.addSubview(tweetButton)
+        
+        if replyingTweet != nil {
+            let replyText = "@\(replyingTweet!.sender!.screenname!)" + " "
+            composeTextView.text = replyText
+            placeholderLabel.isHidden = true
+            setCharactersLeftLabel(left: (140 - replyText.characters.count))
+            setTweetButton(ready: true)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
