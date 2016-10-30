@@ -33,6 +33,8 @@ class UIConstants: NSObject {
     
     static let twitterLightGray = UIColor(red: 170/255, green: 184/255, blue: 194/255, alpha: 1)
     
+    static let swiftColor = UIColor(red: 232/255, green: 127/255, blue: 61/255, alpha: 1)
+    
     
     // MARK : - Fonts
     static func getBarButtonItemFont() -> UIFont {

@@ -21,12 +21,29 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMu-Jr-LHv">
-                                <rect key="frame" x="0.0" y="605" width="375" height="62"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="fdv-Rl-MW2">
+                                <rect key="frame" x="168" y="531" width="39" height="26"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="62" id="tAK-Oo-SCE"/>
+                                    <constraint firstAttribute="width" constant="39" id="IhW-xh-JZx"/>
+                                    <constraint firstAttribute="height" constant="26" id="ohZ-it-mkm"/>
                                 </constraints>
-                                <state key="normal" title="Login with Twitter"/>
+                            </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgr-cw-SGj">
+                                <rect key="frame" x="80" y="562" width="215" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="xAY-aN-q3W"/>
+                                </constraints>
+                                <state key="normal" title="Create a Twitter acount"/>
+                                <connections>
+                                    <action selector="onSignUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2kx-l3-Iig"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FMu-Jr-LHv">
+                                <rect key="frame" x="80" y="612" width="215" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="CTy-iW-JGh"/>
+                                </constraints>
+                                <state key="normal" title="Sign in with Twitter"/>
                                 <connections>
                                     <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ORK-dx-Shv"/>
                                 </connections>
@@ -34,19 +51,26 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="FMu-Jr-LHv" secondAttribute="trailing" id="F3W-lF-75C"/>
-                            <constraint firstItem="FMu-Jr-LHv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="IfF-9g-LRa"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FMu-Jr-LHv" secondAttribute="bottom" id="ab3-vU-adC"/>
+                            <constraint firstItem="sgr-cw-SGj" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="80" id="6KZ-cm-6Ce"/>
+                            <constraint firstAttribute="trailing" secondItem="sgr-cw-SGj" secondAttribute="trailing" constant="80" id="EI4-a8-NDT"/>
+                            <constraint firstAttribute="trailing" secondItem="FMu-Jr-LHv" secondAttribute="trailing" constant="80" id="TMV-iu-h91"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FMu-Jr-LHv" secondAttribute="bottom" constant="15" id="UWM-0T-qUq"/>
+                            <constraint firstItem="sgr-cw-SGj" firstAttribute="centerX" secondItem="fdv-Rl-MW2" secondAttribute="centerX" id="Ydj-ba-B2j"/>
+                            <constraint firstItem="FMu-Jr-LHv" firstAttribute="top" secondItem="sgr-cw-SGj" secondAttribute="bottom" constant="10" id="spx-dX-akr"/>
+                            <constraint firstItem="FMu-Jr-LHv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="80" id="tMH-C6-Z30"/>
+                            <constraint firstItem="sgr-cw-SGj" firstAttribute="top" secondItem="fdv-Rl-MW2" secondAttribute="bottom" constant="5" id="v3Q-be-5Aq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="loginButton" destination="FMu-Jr-LHv" id="aBX-kC-psx"/>
+                        <outlet property="pageControl" destination="fdv-Rl-MW2" id="KFW-Te-v0a"/>
+                        <outlet property="signUpButton" destination="sgr-cw-SGj" id="cMF-EE-o4O"/>
                         <segue destination="uGV-YE-jco" kind="presentation" identifier="loginSegue" id="0kN-MD-8NM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-340" y="73"/>
+            <point key="canvasLocation" x="-340.57971014492756" y="71.739130434782609"/>
         </scene>
         <!--Tweets View Controller-->
         <scene sceneID="jfp-9j-LXF">
@@ -68,7 +92,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="174"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9v8-Hx-fGL" id="ub7-Dc-myo">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="173"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4P0-Ey-wCB">
@@ -92,7 +116,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@RobMayeda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-GU-PL3">
-                                                    <rect key="frame" x="164" y="31" width="88.5" height="17"/>
+                                                    <rect key="frame" x="164" y="31" width="89" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.6568221275252526" green="0.6568221275252526" blue="0.6568221275252526" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -273,7 +297,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="237"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SzY-se-pLt" id="STs-Qp-XOj">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="236.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="236"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Vy-nn-o3b">
@@ -373,7 +397,7 @@
                                         <rect key="frame" x="0.0" y="265" width="375" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1nX-2t-E0R" id="hff-j9-e6v">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPN-CR-HoV">
@@ -439,7 +463,7 @@
                                         <rect key="frame" x="0.0" y="314" width="375" height="49"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3hA-8H-jZU" id="vEq-Th-KjI">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="giW-MG-NBW">

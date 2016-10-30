@@ -55,6 +55,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
             self.post("1.1/favorites/create.json?id=\(remoteId)", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
                 completionHandler(true)
             }, failure: { (operation: URLSessionDataTask?, error: Error) in
+                print(error.localizedDescription)
                 completionHandler(false)
             })
         }
@@ -65,6 +66,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
             self.post("1.1/favorites/destroy.json?id=\(remoteId)", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
                 completionHandler(true)
             }, failure: { (operation: URLSessionDataTask?, error: Error) in
+                print(error.localizedDescription)
                 completionHandler(false)
             })
         }
@@ -85,9 +87,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
     }
     
     func deleteTweet(tweetIdString: String, completionHandler: @escaping (Tweet?, Error?) -> ()) {
-        
-        
-        
+
         self.post("1.1/statuses/destroy/\(tweetIdString).json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
             
             let deletedTweet = Tweet(dictionary: response as! Dictionary<String, AnyObject>)
@@ -99,7 +99,6 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
             completionHandler(nil, error)
             
         })
-        
     }
     
     func openURL(url: URL) {
