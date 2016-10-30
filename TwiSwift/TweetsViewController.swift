@@ -97,6 +97,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - New Tweet
     func handleNewTweet(_ notification: NSNotification) {
         if let newTweet = notification.userInfo?["tweet"] as? Tweet {
+            if (tweets == nil) {
+                tweets = [Tweet]()
+            }
             tweets?.insert(newTweet, at: 0)
             tweetsTableView.reloadData()
         }

@@ -71,7 +71,7 @@ class UIConstants: NSObject {
             return "\(abs(hour))h"
         } else if abs(minute) > 0 {
             return "\(abs(minute))m"
-        } else if abs(second) > 0 {
+        } else if (abs(second) > 0 || second == 0) {
             return "\(abs(second))s"
         }        
         return ""

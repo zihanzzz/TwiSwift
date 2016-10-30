@@ -67,7 +67,7 @@ class TweetCell: UITableViewCell {
                     topRTLabel?.isHidden = true
                 }
             }
-            
+
             if let date = tweet.createdAt {
                 timeAgoLabel?.text = UIConstants.getTimeAgoLabel(date: date)
                 timestampLabel?.text = UIConstants.getTimeStampLabel(date: date)
@@ -111,7 +111,6 @@ class TweetCell: UITableViewCell {
         avatarImageView?.image = nil
         topRTImageView?.isHidden = false
         topRTLabel?.isHidden = false
-        
     }
 
     override func awakeFromNib() {
@@ -191,8 +190,6 @@ class TweetCell: UITableViewCell {
             bottomLikeImageView?.image = UIImage(named: "like-unselected")
         }
     }
-    
-
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

@@ -84,6 +84,24 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    func deleteTweet(tweetIdString: String, completionHandler: @escaping (Tweet?, Error?) -> ()) {
+        
+        
+        
+        self.post("1.1/statuses/destroy/\(tweetIdString).json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+            
+            let deletedTweet = Tweet(dictionary: response as! Dictionary<String, AnyObject>)
+            completionHandler(deletedTweet, nil)
+            
+        }, failure: { (operation: URLSessionDataTask?, error: Error) in
+            
+            print(error.localizedDescription)
+            completionHandler(nil, error)
+            
+        })
+        
+    }
+    
     func openURL(url: URL) {
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in

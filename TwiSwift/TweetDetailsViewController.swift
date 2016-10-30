@@ -75,16 +75,31 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     // MARK: - Preview
     override var previewActionItems: [UIPreviewActionItem] {
         
+        var actions = [UIPreviewAction]()
         
         let dismissAction = UIPreviewAction(title: "Cancel", style: .default) { (previewAction, viewController) in
             self.dismiss(animated: true, completion: nil)
         }
         
-        return [dismissAction]
+        let deleteAction = UIPreviewAction(title: "Delete Tweet", style: .default) { (previewAction, viewController) in
+            
+            TwiSwiftClient.sharedInstance?.deleteTweet(tweetIdString: "\(self.tweet.remoteId!)", completionHandler: { (tweet: Tweet?, error: Error?) in
+                if (tweet != nil) {
+                    print("delete succeeded")
+                } else {
+                    print("delete failed")
+                }
+            })
+        }
+        
+        actions.append(dismissAction)
+        
+        if tweet.originalComposer?.idString == User.currentUser?.idString {
+            actions.insert(deleteAction, at: 0)
+        }
 
+        return actions
     }
-
-    
 
     /*
     // MARK: - Navigation

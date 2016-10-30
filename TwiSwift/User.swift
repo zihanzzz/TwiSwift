@@ -28,7 +28,8 @@ class User: NSObject {
     var profileImageUrl: String?
     var tagline: String?
     var dictionary: Dictionary<String, AnyObject>?
-    
+    var idString: String?
+
     class var currentUser: User? {
         get {
             let defaults = UserDefaults.standard
@@ -68,6 +69,7 @@ class User: NSObject {
         screenname = dictionary["screen_name"] as? String
         profileImageUrl = dictionary["profile_image_url_https"] as? String
         tagline = dictionary["description"] as? String
+        idString = dictionary["id_str"] as? String
         self.dictionary = dictionary
     }
     
