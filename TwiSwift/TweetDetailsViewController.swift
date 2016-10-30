@@ -16,8 +16,6 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        UIConstants.configureNavBarStyle(forViewController: self, withTitle: "Tweet")
         
         detailsTableView.dataSource = self
         detailsTableView.delegate = self

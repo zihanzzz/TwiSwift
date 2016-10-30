@@ -219,21 +219,10 @@
                             <constraint firstItem="NPu-0m-IlK" firstAttribute="top" secondItem="KX7-UX-SeO" secondAttribute="top" id="lar-48-UJx"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="8lw-3P-RrK">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="bIj-Uv-zGb">
-                            <connections>
-                                <action selector="onLogOut:" destination="iIP-M2-gbp" id="sGD-On-cIf"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="New" id="SjA-Ej-2hY">
-                            <connections>
-                                <action selector="onNewTweet:" destination="iIP-M2-gbp" id="b4P-Ns-VRM"/>
-                                <segue destination="GxB-Lj-rBP" kind="presentation" id="Fwt-nd-vIm"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="8lw-3P-RrK"/>
                     <connections>
                         <outlet property="tweetsTableView" destination="NPu-0m-IlK" id="3Tn-Ie-69t"/>
+                        <segue destination="GxB-Lj-rBP" kind="presentation" identifier="newTweetSegue" id="9by-a7-CWi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tiV-PX-97h" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -21,7 +21,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         refreshControl.addTarget(self, action: #selector(refreshControlAction(refreshControl:)), for: .valueChanged)
         tweetsTableView.insertSubview(refreshControl, at: 0)
 
-        UIConstants.configureNavBarStyle(forViewController: self, withTitle: "Home")
+        let logoImage = UIImage(named: "twitter_logo")
+        let logoImageView = UIImageView(image: logoImage)
+        logoImageView.frame = CGRect(x: 0, y: 0, width: 35, height: 35)
+        logoImageView.contentMode = .scaleAspectFit
+        self.navigationItem.titleView = logoImageView
+        
         
         tweetsTableView.dataSource = self
         tweetsTableView.delegate = self
@@ -44,6 +49,24 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleNewTweet(_:)), name: UserEventEnum.newTweet.notification, object: nil)
+        
+        let composeImageView = UIImageView(image: UIImage(named: "compose"))
+        composeImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        let rightBarButton = UIBarButtonItem.init(customView: composeImageView)
+        self.navigationItem.rightBarButtonItem = rightBarButton
+        
+        let composeTap = UITapGestureRecognizer(target: self, action: #selector(onNewTweet))
+        composeTap.numberOfTapsRequired = 1
+        composeImageView.addGestureRecognizer(composeTap)
+        
+        let logoutImageView = UIImageView(image: UIImage(named: "logout"))
+        logoutImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        let leftBarButton = UIBarButtonItem.init(customView: logoutImageView)
+        self.navigationItem.leftBarButtonItem = leftBarButton
+        
+        let logoutTap = UITapGestureRecognizer(target: self, action: #selector(onLogOut))
+        logoutTap.numberOfTapsRequired = 1
+        logoutImageView.addGestureRecognizer(logoutTap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,7 +74,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onLogOut(_ sender: Any) {
+    func onLogOut() {
         let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure to log out of TwitterLite?", preferredStyle: .alert)
         logoutAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
             logoutAlert.dismiss(animated: true, completion: nil)
@@ -62,8 +85,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         present(logoutAlert, animated: true, completion: nil)
     }
     
-    @IBAction func onNewTweet(_ sender: Any) {
-        
+    func onNewTweet() {
+        performSegue(withIdentifier: "newTweetSegue", sender: self)
     }
     
     

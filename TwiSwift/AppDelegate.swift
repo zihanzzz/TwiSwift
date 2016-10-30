@@ -26,6 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            let vc = storyboard.instantiateViewController(withIdentifier: "QA") as! UINavigationController
             window?.rootViewController = vc
         }
+        
+        // back button
+        UINavigationBar.appearance().tintColor = UIConstants.twitterPrimaryBlue
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: UIConstants.getTextFontNameLight(), size: 18) as Any], for: .normal)
+        
+        
         return true
     }
     

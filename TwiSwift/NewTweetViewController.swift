@@ -133,6 +133,7 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
             isReadyToTweet = true
             tweetButton.backgroundColor = UIConstants.twitterPrimaryBlue
             tweetButton.setTitleColor(UIColor.white, for: .normal)
+            tweetButton.layer.borderWidth = 0
             tweetButton.isUserInteractionEnabled = true
         }
     }
