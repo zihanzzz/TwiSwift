@@ -25,7 +25,6 @@ class CredentialsControl: NSObject {
         if index == 0 {
             return keysArray[0]
         }
-        
         return keysArray[index - 1]
     }
     
@@ -36,7 +35,6 @@ class CredentialsControl: NSObject {
         if index == 0 {
             return secretsArray[0]
         }
-        
         return secretsArray[index - 1]
     }
 }
