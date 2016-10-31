@@ -39,9 +39,7 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     }
     
     func onReply() {
-        
         onReplyWithTweet(tweet: self.tweet)
-        
     }
     
     func onReplyWithTweet(tweet: Tweet) {
@@ -50,13 +48,9 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
         let vc = storyboard.instantiateViewController(withIdentifier: "NewTweet") as! UINavigationController
         
         if let newTweetViewController = vc.topViewController as? NewTweetViewController {
-            
             newTweetViewController.replyingTweet = tweet
-            
         }
-        
         self.present(vc, animated: true, completion: nil)
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,10 +98,17 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     
     // MARK: - Tweet Cell Delegate
     func tweetCell(tweetCell: TweetCell, didTapReply tweet: Tweet) {
-        
         onReplyWithTweet(tweet: tweet)
-        
-        
+    }
+    
+    func tweetCell(tweetCell: TweetCell, didFinishRetweet tweet: Tweet) {
+        self.tweet = tweet
+        self.detailsTableView.reloadData()
+    }
+    
+    func tweetCell(tweetCell: TweetCell, didFinishFavorite tweet: Tweet) {
+        self.tweet = tweet
+        self.detailsTableView.reloadData()
     }
     
     // MARK: - Preview

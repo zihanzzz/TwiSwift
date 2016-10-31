@@ -390,25 +390,25 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MPN-CR-HoV">
-                                                    <rect key="frame" x="34" y="14" width="39" height="21"/>
+                                                    <rect key="frame" x="34" y="14" width="28" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="39" id="dNa-RV-rwC"/>
+                                                        <constraint firstAttribute="width" constant="28" id="dNa-RV-rwC"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1321" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="er9-2B-LXq">
-                                                    <rect key="frame" x="177" y="14" width="39" height="21"/>
+                                                    <rect key="frame" x="162" y="14" width="28" height="21"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="39" id="yuj-G1-D0b"/>
+                                                        <constraint firstAttribute="width" constant="28" id="yuj-G1-D0b"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RETWEETS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nAv-qi-rTA">
-                                                    <rect key="frame" x="77" y="14" width="88" height="21"/>
+                                                    <rect key="frame" x="62" y="14" width="88" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="88" id="oCB-Dy-LTW"/>
                                                     </constraints>
@@ -417,7 +417,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FAVORITES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nhv-lf-UTx">
-                                                    <rect key="frame" x="220" y="14" width="88" height="21"/>
+                                                    <rect key="frame" x="190" y="14" width="88" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="88" id="cJS-DU-bxl"/>
                                                     </constraints>
@@ -430,8 +430,8 @@
                                                 <constraint firstItem="MPN-CR-HoV" firstAttribute="leading" secondItem="hff-j9-e6v" secondAttribute="leading" constant="34" id="62y-Dg-Ky4"/>
                                                 <constraint firstAttribute="bottom" secondItem="er9-2B-LXq" secondAttribute="bottom" constant="13" id="AE1-eF-Zm8"/>
                                                 <constraint firstAttribute="bottom" secondItem="MPN-CR-HoV" secondAttribute="bottom" constant="13" id="Csp-So-qfy"/>
-                                                <constraint firstItem="nAv-qi-rTA" firstAttribute="leading" secondItem="MPN-CR-HoV" secondAttribute="trailing" constant="4" id="ETZ-o5-jkb"/>
-                                                <constraint firstItem="nhv-lf-UTx" firstAttribute="leading" secondItem="er9-2B-LXq" secondAttribute="trailing" constant="4" id="JtM-9z-0nn"/>
+                                                <constraint firstItem="nAv-qi-rTA" firstAttribute="leading" secondItem="MPN-CR-HoV" secondAttribute="trailing" id="ETZ-o5-jkb"/>
+                                                <constraint firstItem="nhv-lf-UTx" firstAttribute="leading" secondItem="er9-2B-LXq" secondAttribute="trailing" id="JtM-9z-0nn"/>
                                                 <constraint firstAttribute="bottom" secondItem="nAv-qi-rTA" secondAttribute="bottom" constant="13" id="Mtl-UP-ZzS"/>
                                                 <constraint firstAttribute="bottom" secondItem="nhv-lf-UTx" secondAttribute="bottom" constant="13" id="REI-FD-3fr"/>
                                                 <constraint firstItem="er9-2B-LXq" firstAttribute="leading" secondItem="nAv-qi-rTA" secondAttribute="trailing" constant="12" id="RPY-JE-S1x"/>

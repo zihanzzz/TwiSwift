@@ -59,6 +59,22 @@ class Tweet: NSObject {
             originalTweetIdStr = remoteIdStr
         }
     }
+    
+    func increateRTCount() {
+        retweetCount = retweetCount! + 1
+    }
+    
+    func decreaseRTCount() {
+        retweetCount = retweetCount! - 1
+    }
+    
+    func increaseFavCount() {
+        favoriteCount = favoriteCount! + 1
+    }
+    
+    func decreaseFavCount() {
+        favoriteCount = favoriteCount! - 1
+    }
 
     class func tweetsWithArray(array: [Dictionary<String, AnyObject>]) -> [Tweet] {
         var tweets = [Tweet]()

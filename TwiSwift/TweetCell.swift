@@ -12,6 +12,10 @@ import UIKit
     
     @objc optional func tweetCell(tweetCell: TweetCell, didTapReply tweet: Tweet)
     
+    @objc optional func tweetCell(tweetCell: TweetCell, didFinishRetweet tweet: Tweet)
+    
+    @objc optional func tweetCell(tweetCell: TweetCell, didFinishFavorite tweet: Tweet)
+    
 }
 
 class TweetCell: UITableViewCell {
@@ -158,6 +162,8 @@ class TweetCell: UITableViewCell {
             retweetAlert.addAction(UIAlertAction(title: "Retweet", style: .default, handler: { (action) in
                 
                 self.tweet.retweetedByMe = true
+                self.tweet.increateRTCount()
+                self.delegate?.tweetCell?(tweetCell: self, didFinishRetweet: self.tweet)
                 UIView.animate(withDuration: 0.3, animations: {
                     
                     self.bottomRTImageView?.transform = CGAffineTransform(scaleX: 3, y: 3)
@@ -171,6 +177,7 @@ class TweetCell: UITableViewCell {
                         
                         TwiSwiftClient.sharedInstance?.reweet(tweetIdString: "\(self.tweet.remoteId!)", completionHandler: { (finish) in
                             if (!finish!) {
+                                self.tweet.decreaseRTCount()
                                 self.setRetweetImage(selected: false)
                                 self.tweet.retweetedByMe = false
                             }
@@ -182,7 +189,9 @@ class TweetCell: UITableViewCell {
             retweetAlert.addAction(UIAlertAction(title: "Undo Retweet", style: .destructive, handler: { (action) in
                 
                 self.tweet.retweetedByMe = false
+                self.tweet.decreaseRTCount()
                 self.setRetweetImage(selected: false)
+                self.delegate?.tweetCell?(tweetCell: self, didFinishRetweet: self.tweet)
                 
                 // unretweet
                 let originalRemoteIdString = self.tweet.originalTweetIdStr
@@ -190,6 +199,7 @@ class TweetCell: UITableViewCell {
                     
                     if (!finish!) {
                         self.tweet.retweetedByMe = true
+                        self.tweet.increateRTCount()
                         self.setRetweetImage(selected: true)
                     }
                 })
@@ -208,15 +218,16 @@ class TweetCell: UITableViewCell {
     
     // Reply
     func bottomButton2Tapped() {
-        
         delegate?.tweetCell?(tweetCell: self, didTapReply: self.tweet)
-        
     }
     
     func toggleLikeButton() {
 
         if (!isLiked) {
             self.tweet.favorited = true
+            self.tweet.increaseFavCount()
+            self.delegate?.tweetCell?(tweetCell: self, didFinishFavorite: self.tweet)
+
             UIView.animate(withDuration: 0.1, animations: {
                 
                 self.bottomLikeImageView?.transform = CGAffineTransform(scaleX: 4, y: 4)
@@ -233,15 +244,21 @@ class TweetCell: UITableViewCell {
                 if (!finish!) {
                     self.setLikeImage(selected: false)
                     self.tweet.favorited = false
+                    self.tweet.decreaseFavCount()
+                    self.delegate?.tweetCell?(tweetCell: self, didFinishFavorite: self.tweet)
                 }
             })
         } else {
             self.tweet.favorited = false
+            self.tweet.decreaseFavCount()
+            self.delegate?.tweetCell?(tweetCell: self, didFinishFavorite: self.tweet)
             setLikeImage(selected: false)
             TwiSwiftClient.sharedInstance?.destroyFavorite(tweet: self.tweet, completionHandler: { (finish: Bool?) in
                 if (!finish!) {
                     self.tweet.favorited = true
                     self.setLikeImage(selected: true)
+                    self.tweet.increaseFavCount()
+                    self.delegate?.tweetCell?(tweetCell: self, didFinishFavorite: self.tweet)
                 }
             })
         }
