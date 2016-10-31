@@ -63,7 +63,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        TwiSwiftClient.sharedInstance?.openURL(url: url)
+        
+        let urlString = "\(url)"
+        if urlString.contains("denied") {
+            let deniedAlert = UIAlertController(title: "Access Denied", message: "Failed to authenticate with Twitter", preferredStyle: .alert)
+            deniedAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            UIApplication.shared.keyWindow?.rootViewController?.present(deniedAlert, animated: true, completion: nil)
+        } else {
+            TwiSwiftClient.sharedInstance?.openURL(url: url)
+        }
         return true
     }
 
