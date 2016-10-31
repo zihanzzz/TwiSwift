@@ -169,7 +169,6 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
         TwiSwiftClient.sharedInstance?.update(status: composeTextView.text, inReplyToStatusId: replyingTweet?.remoteIdStr, completionHandler: { (tweet: Tweet?, error: Error?) in
             
         })
-
     }
     
     // MARK: - Text View delegate methods

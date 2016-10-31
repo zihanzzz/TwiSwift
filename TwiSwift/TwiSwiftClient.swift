@@ -12,8 +12,10 @@ import BDBOAuth1Manager
 class TwiSwiftClient: BDBOAuth1SessionManager {
     
     static let twitterBaseURL = URL(string: "https://api.twitter.com")
-    static let twitterConsumerKey = "GFsnqjiXQXiBWBrywEmxs38Be"
-    static let twitterConsumerSecret = "rmPvY1awnl0GoGtxreNGhfqfBHdDJLWBCkoNEZmiLvYMVXVKM0"
+    static let twitterConsumerKey = "STn5Qo0pAbPo6wRJ20s0cnEEx"
+    static let twitterConsumerSecret = "x1T41B2Z7gb7rAgy2f4ktV0RGV4vbHZy6oknG34oHsdWy69Ce2"
+    static let twitterConsumerKey1 = "GFsnqjiXQXiBWBrywEmxs38Be"
+    static let twitterConsumerSecret1 = "rmPvY1awnl0GoGtxreNGhfqfBHdDJLWBCkoNEZmiLvYMVXVKM0"
     
     var loginCompletionHandler: (User?, Error?) -> () = {arg in}
     
