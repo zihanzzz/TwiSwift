@@ -47,6 +47,7 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         pageControl.numberOfPages = 3
         pageControl.pageIndicatorTintColor = UIConstants.twitterLightGray
         pageControl.currentPageIndicatorTintColor = UIConstants.twitterDarkGray
+        pageControl.addTarget(self, action: #selector(changePage), for: .valueChanged)
         
         let pageWidth = scrollView.bounds.width
         let pageHeight = scrollView.bounds.height
@@ -88,6 +89,11 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         instructionImageView.image = UIImage(named: imageName)
         
         forView.addSubview(instructionImageView)
+    }
+    
+    func changePage() {
+        let xOffset = scrollView.bounds.width * CGFloat(pageControl.currentPage)
+        scrollView.setContentOffset(CGPoint(x: xOffset, y: 0), animated: true)
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
