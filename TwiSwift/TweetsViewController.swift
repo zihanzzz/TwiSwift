@@ -127,9 +127,17 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     
     // MARK: - Refresh Control
     func refreshControlAction(refreshControl: UIRefreshControl) {
-        TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: nil, completionHandler: { (tweets: [Tweet]?, errlr: Error?) in
-            self.tweets = tweets
-            self.tweetsTableView.reloadData()
+        
+        let newestId = self.tweets?.first?.remoteId
+        let params = ["since_id": newestId]
+        
+        TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: params, completionHandler: { (tweets: [Tweet]?, errlr: Error?) in
+            if let newTweets = tweets {
+                if newTweets.count > 0 {
+                    self.tweets = tweets
+                    self.tweetsTableView.reloadData()
+                }
+            }
             refreshControl.endRefreshing()
         })
     }

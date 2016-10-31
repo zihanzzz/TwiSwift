@@ -19,7 +19,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
     
     var loginCompletionHandler: (User?, Error?) -> () = {arg in}
     
-    static let sharedInstance = TwiSwiftClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
+    static let sharedInstance = TwiSwiftClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey1, consumerSecret: twitterConsumerSecret1)
     
     func loginWithCompletion(completionHandler: @escaping (User?, Error?) -> ()) {
 
