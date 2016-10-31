@@ -25,6 +25,8 @@ class TweetNumbersCell: UITableViewCell {
                 rtCountLabel.text = "\(rtCount)"
                 if rtCount == 1 {
                     retweetLabel.text = "RETWEET"
+                } else {
+                    retweetLabel.text = "RETWEETS"
                 }
             }
             
@@ -32,6 +34,8 @@ class TweetNumbersCell: UITableViewCell {
                 favoriteCountLabel.text = "\(favCount)"
                 if favCount == 1 {
                     favoriteLabel.text = "FAVORITE"
+                } else {
+                    favoriteLabel.text = "FAVORITES"
                 }
             }
             
