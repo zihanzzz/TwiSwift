@@ -101,8 +101,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     func onNewTweet() {
         performSegue(withIdentifier: "newTweetSegue", sender: self)
     }
-    
-    
 
     // MARK: - Table View
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -157,8 +155,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 let frame = CGRect(x: 0, y: self.tweetsTableView.contentSize.height, width: self.tweetsTableView.bounds.size.width, height: InfiniteScrollActivityView.defaultHeight)
                 self.loadingMoreView?.frame = frame
                 self.loadingMoreView?.startAnimating()
-                
-                
+
                 let oldestId = self.tweets?.last?.remoteIdStr
                 let params = ["max_id": oldestId]
                 TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: params, completionHandler: { (tweets: [Tweet]?, error: Error?) in
@@ -210,13 +207,10 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let vc = storyboard.instantiateViewController(withIdentifier: "NewTweet") as! UINavigationController
         
         if let newTweetViewController = vc.topViewController as? NewTweetViewController {
-            
             newTweetViewController.replyingTweet = tweet
-            
         }
         
         self.present(vc, animated: true, completion: nil)
-
     }
     
     // MARK: - 3D Touch Preview

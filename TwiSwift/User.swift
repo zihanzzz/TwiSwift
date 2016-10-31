@@ -77,6 +77,20 @@ class User: NSObject {
         User.currentUser = nil
         TwiSwiftClient.sharedInstance?.deauthorize()
         NotificationCenter.default.post(name: UserEventEnum.didLogout.notification, object: nil)
+        
+        // switch keys
+        let defaults = UserDefaults.standard
+        let previousIndex = defaults.integer(forKey: "credential")
+        if previousIndex == 0 {
+            defaults.set(2, forKey: "credential")
+        } else if previousIndex == 1 {
+            defaults.set(2, forKey: "credential")
+        } else if previousIndex == 2 {
+            defaults.set(1, forKey: "credential")
+        }
+        defaults.synchronize()
+        
+        TwiSwiftClient.sharedInstance? = TwiSwiftClient(baseURL: CredentialsControl.getBaseURL(), consumerKey: CredentialsControl.getKey(), consumerSecret: CredentialsControl.getSecret())
     }
     
     class func isCurrentUser(user: User) -> Bool{

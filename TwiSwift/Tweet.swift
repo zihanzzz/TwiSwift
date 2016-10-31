@@ -54,13 +54,9 @@ class Tweet: NSObject {
         retweetCount = dictionary["retweet_count"] as? Int
         
         if rtStatus != nil {
-            
             originalTweetIdStr = rtStatus?["id_str"] as? String
-            
         } else {
-            
             originalTweetIdStr = remoteIdStr
-            
         }
     }
 

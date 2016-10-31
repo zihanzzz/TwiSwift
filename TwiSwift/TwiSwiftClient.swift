@@ -10,16 +10,10 @@ import UIKit
 import BDBOAuth1Manager
 
 class TwiSwiftClient: BDBOAuth1SessionManager {
-    
-    static let twitterBaseURL = URL(string: "https://api.twitter.com")
-    static let twitterConsumerKey = "STn5Qo0pAbPo6wRJ20s0cnEEx"
-    static let twitterConsumerSecret = "x1T41B2Z7gb7rAgy2f4ktV0RGV4vbHZy6oknG34oHsdWy69Ce2"
-    static let twitterConsumerKey1 = "GFsnqjiXQXiBWBrywEmxs38Be"
-    static let twitterConsumerSecret1 = "rmPvY1awnl0GoGtxreNGhfqfBHdDJLWBCkoNEZmiLvYMVXVKM0"
-    
+
     var loginCompletionHandler: (User?, Error?) -> () = {arg in}
     
-    static let sharedInstance = TwiSwiftClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey1, consumerSecret: twitterConsumerSecret1)
+    static var sharedInstance = TwiSwiftClient(baseURL: CredentialsControl.getBaseURL(), consumerKey: CredentialsControl.getKey(), consumerSecret: CredentialsControl.getSecret())
     
     func loginWithCompletion(completionHandler: @escaping (User?, Error?) -> ()) {
 
@@ -27,6 +21,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         
         // Fetch request token & redirect to authorization page
         TwiSwiftClient.sharedInstance?.deauthorize()
+        
         let callbackURL = URL(string: "twiswift://oauth")
         fetchRequestToken(withPath: "oauth/request_token", method: "GET", callbackURL: callbackURL, scope: nil, success: { (requestToken: BDBOAuth1Credential?) -> Void in
             
@@ -143,36 +138,22 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
                             }
                             
                         })
-                        
                     }
-                    
-                    
                 }
-                
             }
-
-            
-            
-            
             
         }, failure: { (operation: URLSessionDataTask?, error: Error) in
-            
             print(error.localizedDescription)
             completionHandler(false)
-            
-            
         })
-        
-      
-        
     }
     
     func openURL(url: URL) {
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in
             
-            let saveResult = self.requestSerializer.saveAccessToken(accessToken)
-            print("saving token result: \(saveResult)")
+            _ = self.requestSerializer.saveAccessToken(accessToken)
+
             self.get("1.1/account/verify_credentials.json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
 
                 let user = User(dictionary: response as! Dictionary<String, AnyObject>)
