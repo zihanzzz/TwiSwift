@@ -62,6 +62,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleNewTweet(_:)), name: UserEventEnum.newTweet.notification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDeleteTweet(_:)), name: UserEventEnum.deleteTweet.notification, object: nil)
         
         let composeImageView = UIImageView(image: UIImage(named: "compose"))
         composeImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
@@ -179,13 +180,27 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         }
     }
     
-    // MARK: - New Tweet
+    // MARK: - Handle Notifications (New Tweet & Delete Tweet)
     func handleNewTweet(_ notification: NSNotification) {
         if let newTweet = notification.userInfo?["tweet"] as? Tweet {
             if (tweets == nil) {
                 tweets = [Tweet]()
             }
             tweets?.insert(newTweet, at: 0)
+            tweetsTableView.reloadData()
+        }
+    }
+    
+    func handleDeleteTweet(_ notification: NSNotification) {
+        if let newTweet = notification.userInfo?["tweet"] as? Tweet {
+            if (tweets == nil) {
+                tweets = [Tweet]()
+            }
+            
+            let deletedTweetIndex = self.tweets?.index(of: newTweet)
+            
+            self.tweets?.remove(at: deletedTweetIndex!)
+            
             tweetsTableView.reloadData()
         }
     }

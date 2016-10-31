@@ -132,10 +132,15 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             TwiSwiftClient.sharedInstance?.deleteTweet(tweetIdString: "\(self.tweet.remoteId!)", completionHandler: { (tweet: Tweet?, error: Error?) in
                 if (tweet != nil) {
                     print("delete succeeded")
+                    
+                    let userInfo:[String: Tweet] = ["tweet": self.tweet]
+                    NotificationCenter.default.post(name: UserEventEnum.deleteTweet.notification, object: nil, userInfo: userInfo)
+                    
                 } else {
                     print("delete failed")
                 }
             })
+            
         }
         
         actions.append(twitterAction)

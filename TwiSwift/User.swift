@@ -15,6 +15,7 @@ enum UserEventEnum: String {
     case didLogin = "userDidLoginNotification"
     case didLogout = "userDidLogoutNotification"
     case newTweet = "newTweet"
+    case deleteTweet = "deleteTweet"
     
     var notification : Notification.Name {
         return Notification.Name(rawValue: self.rawValue)
