@@ -23,7 +23,6 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
 
         self.signUpButton.backgroundColor = UIConstants.twitterPrimaryBlue
         self.signUpButton.setTitleColor(UIColor.white, for: .normal)

@@ -43,5 +43,4 @@ class InfiniteScrollActivityView: UIView {
         self.isHidden = false
         self.activityIndicatorView.startAnimating()
     }
-    
 }

@@ -9,13 +9,9 @@
 import UIKit
 
 @objc protocol TweetCellDelegate {
-    
     @objc optional func tweetCell(tweetCell: TweetCell, didTapReply tweet: Tweet)
-    
     @objc optional func tweetCell(tweetCell: TweetCell, didFinishRetweet tweet: Tweet)
-    
     @objc optional func tweetCell(tweetCell: TweetCell, didFinishFavorite tweet: Tweet)
-    
 }
 
 class TweetCell: UITableViewCell {

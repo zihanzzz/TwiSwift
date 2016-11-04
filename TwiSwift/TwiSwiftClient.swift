@@ -136,7 +136,6 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
                             } else {
                                 completionHandler(false)
                             }
-                            
                         })
                     }
                 }

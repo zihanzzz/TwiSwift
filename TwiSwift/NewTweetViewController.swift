@@ -154,15 +154,6 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
         self.dismiss(animated: true, completion: nil)
         
         TwiSwiftClient.sharedInstance?.update(status: composeTextView.text, inReplyToStatusId: replyingTweet?.remoteIdStr, completionHandler: { (tweet: Tweet?, error: Error?) in
-
-//            let newTweet = Tweet(dictionary: Dictionary<String, AnyObject>())
-//            newTweet.sender = User.currentUser
-//            newTweet.originalComposer = User.currentUser
-//            newTweet.text = composeTextView.text
-//            newTweet.createdAt = Date()
-//            newTweet.retweetCount = 0
-//            newTweet.favoriteCount = 0
-//            newTweet.retweetedByMe = false
             
             if let newTweet = tweet {
                 let userInfo:[String: Tweet] = ["tweet": newTweet]
@@ -194,5 +185,4 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
             }
         }
     }
-
 }
