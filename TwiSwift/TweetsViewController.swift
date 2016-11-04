@@ -127,7 +127,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     // MARK: - Refresh Control
     func refreshControlAction(refreshControl: UIRefreshControl) {
         
-        let newestId = self.tweets?.first?.remoteId
+        let newestId = self.tweets?.first?.remoteId as Any
         let params = ["since_id": newestId]
         
         TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: params, completionHandler: { (tweets: [Tweet]?, errlr: Error?) in
@@ -157,7 +157,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
                 self.loadingMoreView?.frame = frame
                 self.loadingMoreView?.startAnimating()
 
-                let oldestId = self.tweets?.last?.remoteIdStr
+                let oldestId = self.tweets?.last?.remoteIdStr as Any
                 let params = ["max_id": oldestId]
                 TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: params, completionHandler: { (tweets: [Tweet]?, error: Error?) in
                     
