@@ -117,7 +117,7 @@ class TweetCell: UITableViewCell {
     func setUpLabelAppearances() {
         
         for label in [topRTLabel, usernameLabel, timeAgoLabel, timestampLabel] {
-            label?.textColor = UIConstants.twitterLightGray
+            label?.textColor = UIConstants.twitterDarkGray
             label?.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 14)
         }
         
@@ -130,6 +130,7 @@ class TweetCell: UITableViewCell {
     
     func clearCellState() {
         avatarImageView?.image = nil
+        topRTContainerView?.isHidden = false
         topRTImageView?.isHidden = false
         topRTLabel?.isHidden = false
     }
@@ -283,7 +284,6 @@ class TweetCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
 }
