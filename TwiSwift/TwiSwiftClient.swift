@@ -15,6 +15,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
     
     static var sharedInstance = TwiSwiftClient(baseURL: CredentialsControl.getBaseURL(), consumerKey: CredentialsControl.getKey(), consumerSecret: CredentialsControl.getSecret())
     
+    // MARK: - Log in
     func loginWithCompletion(completionHandler: @escaping (User?, Error?) -> ()) {
 
         loginCompletionHandler = completionHandler
@@ -33,6 +34,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    // MARK: - Home Timeline
     func homeTimelineWithParams(params: Dictionary<String, Any>?, completionHandler: @escaping ([Tweet]?, Error?) -> ()) {
 
         self.get("1.1/statuses/home_timeline.json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
@@ -47,6 +49,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    // MARK: - Favorite
     func createFavorite(tweet: Tweet, completionHandler: @escaping (Bool?) -> ()) {
         if let remoteId = tweet.remoteId {
             self.post("1.1/favorites/create.json?id=\(remoteId)", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
@@ -58,6 +61,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         }
     }
     
+    // MARK: - Unfavorite
     func destroyFavorite(tweet: Tweet, completionHandler: @escaping (Bool?) -> ()) {
         if let remoteId = tweet.remoteId {
             self.post("1.1/favorites/destroy.json?id=\(remoteId)", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
@@ -69,6 +73,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         }
     }
     
+    // MARK: - Tweet
     func update(status: String, inReplyToStatusId: String?, completionHandler: @escaping (Tweet?, Error?) -> ()) {
         
         var params = ["status": status]
@@ -88,6 +93,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    // MARK: - Retweet
     func reweet(tweetIdString: String, completionHandler: @escaping (Bool?) -> ()) {
         
         self.post("1.1/statuses/retweet/\(tweetIdString).json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
@@ -102,6 +108,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    // MARK: - Delete Tweet
     func deleteTweet(tweetIdString: String, completionHandler: @escaping (Tweet?, Error?) -> ()) {
 
         self.post("1.1/statuses/destroy/\(tweetIdString).json", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
@@ -117,6 +124,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    // MARK: - Find Retweets
     func findMyRetweet(originalTweetIdString: String, completionHandler: @escaping (Bool?) -> ()) {
         
         let params = ["include_my_retweet" : true]
@@ -147,6 +155,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    // MARK: - Handel successful URL Callback
     func openURL(url: URL) {
         
         fetchAccessToken(withPath: "oauth/access_token", method: "POST", requestToken: BDBOAuth1Credential.init(queryString: url.query), success: { (accessToken: BDBOAuth1Credential?) in
