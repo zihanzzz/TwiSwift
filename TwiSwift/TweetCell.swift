@@ -16,25 +16,28 @@ import UIKit
 
 class TweetCell: UITableViewCell {
     
-    @IBOutlet weak var topRTImageView: UIImageView? //
+    
+    @IBOutlet weak var topRTContainerView: UIView?
+    
+    @IBOutlet weak var topRTImageView: UIImageView?
     
     @IBOutlet weak var topRTLabel: UILabel?
     
-    @IBOutlet weak var avatarImageView: UIImageView? //
+    @IBOutlet weak var avatarImageView: UIImageView?
     
-    @IBOutlet weak var nameLabel: UILabel? //
+    @IBOutlet weak var nameLabel: UILabel?
     
-    @IBOutlet weak var usernameLabel: UILabel? //
+    @IBOutlet weak var usernameLabel: UILabel?
     
     @IBOutlet weak var timeAgoLabel: UILabel?
     
-    @IBOutlet weak var tweetTextLabel: UILabel? //
+    @IBOutlet weak var tweetTextLabel: UILabel?
     
-    @IBOutlet weak var bottomRTImageView: UIImageView? //
+    @IBOutlet weak var bottomRTImageView: UIImageView?
     
-    @IBOutlet weak var bottomLikeImageView: UIImageView? //
+    @IBOutlet weak var bottomLikeImageView: UIImageView?
     
-    @IBOutlet weak var bottomReplyImageView: UIImageView? //
+    @IBOutlet weak var bottomReplyImageView: UIImageView?
     
     @IBOutlet weak var timestampLabel: UILabel?
     
@@ -76,6 +79,7 @@ class TweetCell: UITableViewCell {
                 } else {
                     topRTImageView?.isHidden = true
                     topRTLabel?.isHidden = true
+                    topRTContainerView?.isHidden = true
                 }
             }
 
