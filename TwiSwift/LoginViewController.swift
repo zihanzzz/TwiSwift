@@ -114,7 +114,14 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
     @IBAction func onLogin(_ sender: Any) {
         TwiSwiftClient.sharedInstance?.loginWithCompletion(completionHandler: { (user: User?, error: Error?) in
             if user != nil {
-                self.performSegue(withIdentifier: "loginSegue", sender: self)
+
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let hamburgerViewController = storyboard.instantiateViewController(withIdentifier: "HamburgerViewController") as! HamburgerViewController
+                let leftMenuViewController = storyboard.instantiateViewController(withIdentifier: "LeftMenuViewController") as! LeftMenuViewController
+                hamburgerViewController.leftMenuViewController = leftMenuViewController
+                leftMenuViewController.hamburgerViewController = hamburgerViewController
+                self.present(hamburgerViewController, animated: true, completion: nil)
+                
             } else {
                 print("Login failure with error: \(error)")
             }

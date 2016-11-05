@@ -98,7 +98,7 @@ class HamburgerViewController: UIViewController {
     }
     
     func didCloseMenu() {
-        self.didCloseMenu()
+        self.closeLeftMenu()
     }
     
     func openLeftMenu() {

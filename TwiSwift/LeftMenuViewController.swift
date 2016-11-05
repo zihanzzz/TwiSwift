@@ -10,6 +10,10 @@ import UIKit
 
 class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
+    enum MenuSelection: Int {
+        case timeline = 0, profile, mentions, logout
+    }
+    
     @IBOutlet weak var leftMenuTableView: UITableView!
     
     var viewControllers: [UIViewController] = []
@@ -63,17 +67,17 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         cell.selectionStyle = .none
         
         switch indexPath.row {
-        case 0:
+        case MenuSelection.timeline.rawValue:
             cell.setUpMenu(menuText: "Timeline", menuImageName: "home")
             break
-        case 1:
+        case MenuSelection.profile.rawValue:
             cell.setUpMenu(menuText: "Profile", menuImageName: "profile")
             break
-        case 2:
+        case MenuSelection.mentions.rawValue:
             cell.setUpMenu(menuText: "Mentions", menuImageName: "mention")
             break
-        case 3:
-            cell.setUpMenu(menuText: "Logout", menuImageName: "logout-white")
+        case MenuSelection.logout.rawValue:
+            cell.setUpMenu(menuText: "Log Out", menuImageName: "logout-white")
         default:
             break
         }
@@ -84,7 +88,26 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+        
+        switch indexPath.row {
+        case MenuSelection.timeline.rawValue:
+            hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+            
+            break
+        case MenuSelection.logout.rawValue:
+            NotificationCenter.default.post(name: UIConstants.HamburgerEventEnum.didClose.notification, object: nil, userInfo: nil)
+            let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure to log out of TwitterLite?", preferredStyle: .alert)
+            logoutAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+                logoutAlert.dismiss(animated: true, completion: nil)
+            }))
+            logoutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+                User.currentUser?.logout()
+            }))
+            present(logoutAlert, animated: true, completion: nil)
+            break
+        default:
+            break
+        }
     }
 
     override func didReceiveMemoryWarning() {

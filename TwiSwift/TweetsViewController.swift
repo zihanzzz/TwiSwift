@@ -73,16 +73,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         composeTap.numberOfTapsRequired = 1
         composeImageView.addGestureRecognizer(composeTap)
         
-        
-        // FIXME: change logout to hamburger
-        let logoutImageView = UIImageView(image: UIImage(named: "hamburger"))
-        logoutImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
-        let leftBarButton = UIBarButtonItem.init(customView: logoutImageView)
+        let hamburgerImageView = UIImageView(image: UIImage(named: "hamburger"))
+        hamburgerImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        let leftBarButton = UIBarButtonItem.init(customView: hamburgerImageView)
         self.navigationItem.leftBarButtonItem = leftBarButton
         
-        let logoutTap = UITapGestureRecognizer(target: self, action: #selector(onLogOut))
+        let logoutTap = UITapGestureRecognizer(target: self, action: #selector(onOpenLeftMenu))
         logoutTap.numberOfTapsRequired = 1
-        logoutImageView.addGestureRecognizer(logoutTap)
+        hamburgerImageView.addGestureRecognizer(logoutTap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,16 +88,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
-    func onLogOut() {
+    func onOpenLeftMenu() {
         NotificationCenter.default.post(name: UIConstants.HamburgerEventEnum.didOpen.notification, object: nil, userInfo: nil)
-//        let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure to log out of TwitterLite?", preferredStyle: .alert)
-//        logoutAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
-//            logoutAlert.dismiss(animated: true, completion: nil)
-//        }))
-//        logoutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-//            User.currentUser?.logout()
-//        }))
-//        present(logoutAlert, animated: true, completion: nil)
     }
     
     func onNewTweet() {
