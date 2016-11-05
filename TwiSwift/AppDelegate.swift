@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().tintColor = UIConstants.twitterPrimaryBlue
         UIBarButtonItem.appearance().setTitleTextAttributes([NSFontAttributeName: UIFont(name: UIConstants.getTextFontNameLight(), size: 18) as Any], for: .normal)
         
-        
         return true
     }
     

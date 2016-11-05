@@ -20,8 +20,10 @@ class HamburgerViewController: UIViewController {
     
     var originalLeftMargin: CGFloat!
     
-    var isLeftMenuOpen = false
+    var tapGestureRecognizer: UITapGestureRecognizer?
     
+    var isLeftMenuOpen = false
+
     var contentViewController: UIViewController! {
         didSet(oldContentViewController) {
             view.layoutIfNeeded()
@@ -60,6 +62,18 @@ class HamburgerViewController: UIViewController {
         let panGestureRecognizer = UIPanGestureRecognizer()
         panGestureRecognizer.addTarget(self, action: #selector(onPanGesture(_:)))
         self.contentView.addGestureRecognizer(panGestureRecognizer)
+        
+        tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer!.numberOfTapsRequired = 1
+        tapGestureRecognizer!.addTarget(self, action: #selector(onTapGesture(_:)))
+        
+        self.contentView.addGestureRecognizer(tapGestureRecognizer!)
+    }
+    
+    func onTapGesture(_ tapGestureRecognizer: UITapGestureRecognizer) {
+        if (isLeftMenuOpen) {
+            self.closeLeftMenu()
+        }
     }
     
     func onPanGesture(_ panGestureRecognizer: UIPanGestureRecognizer) {
@@ -108,6 +122,7 @@ class HamburgerViewController: UIViewController {
         })
         self.isLeftMenuOpen = true
         self.contentViewController.view.isUserInteractionEnabled = false
+        tapGestureRecognizer?.isEnabled = true
     }
     
     func closeLeftMenu() {
@@ -117,6 +132,7 @@ class HamburgerViewController: UIViewController {
         })
         self.isLeftMenuOpen = false
         self.contentViewController.view.isUserInteractionEnabled = true
+        tapGestureRecognizer?.isEnabled = false
     }
     
     override func didReceiveMemoryWarning() {
