@@ -16,21 +16,26 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var leftMenuTableView: UITableView!
     
-    var viewControllers: [UIViewController] = []
-    
     var hamburgerViewController: HamburgerViewController!
     
-    private var tweetsNavigationViewController: UINavigationController!
+    private var homeNavigationController: UINavigationController!
+    
+    private var mentionsNavigationController: UINavigationController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // set up VCs
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        tweetsNavigationViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationViewController") as! UINavigationController
         
-        viewControllers.append(tweetsNavigationViewController)
-
+        homeNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+        let homeTweetsViewController = homeNavigationController.topViewController as? TweetsViewController
+        homeTweetsViewController?.timelineChoice = UIConstants.TimelineEnum.home
+        
+        mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
+        let mentionsViewController = mentionsNavigationController.topViewController as? TweetsViewController
+        mentionsViewController?.timelineChoice = UIConstants.TimelineEnum.mentions
+        
         leftMenuTableView.dataSource = self
         leftMenuTableView.delegate = self
         
@@ -42,7 +47,7 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         leftMenuTableView.tableFooterView = UIView()
         
         // set up initial VC
-        hamburgerViewController.contentViewController = tweetsNavigationViewController
+        hamburgerViewController.contentViewController = homeNavigationController
     }
     
     // MARK: - Table View
@@ -91,9 +96,13 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         
         switch indexPath.row {
         case MenuSelection.timeline.rawValue:
-            hamburgerViewController.contentViewController = viewControllers[indexPath.row]
-            
-            break
+            hamburgerViewController.contentViewController = homeNavigationController
+        break
+        
+        case MenuSelection.mentions.rawValue:
+            hamburgerViewController.contentViewController = mentionsNavigationController
+        break
+
         case MenuSelection.logout.rawValue:
             NotificationCenter.default.post(name: UIConstants.HamburgerEventEnum.didClose.notification, object: nil, userInfo: nil)
             let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure to log out of TwitterLite?", preferredStyle: .alert)

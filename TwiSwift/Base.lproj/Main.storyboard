@@ -571,7 +571,7 @@
         <!--Navigation Controller-->
         <scene sceneID="ztp-qG-XL2">
             <objects>
-                <navigationController storyboardIdentifier="TweetsNavigationViewController" automaticallyAdjustsScrollViewInsets="NO" id="uGV-YE-jco" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TweetsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="uGV-YE-jco" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="LiD-Dy-3FT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>

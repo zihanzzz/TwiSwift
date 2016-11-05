@@ -17,6 +17,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     var isMoreDataLoading = false
     
     var loadingMoreView: InfiniteScrollActivityView?
+    
+    var timelineChoice: UIConstants.TimelineEnum?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,9 +47,11 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         tweetsTableView.delegate = self
         tweetsTableView.rowHeight = UITableViewAutomaticDimension
         tweetsTableView.estimatedRowHeight = 120
-        
-        // Do any additional setup after loading the view.
-        TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: nil, completionHandler: { (tweets: [Tweet]?, error: Error?) in
+
+        if timelineChoice == nil {
+            timelineChoice = UIConstants.TimelineEnum.home
+        }
+        TwiSwiftClient.sharedInstance?.timelineWithChoice(choice: timelineChoice!, params: nil, completionHandler: { (tweets: [Tweet]?, error: Error?) in
             self.tweets = tweets
             self.tweetsTableView.reloadData()
         })
@@ -123,7 +127,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let newestId = self.tweets?.first?.remoteId as Any
         let params = ["since_id": newestId]
         
-        TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: params, completionHandler: { (tweets: [Tweet]?, errlr: Error?) in
+        TwiSwiftClient.sharedInstance?.timelineWithChoice(choice: timelineChoice!, params: params, completionHandler: { (tweets: [Tweet]?, error: Error?) in
             if let newTweets = tweets {
                 if newTweets.count > 0 {
                     self.tweets = tweets
@@ -152,7 +156,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
 
                 let oldestId = self.tweets?.last?.remoteIdStr as Any
                 let params = ["max_id": oldestId]
-                TwiSwiftClient.sharedInstance?.homeTimelineWithParams(params: params, completionHandler: { (tweets: [Tweet]?, error: Error?) in
+                
+                TwiSwiftClient.sharedInstance?.timelineWithChoice(choice: timelineChoice!, params: params, completionHandler: { (tweets: [Tweet]?, error: Error?) in
                     
                     self.loadingMoreView?.stopAnimating()
                     self.isMoreDataLoading = false

@@ -33,6 +33,12 @@ class UIConstants: NSObject {
         }
     }
     
+    enum TimelineEnum: String {
+        case home = "home_timeline"
+        case mentions = "mentions_timeline"
+        case user = "user_timeline"
+    }
+    
     // MARK : - Nav Bar
     static func configureNavBarStyle(forViewController viewController: UIViewController, withTitle: String) {
         viewController.navigationController?.navigationBar.barTintColor = UIConstants.twitterPrimaryBlue

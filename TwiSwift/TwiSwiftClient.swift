@@ -36,14 +36,18 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
     
     // MARK: - Home Timeline
     func homeTimelineWithParams(params: Dictionary<String, Any>?, completionHandler: @escaping ([Tweet]?, Error?) -> ()) {
-
-        self.get("1.1/statuses/home_timeline.json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+        timelineWithChoice(choice: UIConstants.TimelineEnum.home, params: params, completionHandler: completionHandler)
+    }
+    
+    func timelineWithChoice(choice: UIConstants.TimelineEnum, params: Dictionary<String, Any>?, completionHandler: @escaping ([Tweet]?, Error?) -> ()) {
+        
+        self.get("1.1/statuses/\(choice.rawValue).json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
             
             if let tweetsJson = response as? [Dictionary<String, AnyObject>] {
                 let tweets = Tweet.tweetsWithArray(array: tweetsJson)
                 completionHandler(tweets, nil)
             }
-
+            
         }, failure: { (operation: URLSessionDataTask?, error: Error) in
             completionHandler(nil, error)
         })
