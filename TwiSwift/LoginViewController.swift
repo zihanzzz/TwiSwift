@@ -109,6 +109,8 @@ class LoginViewController: UIViewController, UIScrollViewDelegate {
         UIApplication.shared.open(twitterSignUpURL, options: [:], completionHandler: nil)
     }
 
+    
+    // TODO: Change to Hamburger VC
     @IBAction func onLogin(_ sender: Any) {
         TwiSwiftClient.sharedInstance?.loginWithCompletion(completionHandler: { (user: User?, error: Error?) in
             if user != nil {

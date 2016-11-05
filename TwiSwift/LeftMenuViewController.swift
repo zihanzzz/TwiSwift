@@ -25,15 +25,14 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         tweetsNavigationViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationViewController") as! UINavigationController
         
-        
         viewControllers.append(tweetsNavigationViewController)
-        
 
         leftMenuTableView.dataSource = self
         leftMenuTableView.delegate = self
         
         leftMenuTableView.backgroundColor = UIConstants.twitterPrimaryBlue
         leftMenuTableView.separatorColor = UIColor.white
+        leftMenuTableView.isScrollEnabled = false
         
         // remove empty cells
         leftMenuTableView.tableFooterView = UIView()
@@ -85,10 +84,8 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         tableView.deselectRow(at: indexPath, animated: true)
-        
         hamburgerViewController.contentViewController = viewControllers[indexPath.row]
     }
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

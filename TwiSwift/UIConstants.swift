@@ -11,6 +11,28 @@ import SwiftDate
 
 class UIConstants: NSObject {
     
+    
+    // MARK : - Enums
+    enum UserEventEnum: String {
+        case didLogin = "userDidLoginNotification"
+        case didLogout = "userDidLogoutNotification"
+        case newTweet = "newTweet"
+        case deleteTweet = "deleteTweet"
+        
+        var notification : Notification.Name {
+            return Notification.Name(rawValue: self.rawValue)
+        }
+    }
+    
+    enum HamburgerEventEnum: String {
+        case didOpen = "didOpen"
+        case didClose = "didClose"
+        
+        var notification : Notification.Name {
+            return Notification.Name(rawValue: self.rawValue)
+        }
+    }
+    
     // MARK : - Nav Bar
     static func configureNavBarStyle(forViewController viewController: UIViewController, withTitle: String) {
         viewController.navigationController?.navigationBar.barTintColor = UIConstants.twitterPrimaryBlue
@@ -49,6 +71,11 @@ class UIConstants: NSObject {
     
     static func getTextFontNameLight() -> String {
         return "HelveticaNeue-Light"
+    }
+    
+    // MARK: - Miscellaneous
+    static func getLeftMenuAnimationSpeed() -> TimeInterval {
+        return 0.3
     }
     
     // MARK: - Strings

@@ -11,16 +11,7 @@ import UIKit
 var _currentUser: User?
 let currentUserKey = "kCurrentUserKey"
 
-enum UserEventEnum: String {
-    case didLogin = "userDidLoginNotification"
-    case didLogout = "userDidLogoutNotification"
-    case newTweet = "newTweet"
-    case deleteTweet = "deleteTweet"
-    
-    var notification : Notification.Name {
-        return Notification.Name(rawValue: self.rawValue)
-    }
-}
+
 
 class User: NSObject {
     
@@ -77,7 +68,7 @@ class User: NSObject {
     func logout() {
         User.currentUser = nil
         TwiSwiftClient.sharedInstance?.deauthorize()
-        NotificationCenter.default.post(name: UserEventEnum.didLogout.notification, object: nil)
+        NotificationCenter.default.post(name: UIConstants.UserEventEnum.didLogout.notification, object: nil)
         
         // switch keys
         let defaults = UserDefaults.standard

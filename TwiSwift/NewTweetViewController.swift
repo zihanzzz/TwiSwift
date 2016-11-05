@@ -157,7 +157,7 @@ class NewTweetViewController: UIViewController, UITextViewDelegate {
             
             if let newTweet = tweet {
                 let userInfo:[String: Tweet] = ["tweet": newTweet]
-                NotificationCenter.default.post(name: UserEventEnum.newTweet.notification, object: nil, userInfo: userInfo)
+                NotificationCenter.default.post(name: UIConstants.UserEventEnum.newTweet.notification, object: nil, userInfo: userInfo)
             }
         })
     }

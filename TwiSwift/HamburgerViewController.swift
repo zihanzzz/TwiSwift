@@ -20,6 +20,8 @@ class HamburgerViewController: UIViewController {
     
     var originalLeftMargin: CGFloat!
     
+    var isLeftMenuOpen = false
+    
     var contentViewController: UIViewController! {
         didSet(oldContentViewController) {
             view.layoutIfNeeded()
@@ -35,16 +37,16 @@ class HamburgerViewController: UIViewController {
             contentView.addSubview(contentViewController.view)
             contentViewController.didMove(toParentViewController: self)
             
-            UIView.animate(withDuration: 0.3, animations: {
-                self.closeLeftMenu()
-                self.view.layoutIfNeeded()
-            })
+            self.closeLeftMenu()
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Observer
+        NotificationCenter.default.addObserver(self, selector: #selector(didOpenMenu), name: UIConstants.HamburgerEventEnum.didOpen.notification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(didCloseMenu), name: UIConstants.HamburgerEventEnum.didClose.notification, object: nil)
         
         // TODO: DELETE THIS CODE
         if (contentViewController == nil) {
@@ -54,7 +56,6 @@ class HamburgerViewController: UIViewController {
 
         // "grab" view of menu view controller
         menuView.addSubview(leftMenuViewController.view)
-        
         
         let panGestureRecognizer = UIPanGestureRecognizer()
         panGestureRecognizer.addTarget(self, action: #selector(onPanGesture(_:)))
@@ -72,39 +73,52 @@ class HamburgerViewController: UIViewController {
             break
         case .changed:
             
-            leftMarginConstraint.constant = originalLeftMargin + translation.x
+            let openingConditions = !isLeftMenuOpen && velocity.x > 0
+            let closingConditions = isLeftMenuOpen && velocity.x < 0
+            
+            if (openingConditions || closingConditions) {
+                leftMarginConstraint.constant = originalLeftMargin + translation.x
+            }
             
             break
-            
         case .ended:
-            
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                if velocity.x > 0 {
-                    self.openLeftMenu()
-                } else {
-                    self.closeLeftMenu()
-                }
-                self.view.layoutIfNeeded()
-            })
-
+            if velocity.x > 0 {
+                self.openLeftMenu()
+            } else {
+                self.closeLeftMenu()
+            }
             break
-        
         default:
-            
             break
         }
     }
     
+    func didOpenMenu() {
+        self.openLeftMenu()
+    }
+    
+    func didCloseMenu() {
+        self.didCloseMenu()
+    }
+    
     func openLeftMenu() {
-        self.leftMarginConstraint.constant = self.view.frame.size.width - 100
+        UIView.animate(withDuration: UIConstants.getLeftMenuAnimationSpeed(), animations: {
+            self.leftMarginConstraint.constant = 220
+            self.view.layoutIfNeeded() // This has to be insde the animation block in order for animation to work
+        })
+        self.isLeftMenuOpen = true
+        self.contentViewController.view.isUserInteractionEnabled = false
     }
     
     func closeLeftMenu() {
-        self.leftMarginConstraint.constant = 0
+        UIView.animate(withDuration: UIConstants.getLeftMenuAnimationSpeed(), animations: {
+            self.leftMarginConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        })
+        self.isLeftMenuOpen = false
+        self.contentViewController.view.isUserInteractionEnabled = true
     }
     
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

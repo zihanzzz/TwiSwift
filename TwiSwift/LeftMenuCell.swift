@@ -20,7 +20,7 @@ class LeftMenuCell: UITableViewCell {
         
         menuLabel.text = menuText
         menuLabel.textColor = UIColor.white
-        menuLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 25)
+        menuLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 20)
         
     }
     

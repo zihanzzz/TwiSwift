@@ -134,7 +134,7 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
                     print("delete succeeded")
                     
                     let userInfo:[String: Tweet] = ["tweet": self.tweet]
-                    NotificationCenter.default.post(name: UserEventEnum.deleteTweet.notification, object: nil, userInfo: userInfo)
+                    NotificationCenter.default.post(name: UIConstants.UserEventEnum.deleteTweet.notification, object: nil, userInfo: userInfo)
                     
                 } else {
                     print("delete failed")

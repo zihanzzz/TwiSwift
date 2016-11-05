@@ -61,8 +61,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             }
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(handleNewTweet(_:)), name: UserEventEnum.newTweet.notification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleDeleteTweet(_:)), name: UserEventEnum.deleteTweet.notification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNewTweet(_:)), name: UIConstants.UserEventEnum.newTweet.notification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleDeleteTweet(_:)), name: UIConstants.UserEventEnum.deleteTweet.notification, object: nil)
         
         let composeImageView = UIImageView(image: UIImage(named: "compose"))
         composeImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
@@ -91,14 +91,15 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     }
     
     func onLogOut() {
-        let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure to log out of TwitterLite?", preferredStyle: .alert)
-        logoutAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
-            logoutAlert.dismiss(animated: true, completion: nil)
-        }))
-        logoutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
-            User.currentUser?.logout()
-        }))
-        present(logoutAlert, animated: true, completion: nil)
+        NotificationCenter.default.post(name: UIConstants.HamburgerEventEnum.didOpen.notification, object: nil, userInfo: nil)
+//        let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure to log out of TwitterLite?", preferredStyle: .alert)
+//        logoutAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action) in
+//            logoutAlert.dismiss(animated: true, completion: nil)
+//        }))
+//        logoutAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+//            User.currentUser?.logout()
+//        }))
+//        present(logoutAlert, animated: true, completion: nil)
     }
     
     func onNewTweet() {
