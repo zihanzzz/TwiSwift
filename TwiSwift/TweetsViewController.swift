@@ -73,7 +73,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         composeTap.numberOfTapsRequired = 1
         composeImageView.addGestureRecognizer(composeTap)
         
-        let logoutImageView = UIImageView(image: UIImage(named: "logout"))
+        
+        // FIXME: change logout to hamburger
+        let logoutImageView = UIImageView(image: UIImage(named: "hamburger"))
         logoutImageView.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         let leftBarButton = UIBarButtonItem.init(customView: logoutImageView)
         self.navigationItem.leftBarButtonItem = leftBarButton
