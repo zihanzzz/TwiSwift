@@ -21,10 +21,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(userDidLogOut), name: UserEventEnum.didLogout.notification, object: nil)
         
         if User.currentUser != nil {
+            
+            
+            
             // Go to the logged in screen
-            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationViewController") as! UINavigationController
+//            let vc = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationViewController") as! UINavigationController
             //let vc = storyboard.instantiateViewController(withIdentifier: "LeftMenuViewController") as! LeftMenuViewController
-            window?.rootViewController = vc
+            let hamburgerViewController = storyboard.instantiateViewController(withIdentifier: "HamburgerViewController") as! HamburgerViewController
+            
+            
+            let leftMenuViewController = storyboard.instantiateViewController(withIdentifier: "LeftMenuViewController") as! LeftMenuViewController
+            
+            hamburgerViewController.leftMenuViewController = leftMenuViewController
+            leftMenuViewController.hamburgerViewController = hamburgerViewController
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            window?.rootViewController = hamburgerViewController
         }
         
         // back button

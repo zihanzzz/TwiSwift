@@ -11,9 +11,23 @@ import UIKit
 class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var leftMenuTableView: UITableView!
+    
+    var viewControllers: [UIViewController] = []
+    
+    var hamburgerViewController: HamburgerViewController!
+    
+    private var tweetsNavigationViewController: UINavigationController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set up VCs
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        tweetsNavigationViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationViewController") as! UINavigationController
+        
+        
+        viewControllers.append(tweetsNavigationViewController)
+        
 
         leftMenuTableView.dataSource = self
         leftMenuTableView.delegate = self
@@ -23,6 +37,9 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // remove empty cells
         leftMenuTableView.tableFooterView = UIView()
+        
+        // set up initial VC
+        hamburgerViewController.contentViewController = tweetsNavigationViewController
     }
     
     // MARK: - Table View
@@ -64,6 +81,14 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
 
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+    }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
