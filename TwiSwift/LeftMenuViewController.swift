@@ -37,6 +37,8 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         homeTweetsViewController?.timelineChoice = UIConstants.TimelineEnum.home
         
         profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController") as! UINavigationController
+        let profileViewController = profileNavigationController.topViewController as? ProfileViewController
+        profileViewController?.user = User.currentUser
         
         mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
         let mentionsViewController = mentionsNavigationController.topViewController as? TweetsViewController

@@ -38,7 +38,7 @@ class HamburgerViewController: UIViewController {
             contentViewController.willMove(toParentViewController: self)
             contentView.addSubview(contentViewController.view)
             contentViewController.didMove(toParentViewController: self)
-            
+
             self.closeLeftMenu()
         }
     }

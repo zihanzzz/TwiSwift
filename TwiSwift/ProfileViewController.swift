@@ -9,18 +9,29 @@
 import UIKit
 
 class ProfileViewController: UIViewController {
+    
+    var user: User!
+
+
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
         self.navigationController?.navigationBar.isHidden = false
-        
     }
 
     override func didReceiveMemoryWarning() {

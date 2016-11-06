@@ -226,10 +226,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.present(vc, animated: true, completion: nil)
     }
     
-    func tweetCell(tweetCell: TweetCell, didTapAvatar: Tweet) {
+    func tweetCell(tweetCell: TweetCell, didTapAvatar tweet: Tweet) {
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+//        profileVC.user = 
+        
         self.navigationController?.pushViewController(profileVC, animated: true)
         
     }

@@ -13,7 +13,7 @@ import UIKit
     @objc optional func tweetCell(tweetCell: TweetCell, didTapReply tweet: Tweet)
     @objc optional func tweetCell(tweetCell: TweetCell, didFinishRetweet tweet: Tweet)
     @objc optional func tweetCell(tweetCell: TweetCell, didFinishFavorite tweet: Tweet)
-    @objc optional func tweetCell(tweetCell: TweetCell, didTapAvatar: Tweet)
+    @objc optional func tweetCell(tweetCell: TweetCell, didTapAvatar tweet: Tweet)
     
 }
 
@@ -232,7 +232,7 @@ class TweetCell: UITableViewCell {
     
     // Avatar
     func avatarImageTapped() {
-        delegate?.tweetCell?(tweetCell: self, didTapAvatar: self.tweet)
+        delegate?.tweetCell?(tweetCell: self, didTapAvatar tweet: self.tweet)
     }
     
     func toggleLikeButton() {
