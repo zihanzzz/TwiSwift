@@ -226,6 +226,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         self.present(vc, animated: true, completion: nil)
     }
     
+    func tweetCell(tweetCell: TweetCell, didTapAvatar: Tweet) {
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        
+    }
+    
     // MARK: - 3D Touch Preview
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         

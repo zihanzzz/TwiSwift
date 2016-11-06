@@ -49,6 +49,7 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
             }
             
         }, failure: { (operation: URLSessionDataTask?, error: Error) in
+            
             completionHandler(nil, error)
         })
     }

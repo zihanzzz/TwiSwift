@@ -16,9 +16,13 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBOutlet weak var leftMenuTableView: UITableView!
     
+    @IBOutlet weak var appVersionLabel: UILabel!
+    
     var hamburgerViewController: HamburgerViewController!
     
     private var homeNavigationController: UINavigationController!
+    
+    private var profileNavigationController: UINavigationController!
     
     private var mentionsNavigationController: UINavigationController!
 
@@ -32,9 +36,12 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         let homeTweetsViewController = homeNavigationController.topViewController as? TweetsViewController
         homeTweetsViewController?.timelineChoice = UIConstants.TimelineEnum.home
         
+        profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationController") as! UINavigationController
+        
         mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
         let mentionsViewController = mentionsNavigationController.topViewController as? TweetsViewController
         mentionsViewController?.timelineChoice = UIConstants.TimelineEnum.mentions
+
         
         leftMenuTableView.dataSource = self
         leftMenuTableView.delegate = self
@@ -48,6 +55,14 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         
         // set up initial VC
         hamburgerViewController.contentViewController = homeNavigationController
+        
+        // set up app version label
+        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let appBundle = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+        
+        appVersionLabel.text = "TwitterLite v\(version) (\(appBundle))"
+        appVersionLabel.textColor = UIColor.white
+        appVersionLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 16)
     }
     
     // MARK: - Table View
@@ -97,11 +112,13 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         switch indexPath.row {
         case MenuSelection.timeline.rawValue:
             hamburgerViewController.contentViewController = homeNavigationController
-        break
-        
+            break
+        case MenuSelection.profile.rawValue:
+            hamburgerViewController.contentViewController = profileNavigationController
+            break
         case MenuSelection.mentions.rawValue:
             hamburgerViewController.contentViewController = mentionsNavigationController
-        break
+            break
 
         case MenuSelection.logout.rawValue:
             NotificationCenter.default.post(name: UIConstants.HamburgerEventEnum.didClose.notification, object: nil, userInfo: nil)

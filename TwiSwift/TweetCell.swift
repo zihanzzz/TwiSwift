@@ -13,6 +13,7 @@ import UIKit
     @objc optional func tweetCell(tweetCell: TweetCell, didTapReply tweet: Tweet)
     @objc optional func tweetCell(tweetCell: TweetCell, didFinishRetweet tweet: Tweet)
     @objc optional func tweetCell(tweetCell: TweetCell, didFinishFavorite tweet: Tweet)
+    @objc optional func tweetCell(tweetCell: TweetCell, didTapAvatar: Tweet)
     
 }
 
@@ -154,6 +155,12 @@ class TweetCell: UITableViewCell {
         singleTap2.numberOfTapsRequired = 1
         bottomReplyImageView?.isUserInteractionEnabled = true
         bottomReplyImageView?.addGestureRecognizer(singleTap2)
+        
+        let avatarTap = UITapGestureRecognizer(target: self, action: #selector(avatarImageTapped))
+        avatarTap.numberOfTapsRequired = 1
+        avatarImageView?.isUserInteractionEnabled = true
+        avatarImageView?.addGestureRecognizer(avatarTap)
+        
     }
     
     // RT
@@ -221,6 +228,11 @@ class TweetCell: UITableViewCell {
     // Reply
     func bottomButton2Tapped() {
         delegate?.tweetCell?(tweetCell: self, didTapReply: self.tweet)
+    }
+    
+    // Avatar
+    func avatarImageTapped() {
+        delegate?.tweetCell?(tweetCell: self, didTapAvatar: self.tweet)
     }
     
     func toggleLikeButton() {
