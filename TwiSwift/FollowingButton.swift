@@ -26,16 +26,19 @@ class FollowingButton: UIButton {
     
     func setUpFollowingAppearance() {
         isFollowing = true
-        self.setTitle("Following", for: .normal)
-        self.setTitleColor(UIColor.white, for: .normal)
-        self.backgroundColor = UIConstants.twitterPrimaryBlue
-        
+        UIView.animate(withDuration: 0.1, animations: {
+            self.setTitle("Following", for: .normal)
+            self.setTitleColor(UIColor.white, for: .normal)
+            self.backgroundColor = UIConstants.twitterPrimaryBlue
+        })
     }
     
     func setUpToFollowAppearance() {
         isFollowing = false
-        self.setTitle("Follow", for: .normal)
-        self.setTitleColor(UIConstants.twitterPrimaryBlue, for: .normal)
-        self.backgroundColor = UIColor.white
+        UIView.animate(withDuration: 0.1, animations: {
+            self.setTitle("Follow", for: .normal)
+            self.setTitleColor(UIConstants.twitterPrimaryBlue, for: .normal)
+            self.backgroundColor = UIColor.white
+        })
     }
 }

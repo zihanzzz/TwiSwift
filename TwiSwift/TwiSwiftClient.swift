@@ -159,6 +159,28 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
         })
     }
     
+    // MARK: - Friendship
+    func changeFriendshipStatus(toFollow: Bool, screenName: String, completionHandler: @escaping (Bool?) -> ()) {
+        
+        var action = "create"
+        if (!toFollow) {
+            action = "destroy"
+        }
+        
+        self.post("1.1/friendships/\(action).json?screen_name=\(screenName)", parameters: nil, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+            
+            if (response as? Dictionary<String, AnyObject>) != nil {
+                completionHandler(true)
+            } else {
+                completionHandler(false)
+            }
+            
+        }, failure: { (operation: URLSessionDataTask?, error: Error) in
+            print(error.localizedDescription)
+            completionHandler(false)
+        })
+    }
+    
     // MARK: - Handel successful URL Callback
     func openURL(url: URL) {
         

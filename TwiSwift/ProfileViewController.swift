@@ -204,6 +204,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             unfollowAlert.addAction(UIAlertAction(title: "Unfollow", style: .destructive, handler: { (action) in
                 
+                self.followingButton.setUpToFollowAppearance()
+                
+                TwiSwiftClient.sharedInstance?.changeFriendshipStatus(toFollow: false, screenName: self.user.screenname!, completionHandler: { (result) in
+                    
+                    if (!result!) {
+                        self.followingButton.setUpFollowingAppearance()
+                    }
+                })
             }))
             
             unfollowAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -212,9 +220,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             
         } else {
-            UIView.animate(withDuration: 0.3, animations: {
-                sender.setUpFollowingAppearance()
+            
+            sender.setUpFollowingAppearance()
+            TwiSwiftClient.sharedInstance?.changeFriendshipStatus(toFollow: true, screenName: self.user.screenname!, completionHandler: { (result) in
+                
+                if (!result!) {
+                    self.followingButton.setUpToFollowAppearance()
+                }
+                
             })
+            
         }
     }
 }
