@@ -76,6 +76,7 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
             cell = tableView.dequeueReusableCell(withIdentifier: "TweetContent", for: indexPath) as! TweetCell
             let cell = cell as! TweetCell
             cell.tweet = self.tweet
+            cell.delegate = self
             break
         case 1:
             cell = tableView.dequeueReusableCell(withIdentifier: "TweetNumbers", for: indexPath) as! TweetNumbersCell
@@ -109,6 +110,12 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     func tweetCell(tweetCell: TweetCell, didFinishFavorite tweet: Tweet) {
         self.tweet = tweet
         self.detailsTableView.reloadData()
+    }
+    
+    func tweetCell(tweetCell: TweetCell, didTapAvatar: Tweet) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
     // MARK: - Preview

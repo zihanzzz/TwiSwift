@@ -65,6 +65,7 @@ class HamburgerViewController: UIViewController {
         
         tapGestureRecognizer = UITapGestureRecognizer()
         tapGestureRecognizer!.numberOfTapsRequired = 1
+        tapGestureRecognizer?.isEnabled = false
         tapGestureRecognizer!.addTarget(self, action: #selector(onTapGesture(_:)))
         
         self.contentView.addGestureRecognizer(tapGestureRecognizer!)

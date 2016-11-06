@@ -22,9 +22,4 @@ class ProfileViewController: UIViewController {
     }
     
 
-
-    
-    
-    
-
 }
