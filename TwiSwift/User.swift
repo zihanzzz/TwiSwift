@@ -22,6 +22,7 @@ class User: NSObject {
     var dictionary: Dictionary<String, AnyObject>?
     var idString: String?
     var bannerImageUrl: String?
+    var bannerImageView: UIImageView?
 
     class var currentUser: User? {
         get {
@@ -64,6 +65,10 @@ class User: NSObject {
         tagline = dictionary["description"] as? String
         idString = dictionary["id_str"] as? String
         bannerImageUrl = dictionary["profile_banner_url"] as? String
+        if bannerImageUrl != nil {
+            bannerImageView = UIImageView()
+            bannerImageView?.setImageWith(URL(string: bannerImageUrl!)!)
+        }
         self.dictionary = dictionary
     }
     
