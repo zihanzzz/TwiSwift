@@ -7,6 +7,7 @@
 //
 
 import UIKit
+//import SafariServices
 
 let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
 let distance_W_LabelHeader:CGFloat = 30.0 // The distance between the top of the screen and the top of the White Label
@@ -29,7 +30,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var screennameLabel: UILabel!
     @IBOutlet weak var followingButton: FollowingButton!
-    
+    @IBOutlet weak var userDescription: UILabel!
+    @IBOutlet weak var locationImageView: UIImageView!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var linkImageView: UIImageView!
+    @IBOutlet weak var linkLabel: UILabel!
     
     var headerBlurImageView:UIImageView!
     var headerImageView:UIImageView!
@@ -45,6 +50,43 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             followingButton.setUpToFollowAppearance()
         }
+        segmentedControl.tintColor = UIConstants.twitterPrimaryBlue
+        
+        // labels
+        headerLabel.text = user.name
+        nameLabel.text = user.name
+        nameLabel.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 22)
+        nameLabel.textColor = UIColor.black
+        
+        screennameLabel.text = "@\(user.screenname!)"
+        screennameLabel.textColor = UIConstants.twitterDarkGray
+        screennameLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 16)
+        
+        userDescription.text = user.userDescription!
+        userDescription.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 18)
+        userDescription.textColor = UIColor.black
+        
+        locationImageView.image = UIImage(named: "location")
+        if (user.location == nil || user.location?.characters.count == 0) {
+            locationLabel.text = "Internet"
+        } else {
+            locationLabel.text = user.location!
+        }
+        locationLabel.textColor = UIConstants.twitterDarkGray
+        locationLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 18)
+        locationLabel.sizeToFit()
+        
+        linkLabel.text = user.displayURL
+        linkImageView.image = UIImage(named: "link")
+        linkLabel.textColor = UIConstants.twitterPrimaryBlue
+        linkLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 18)
+        linkLabel.sizeToFit()
+        
+        let linkTap = UITapGestureRecognizer()
+        linkTap.numberOfTapsRequired = 1
+        linkTap.addTarget(self, action: #selector(linkTapped))
+        linkLabel.isUserInteractionEnabled = true
+        linkLabel.addGestureRecognizer(linkTap)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -59,18 +101,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         followingButton.addTarget(self, action: #selector(followingButtonTapped(_:)), for: .touchUpInside)
     }
     
+    func linkTapped() {
+        if let url = URL(string: user.profileURL!) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            // SFSafariViewController not working properly : (
+//            let svc = SFSafariViewController(url: url)
+//            present(svc, animated: true, completion: nil)
+        }
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
-        segmentedControl.tintColor = UIConstants.twitterPrimaryBlue
-        
-        // labels
-        headerLabel.text = user.name
-        nameLabel.text = user.name
-        nameLabel.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 22)
-        nameLabel.textColor = UIColor.black
-        
-        screennameLabel.text = "@\(user.screenname!)"
-        screennameLabel.textColor = UIConstants.twitterDarkGray
-        screennameLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 16)
         
         // Avatar
         let largeAvatarUrl = user.profileImageUrl!.replacingOccurrences(of: "normal", with: "200x200")

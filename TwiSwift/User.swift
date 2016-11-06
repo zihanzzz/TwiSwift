@@ -22,6 +22,10 @@ class User: NSObject {
     var bannerImageUrl: String?
     var bannerImageView: UIImageView?
     var isFollowing: Bool?
+    var userDescription: String?
+    var location: String?
+    var profileURL: String?
+    var displayURL: String?
 
     class var currentUser: User? {
         get {
@@ -69,6 +73,23 @@ class User: NSObject {
             bannerImageView?.setImageWith(URL(string: bannerImageUrl!)!)
         }
         isFollowing = dictionary["following"] as? Bool
+        userDescription = dictionary["description"] as? String
+        location = dictionary["location"] as? String
+        
+        if let entities = dictionary["entities"] as? Dictionary<String, AnyObject> {
+            
+            if let url = entities["url"] as? Dictionary<String, AnyObject> {
+                
+                if let urls = url["urls"] as? [Dictionary<String, AnyObject>] {
+                    
+                    if urls.count > 0 {
+                        let urlEntry = urls[0]
+                        displayURL = urlEntry["display_url"] as? String
+                        profileURL = urlEntry["expanded_url"] as? String
+                    }
+                }
+            }
+        }
         self.dictionary = dictionary
     }
     
