@@ -24,7 +24,7 @@ The following **optional** features are implemented:
 - [ ] Profile Page
    - [ ] Implement the paging view for the user description.
    - [ ] As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
-   - [ ] Pulling down the profile page should blur and resize the header image.
+   - [x] Pulling down the profile page should blur and resize the header image.
 - [ ] Account switching
    - [ ] Long press on tab bar to bring up Account view with animation
    - [ ] Tap account to switch to

@@ -41,7 +41,17 @@ class TwiSwiftClient: BDBOAuth1SessionManager {
     
     func timelineWithChoice(choice: UIConstants.TimelineEnum, params: Dictionary<String, Any>?, completionHandler: @escaping ([Tweet]?, Error?) -> ()) {
         
-        self.get("1.1/statuses/\(choice.rawValue).json", parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
+        var queryUrl = ""
+        switch choice {
+        case .home, .user, .mentions:
+            queryUrl = "1.1/statuses/\(choice.rawValue).json"
+            break
+        case .favorite:
+            queryUrl = "1.1/favorites/list.json"
+            break
+        }
+
+        self.get(queryUrl, parameters: params, progress: nil, success: { (operation: URLSessionDataTask, response: Any?) in
             
             if let tweetsJson = response as? [Dictionary<String, AnyObject>] {
                 let tweets = Tweet.tweetsWithArray(array: tweetsJson)

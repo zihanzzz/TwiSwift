@@ -37,6 +37,7 @@ class UIConstants: NSObject {
         case home = "home_timeline"
         case mentions = "mentions_timeline"
         case user = "user_timeline"
+        case favorite = "favorites"
     }
     
     // MARK : - Nav Bar

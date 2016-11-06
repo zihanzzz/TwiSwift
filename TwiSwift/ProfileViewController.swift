@@ -18,7 +18,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var user: User!
     
-    var tweets: [Tweet]?
+    var timelineChoice: UIConstants.TimelineEnum?
+    
+    var userTweets: [Tweet]?
+    
+    var favoriteTweets: [Tweet]?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: UIView!
@@ -110,6 +114,18 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             label?.textColor = UIConstants.twitterPrimaryBlue
             label?.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 17)
         }
+        
+        tableView.dataSource = self
+        tableView.delegate = self
+        
+        segmentedControl.selectedSegmentIndex = 0
+        timelineChoice = UIConstants.TimelineEnum.user
+        
+        TwiSwiftClient.sharedInstance?.timelineWithChoice(choice: UIConstants.TimelineEnum.user, params: nil, completionHandler: { (tweets: [Tweet]?, error: Error?) in
+             self.userTweets = tweets
+             self.favoriteTweets = tweets
+             self.tableView.reloadData()
+        })
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -127,7 +143,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func linkTapped() {
         if let url = URL(string: user.profileURL!) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            // SFSafariViewController not working properly : (
+            
+// SFSafariViewController not working properly : (
 //            let svc = SFSafariViewController(url: url)
 //            present(svc, animated: true, completion: nil)
         }
@@ -174,12 +191,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        if timelineChoice == UIConstants.TimelineEnum.user {
+            return userTweets?.count ?? 0
+        } else if timelineChoice == UIConstants.TimelineEnum.favorite {
+            return favoriteTweets?.count ?? 0
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = "Tweet Tweet!"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        cell.selectionStyle = .none
+        cell.clearCellState()
+        
+        if timelineChoice == UIConstants.TimelineEnum.user {
+            if let tweet = userTweets?[indexPath.row] {
+                cell.tweet = tweet
+            }
+        } else if timelineChoice == UIConstants.TimelineEnum.favorite {
+            
+            if let tweet = favoriteTweets?[indexPath.row] {
+                cell.tweet = tweet
+            }
+        }
         return cell
     }
     
@@ -289,9 +323,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 if (!result!) {
                     self.followingButton.setUpToFollowAppearance()
                 }
-                
+    
             })
-            
         }
     }
 }
