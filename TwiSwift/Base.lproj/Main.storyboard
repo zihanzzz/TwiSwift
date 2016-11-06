@@ -724,58 +724,54 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="ud4-d0-FX1" userLabel="Profile view">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="262"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="u7o-aO-4dP">
-                                            <rect key="frame" x="8" y="-26" width="69" height="69"/>
+                                            <rect key="frame" x="12" y="-26" width="69" height="69"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="69" id="4gY-e0-6sA"/>
                                                 <constraint firstAttribute="height" constant="69" id="SFw-CW-VTX"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@bitwaker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vnE-TL-DQS" userLabel="Yaris username">
-                                            <rect key="frame" x="8" y="66" width="60" height="16"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.40000000000000002" green="0.41960784309999999" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@zihanzzz" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x9v-7q-lyd" userLabel="screenname label">
+                                            <rect key="frame" x="12" y="71" width="150" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="150" id="OdR-yM-AWt"/>
+                                                <constraint firstAttribute="height" constant="21" id="bEq-Jj-rCA"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YVB-g8-Nj9" userLabel="FollowButton">
-                                            <rect key="frame" x="255" y="13" width="112" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSt-QL-3I5" userLabel="Following Button" customClass="FollowingButton" customModule="TwiSwift" customModuleProvider="target">
+                                            <rect key="frame" x="282" y="18" width="85" height="35"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="112" id="WHI-0V-rTd"/>
-                                                <constraint firstAttribute="height" constant="30" id="sVT-6l-iaG"/>
+                                                <constraint firstAttribute="height" constant="35" id="KMK-pT-jQv"/>
+                                                <constraint firstAttribute="width" constant="85" id="rCe-Nc-h20"/>
                                             </constraints>
-                                            <state key="normal" title="Follow">
-                                                <color key="titleColor" red="0.33333333329999998" green="0.67450980390000004" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </state>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpi-4l-lRe">
-                                            <rect key="frame" x="8" y="43" width="0.0" height="0.0"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="James Zhou" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpi-4l-lRe" userLabel="name label">
+                                            <rect key="frame" x="12" y="47" width="270" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="Bhi-25-A7R"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@deanbrindley87" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6gE-K1-D9w" userLabel="Deans username">
-                                            <rect key="frame" x="8" y="82" width="100" height="16"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                                            <color key="textColor" red="0.40000000000000002" green="0.41960784309999999" blue="0.49803921569999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="u7o-aO-4dP" firstAttribute="leading" secondItem="xpi-4l-lRe" secondAttribute="leading" id="7sE-Wr-cgg"/>
-                                        <constraint firstItem="vnE-TL-DQS" firstAttribute="leading" secondItem="ud4-d0-FX1" secondAttribute="leadingMargin" id="Fqa-l2-0XN"/>
-                                        <constraint firstItem="xpi-4l-lRe" firstAttribute="top" secondItem="u7o-aO-4dP" secondAttribute="bottom" id="IR5-QX-2YS"/>
-                                        <constraint firstItem="YVB-g8-Nj9" firstAttribute="top" secondItem="ud4-d0-FX1" secondAttribute="top" constant="13" id="IlE-IO-KY9"/>
-                                        <constraint firstItem="vnE-TL-DQS" firstAttribute="leading" secondItem="6gE-K1-D9w" secondAttribute="leading" id="MhW-fm-i4G"/>
+                                        <constraint firstItem="ZSt-QL-3I5" firstAttribute="bottom" secondItem="u7o-aO-4dP" secondAttribute="bottom" constant="10" id="7xC-Fq-YBI"/>
+                                        <constraint firstAttribute="trailing" secondItem="ZSt-QL-3I5" secondAttribute="trailing" constant="8" id="8hU-aG-Op7"/>
+                                        <constraint firstItem="x9v-7q-lyd" firstAttribute="top" secondItem="xpi-4l-lRe" secondAttribute="bottom" constant="3" id="FKB-dv-aFQ"/>
+                                        <constraint firstItem="xpi-4l-lRe" firstAttribute="leading" secondItem="u7o-aO-4dP" secondAttribute="leading" id="HzT-j3-yjy"/>
+                                        <constraint firstItem="x9v-7q-lyd" firstAttribute="leading" secondItem="u7o-aO-4dP" secondAttribute="leading" id="L6T-aw-Zza"/>
                                         <constraint firstItem="u7o-aO-4dP" firstAttribute="top" secondItem="ud4-d0-FX1" secondAttribute="top" constant="-26" id="Se7-yO-s0z"/>
-                                        <constraint firstItem="vnE-TL-DQS" firstAttribute="leading" secondItem="xpi-4l-lRe" secondAttribute="leading" id="Y1b-4q-OCj"/>
-                                        <constraint firstItem="6gE-K1-D9w" firstAttribute="top" secondItem="vnE-TL-DQS" secondAttribute="bottom" id="d9H-fi-Wnh"/>
-                                        <constraint firstAttribute="trailing" secondItem="YVB-g8-Nj9" secondAttribute="trailing" constant="8" id="psL-r5-uZl"/>
-                                        <constraint firstAttribute="bottom" secondItem="vnE-TL-DQS" secondAttribute="bottom" constant="97" id="t7k-TF-QcY"/>
+                                        <constraint firstItem="u7o-aO-4dP" firstAttribute="leading" secondItem="ud4-d0-FX1" secondAttribute="leading" constant="12" id="VCS-eW-Zqq"/>
+                                        <constraint firstItem="ZSt-QL-3I5" firstAttribute="leading" secondItem="xpi-4l-lRe" secondAttribute="trailing" id="cR8-GU-ylf"/>
+                                        <constraint firstItem="xpi-4l-lRe" firstAttribute="top" secondItem="u7o-aO-4dP" secondAttribute="bottom" constant="4" id="lLK-J6-Ac7"/>
                                     </constraints>
                                 </view>
                                 <connections>
@@ -790,7 +786,7 @@
                                         <rect key="frame" x="0.0" y="44" width="375" height="1"/>
                                         <color key="backgroundColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="aNK-DH-KZy"/>
+                                            <constraint firstAttribute="height" constant="0.5" id="aNK-DH-KZy"/>
                                         </constraints>
                                     </view>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Ote-jQ-SY0">
@@ -799,7 +795,6 @@
                                             <segment title="Tweets"/>
                                             <segment title="Mentions"/>
                                         </segments>
-                                        <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -832,12 +827,14 @@
                     <navigationItem key="navigationItem" id="b9R-wf-OR7"/>
                     <connections>
                         <outlet property="avatarImage" destination="u7o-aO-4dP" id="8Az-LG-ztb"/>
-                        <outlet property="handleLabel" destination="xpi-4l-lRe" id="Rnd-Ut-Qvd"/>
+                        <outlet property="followingButton" destination="ZSt-QL-3I5" id="Gt7-ku-sHu"/>
                         <outlet property="headerLabel" destination="VB9-kt-1sC" id="GcK-QL-HnD"/>
                         <outlet property="headerView" destination="B7u-No-AAt" id="HKY-B0-MgY"/>
+                        <outlet property="nameLabel" destination="xpi-4l-lRe" id="387-tN-Q8Q"/>
                         <outlet property="profileView" destination="ud4-d0-FX1" id="h0h-2C-c1J"/>
+                        <outlet property="screennameLabel" destination="x9v-7q-lyd" id="PD9-RU-AG4"/>
+                        <outlet property="segmentedControl" destination="Ote-jQ-SY0" id="eSe-Jk-hM5"/>
                         <outlet property="segmentedView" destination="xtv-J7-Ylj" id="XET-F0-PNi"/>
-                        <outlet property="switchControl" destination="Ote-jQ-SY0" id="12p-Kq-2Xi"/>
                         <outlet property="tableView" destination="IcP-CG-QhG" id="mQ7-4q-amW"/>
                     </connections>
                 </viewController>

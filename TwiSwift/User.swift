@@ -11,8 +11,6 @@ import UIKit
 var _currentUser: User?
 let currentUserKey = "kCurrentUserKey"
 
-
-
 class User: NSObject {
     
     var name: String?
@@ -23,6 +21,7 @@ class User: NSObject {
     var idString: String?
     var bannerImageUrl: String?
     var bannerImageView: UIImageView?
+    var isFollowing: Bool?
 
     class var currentUser: User? {
         get {
@@ -69,6 +68,7 @@ class User: NSObject {
             bannerImageView = UIImageView()
             bannerImageView?.setImageWith(URL(string: bannerImageUrl!)!)
         }
+        isFollowing = dictionary["following"] as? Bool
         self.dictionary = dictionary
     }
     

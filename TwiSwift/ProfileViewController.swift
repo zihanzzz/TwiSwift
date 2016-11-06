@@ -24,10 +24,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var segmentedView: UIView!
     @IBOutlet weak var avatarImage: UIImageView!
-    @IBOutlet weak var handleLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var headerLabel: UILabel!
-    
-    @IBOutlet weak var switchControl: UISegmentedControl!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var screennameLabel: UILabel!
+    @IBOutlet weak var followingButton: FollowingButton!
     
     
     var headerBlurImageView:UIImageView!
@@ -36,6 +37,14 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
+        if (User.isCurrentUser(user: user)) {
+            followingButton.isHidden = true
+        }
+        if (user.isFollowing)! {
+            followingButton.setUpFollowingAppearance()
+        } else {
+            followingButton.setUpToFollowAppearance()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -46,13 +55,22 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsetsMake(headerView.frame.height, 0, 0, 0)
+        
+        followingButton.addTarget(self, action: #selector(followingButtonTapped(_:)), for: .touchUpInside)
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        segmentedControl.tintColor = UIConstants.twitterPrimaryBlue
         
         // labels
         headerLabel.text = user.name
-        handleLabel.text = "@\(user.screenname!)"
+        nameLabel.text = user.name
+        nameLabel.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 22)
+        nameLabel.textColor = UIColor.black
+        
+        screennameLabel.text = "@\(user.screenname!)"
+        screennameLabel.textColor = UIConstants.twitterDarkGray
+        screennameLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 16)
         
         // Avatar
         let largeAvatarUrl = user.profileImageUrl!.replacingOccurrences(of: "normal", with: "200x200")
@@ -63,13 +81,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         // Header - Image
         headerImageView = UIImageView(frame: headerView.bounds)
-        headerImageView?.image = user.bannerImageView?.image
+        if user.bannerImageView?.image == nil {
+            headerImageView.setImageWith(URL(string: User.getDisplayableBannerURL(user: user))!)
+        } else {
+            headerImageView?.image = user.bannerImageView?.image
+        }
+        
         headerImageView?.contentMode = UIViewContentMode.scaleAspectFill
         headerView.insertSubview(headerImageView, belowSubview: headerLabel)
         
         // Header - Blurred Image
         headerBlurImageView = UIImageView(frame: headerView.bounds)
-        headerBlurImageView?.image = user.bannerImageView?.image?.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
+        
+        if user.bannerImageView?.image == nil {
+            headerBlurImageView?.image = headerImageView.image?.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
+        } else {
+            headerBlurImageView?.image = user.bannerImageView?.image?.blurredImage(withRadius: 10, iterations: 20, tintColor: UIColor.clear)
+        }
         headerBlurImageView?.contentMode = UIViewContentMode.scaleAspectFill
         headerBlurImageView?.alpha = 0.0
         headerView.insertSubview(headerBlurImageView, belowSubview: headerLabel)
@@ -110,35 +138,27 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             headerTransform = CATransform3DTranslate(headerTransform, 0, headerSizevariation, 0)
             headerTransform = CATransform3DScale(headerTransform, 1.0 + headerScaleFactor, 1.0 + headerScaleFactor, 0)
             
-            
             // Hide views if scrolled super fast
             headerView.layer.zPosition = 0
             headerLabel.isHidden = true
-            
         }
             
             // SCROLL UP/DOWN ------------
-            
         else {
-            
             // Header -----------
-            
             headerTransform = CATransform3DTranslate(headerTransform, 0, max(-offset_HeaderStop, -offset), 0)
             
             //  ------------ Label
-            
             headerLabel.isHidden = false
-            let alignToNameLabel = -offset + handleLabel.frame.origin.y + headerView.frame.height + offset_HeaderStop
+            let alignToNameLabel = -offset + nameLabel.frame.origin.y + headerView.frame.height + offset_HeaderStop
             
             headerLabel.frame.origin = CGPoint(x: headerLabel.frame.origin.x, y: max(alignToNameLabel, distance_W_LabelHeader + offset_HeaderStop))
             
             
             //  ------------ Blur
-            
             headerBlurImageView?.alpha = min (1.0, (offset - alignToNameLabel)/distance_W_LabelHeader)
             
             // Avatar -----------
-            
             let avatarScaleFactor = (min(offset_HeaderStop, offset)) / avatarImage.bounds.height / 1.4 // Slow down the animation
             let avatarSizeVariation = ((avatarImage.bounds.height * (1.0 + avatarScaleFactor)) - avatarImage.bounds.height) / 2.0
             avatarTransform = CATransform3DTranslate(avatarTransform, 0, avatarSizeVariation, 0)
@@ -173,6 +193,29 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         // Set scroll view insets just underneath the segment control
         tableView.scrollIndicatorInsets = UIEdgeInsetsMake(segmentedView.frame.maxY, 0, 0, 0)
+    }
+    
+    func followingButtonTapped(_ sender: FollowingButton) {
+        
+        if (sender.isFollowing!) {
+            
+            
+            let unfollowAlert = UIAlertController(title: "\(user.name!)", message: nil, preferredStyle: .actionSheet)
+            
+            unfollowAlert.addAction(UIAlertAction(title: "Unfollow", style: .destructive, handler: { (action) in
+                
+            }))
+            
+            unfollowAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            
+            present(unfollowAlert, animated: true, completion: nil)
+            
+            
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                sender.setUpFollowingAppearance()
+            })
+        }
     }
 }
 
