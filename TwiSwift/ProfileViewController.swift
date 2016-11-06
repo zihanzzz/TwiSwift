@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var user: User!
     
+    var tweets: [Tweet]?
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var profileView: UIView!
@@ -24,6 +26,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var avatarImage: UIImageView!
     @IBOutlet weak var handleLabel: UILabel!
     @IBOutlet weak var headerLabel: UILabel!
+    
+    @IBOutlet weak var switchControl: UISegmentedControl!
+    
     
     var headerBlurImageView:UIImageView!
     var headerImageView:UIImageView!
@@ -44,6 +49,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        // labels
+        headerLabel.text = user.name
+        handleLabel.text = "@\(user.screenname!)"
         
         // Avatar
         let largeAvatarUrl = user.profileImageUrl!.replacingOccurrences(of: "normal", with: "200x200")
@@ -67,9 +76,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         headerView.clipsToBounds = true
     }
-    
-    
-    
+
     // MARK: - Table View
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -163,8 +170,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         segmentTransform = CATransform3DTranslate(segmentTransform, 0, max(segmentViewOffset, -offset_HeaderStop), 0)
         
         segmentedView.layer.transform = segmentTransform
-        
-        
+
         // Set scroll view insets just underneath the segment control
         tableView.scrollIndicatorInsets = UIEdgeInsetsMake(segmentedView.frame.maxY, 0, 0, 0)
     }

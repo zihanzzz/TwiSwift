@@ -751,8 +751,8 @@
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jane Stormtrooper" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpi-4l-lRe">
-                                            <rect key="frame" x="8" y="43" width="144" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xpi-4l-lRe">
+                                            <rect key="frame" x="8" y="43" width="0.0" height="0.0"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -797,12 +797,9 @@
                                         <rect key="frame" x="8" y="8" width="359" height="30"/>
                                         <segments>
                                             <segment title="Tweets"/>
-                                            <segment title="Media"/>
+                                            <segment title="Mentions"/>
                                         </segments>
                                         <color key="tintColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
-                                        <connections>
-                                            <action selector="selectContentType:" destination="3rZ-3R-jlD" eventType="valueChanged" id="b0Y-2B-ale"/>
-                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -840,6 +837,7 @@
                         <outlet property="headerView" destination="B7u-No-AAt" id="HKY-B0-MgY"/>
                         <outlet property="profileView" destination="ud4-d0-FX1" id="h0h-2C-c1J"/>
                         <outlet property="segmentedView" destination="xtv-J7-Ylj" id="XET-F0-PNi"/>
+                        <outlet property="switchControl" destination="Ote-jQ-SY0" id="12p-Kq-2Xi"/>
                         <outlet property="tableView" destination="IcP-CG-QhG" id="mQ7-4q-amW"/>
                     </connections>
                 </viewController>
