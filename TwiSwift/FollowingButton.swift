@@ -21,7 +21,7 @@ class FollowingButton: UIButton {
         self.layer.borderColor = UIConstants.twitterPrimaryBlue.cgColor
         self.layer.borderWidth = 1
         
-        self.titleLabel?.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 16)
+        self.titleLabel?.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 16)
     }
     
     func setUpFollowingAppearance() {

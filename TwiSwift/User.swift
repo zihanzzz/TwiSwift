@@ -26,6 +26,9 @@ class User: NSObject {
     var location: String?
     var profileURL: String?
     var displayURL: String?
+    var tweetsCount: Int?
+    var followersCount: Int?
+    var followingCount: Int?
 
     class var currentUser: User? {
         get {
@@ -90,6 +93,12 @@ class User: NSObject {
                 }
             }
         }
+        
+        // counts
+        tweetsCount = dictionary["statuses_count"] as? Int
+        followersCount = dictionary["followers_count"] as? Int
+        followingCount = dictionary["friends_count"] as? Int
+
         self.dictionary = dictionary
     }
     

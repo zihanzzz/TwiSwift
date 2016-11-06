@@ -85,6 +85,22 @@ class UIConstants: NSObject {
     }
     
     // MARK: - Strings
+    static func getFriendlyCounts(count: Int) -> String {
+        
+        let doubleCount = Double(count)
+        
+        if count < 1000 {
+            return "\(count)"
+        } else if ((count > 1000 || count == 1000) && count < 1000000) {
+            let newNumber = doubleCount / 1000.0
+            return String(format: "%.1fK", newNumber)
+        } else if (count > 1000000 || count == 1000000) {
+            let newNumber = doubleCount / 1000000.0
+            return String(format: "%.1fM", newNumber)
+        }
+        return "0"
+    }
+    
     static func getTimeStampLabel(date: Date) -> String {
         return date.string(dateStyle: .short, timeStyle: .short, in: nil)
     }

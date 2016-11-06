@@ -9,8 +9,8 @@
 import UIKit
 //import SafariServices
 
-let offset_HeaderStop:CGFloat = 40.0 // At this offset the Header stops its transformations
-let distance_W_LabelHeader:CGFloat = 30.0 // The distance between the top of the screen and the top of the White Label
+let offset_HeaderStop: CGFloat = 40.0 // At this offset the Header stops its transformations
+let distance_W_LabelHeader: CGFloat = 30.0 // The distance between the top of the screen and the top of the White Label
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate {
     
@@ -36,11 +36,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var linkImageView: UIImageView!
     @IBOutlet weak var linkLabel: UILabel!
     
+    // COUNTINGS
+    @IBOutlet weak var tweetsLabel: UILabel!
+    @IBOutlet weak var followingLabel: UILabel!
+    @IBOutlet weak var followersLabel: UILabel!
+    @IBOutlet weak var tweetsCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+    
     var headerBlurImageView:UIImageView!
     var headerImageView:UIImageView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         self.navigationController?.navigationBar.isHidden = true
         if (User.isCurrentUser(user: user)) {
             followingButton.isHidden = true
@@ -73,13 +82,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             locationLabel.text = user.location!
         }
         locationLabel.textColor = UIConstants.twitterDarkGray
-        locationLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 18)
+        locationLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 15)
         locationLabel.sizeToFit()
         
         linkLabel.text = user.displayURL
         linkImageView.image = UIImage(named: "link")
         linkLabel.textColor = UIConstants.twitterPrimaryBlue
-        linkLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 18)
+        linkLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 15)
         linkLabel.sizeToFit()
         
         let linkTap = UITapGestureRecognizer()
@@ -87,6 +96,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         linkTap.addTarget(self, action: #selector(linkTapped))
         linkLabel.isUserInteractionEnabled = true
         linkLabel.addGestureRecognizer(linkTap)
+        
+        for label in [tweetsLabel, followingLabel, followersLabel] {
+            label?.textColor = UIConstants.twitterLightGray
+        }
+        
+        tweetsCountLabel.text = UIConstants.getFriendlyCounts(count: user.tweetsCount!)
+        followingCountLabel.text = UIConstants.getFriendlyCounts(count: user.followingCount!)
+        followersCountLabel.text = UIConstants.getFriendlyCounts(count: user.followersCount!)
+        
+        for label in [tweetsCountLabel, followingCountLabel, followersCountLabel] {
+            label?.sizeToFit()
+            label?.textColor = UIConstants.twitterPrimaryBlue
+            label?.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 17)
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -193,7 +216,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let alignToNameLabel = -offset + nameLabel.frame.origin.y + headerView.frame.height + offset_HeaderStop
             
             headerLabel.frame.origin = CGPoint(x: headerLabel.frame.origin.x, y: max(alignToNameLabel, distance_W_LabelHeader + offset_HeaderStop))
-            
             
             //  ------------ Blur
             headerBlurImageView?.alpha = min (1.0, (offset - alignToNameLabel)/distance_W_LabelHeader)
