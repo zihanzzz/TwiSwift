@@ -35,6 +35,7 @@
 		BA18322D6AE2E16807797600 /* Pods-TwiSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwiSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TwiSwift/Pods-TwiSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		E02D2B4461B1DBACE11B8818 /* Pods-TwiSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwiSwift.release.xcconfig"; path = "Pods/Target Support Files/Pods-TwiSwift/Pods-TwiSwift.release.xcconfig"; sourceTree = "<group>"; };
 		E107AAA21DCEC72300D68FA3 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		E107AAA81DCF0C9400D68FA3 /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
 		E1104AB11DC6C3A300D2A830 /* InfiniteScrollActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfiniteScrollActivityView.swift; sourceTree = "<group>"; };
 		E121DE941DCD481A001CC648 /* LeftMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuViewController.swift; sourceTree = "<group>"; };
 		E121DE961DCD48BC001CC648 /* LeftMenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftMenuCell.swift; sourceTree = "<group>"; };
@@ -161,6 +162,7 @@
 				E121DE961DCD48BC001CC648 /* LeftMenuCell.swift */,
 				E149A8681DC5586100918C9C /* TweetNumbersCell.swift */,
 				E1104AB11DC6C3A300D2A830 /* InfiniteScrollActivityView.swift */,
+				E107AAA81DCF0C9400D68FA3 /* BridgingHeader.h */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -201,6 +203,7 @@
 					E1A0992F1DC09EBD00E0AC36 = {
 						CreatedOnToolsVersion = 8.1;
 						DevelopmentTeam = EEV6AZHDW2;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -441,11 +444,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = EEV6AZHDW2;
 				INFOPLIST_FILE = TwiSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jameszhou.mobile.TwiSwift;
 				PRODUCT_NAME = TwitterLite;
+				SWIFT_OBJC_BRIDGING_HEADER = TwiSwift/BridgingHeader.h;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -457,11 +463,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = EEV6AZHDW2;
 				INFOPLIST_FILE = TwiSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jameszhou.mobile.TwiSwift;
 				PRODUCT_NAME = TwitterLite;
+				SWIFT_OBJC_BRIDGING_HEADER = TwiSwift/BridgingHeader.h;
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

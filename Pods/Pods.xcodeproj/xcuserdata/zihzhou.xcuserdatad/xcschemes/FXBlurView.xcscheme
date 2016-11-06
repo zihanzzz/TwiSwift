@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '445B3D47256376A8FB06D383FDBEA0C4'
-               BlueprintName = 'BDBOAuth1Manager'
+               BlueprintIdentifier = 'CD378EDFF42487A7E1BB47D45223953B'
+               BlueprintName = 'FXBlurView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'BDBOAuth1Manager.framework'>
+               BuildableName = 'FXBlurView.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

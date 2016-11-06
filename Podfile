@@ -10,5 +10,6 @@ target 'TwiSwift' do
   pod 'BDBOAuth1Manager'
   pod 'AFNetworking'
   pod 'SwiftDate'
+  pod 'FXBlurView'
 
 end

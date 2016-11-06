@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "469292100F90B35A5EC813A5A614251E"
+               BlueprintIdentifier = "427F3DE1F907C4AB45D4AA5396C40EB5"
                BuildableName = "Pods_TwiSwift.framework"
                BlueprintName = "Pods-TwiSwift"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "469292100F90B35A5EC813A5A614251E"
+            BlueprintIdentifier = "427F3DE1F907C4AB45D4AA5396C40EB5"
             BuildableName = "Pods_TwiSwift.framework"
             BlueprintName = "Pods-TwiSwift"
             ReferencedContainer = "container:Pods.xcodeproj">

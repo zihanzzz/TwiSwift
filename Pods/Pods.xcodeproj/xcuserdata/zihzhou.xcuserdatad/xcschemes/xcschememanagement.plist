@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FXBlurView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TwiSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -37,7 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>39A847CB67B79A2C41C8E9D890546825</key>
+		<key>427F3DE1F907C4AB45D4AA5396C40EB5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -47,12 +52,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>469292100F90B35A5EC813A5A614251E</key>
+		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79C040AFDDCE1BCBF6D8B5EB0B85887F</key>
+		<key>94055EF326F9E8E6FE84C6113EEBB653</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD378EDFF42487A7E1BB47D45223953B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
