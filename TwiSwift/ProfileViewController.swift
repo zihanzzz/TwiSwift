@@ -117,6 +117,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
         
         segmentedControl.selectedSegmentIndex = 0
         timelineChoice = UIConstants.TimelineEnum.user
