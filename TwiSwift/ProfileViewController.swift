@@ -122,11 +122,17 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         segmentedControl.selectedSegmentIndex = 0
         timelineChoice = UIConstants.TimelineEnum.user
+        segmentedControl.addTarget(self, action: #selector(onChangeTimeline(_:)), for: .valueChanged)
         
-        TwiSwiftClient.sharedInstance?.timelineWithChoice(choice: UIConstants.TimelineEnum.user, params: nil, completionHandler: { (tweets: [Tweet]?, error: Error?) in
+        let userParams = ["screen_name": user.screenname!]
+        TwiSwiftClient.sharedInstance?.timelineWithChoice(choice: UIConstants.TimelineEnum.user, params: userParams, completionHandler: { (tweets: [Tweet]?, error: Error?) in
              self.userTweets = tweets
-             self.favoriteTweets = tweets
              self.tableView.reloadData()
+        })
+        
+        let favoriteParams = ["screen_name": user.screenname!]
+        TwiSwiftClient.sharedInstance?.timelineWithChoice(choice: UIConstants.TimelineEnum.favorite, params: favoriteParams, completionHandler: { (tweets: [Tweet]?, erro: Error?) in
+            self.favoriteTweets = tweets
         })
     }
     
@@ -150,6 +156,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 //            let svc = SFSafariViewController(url: url)
 //            present(svc, animated: true, completion: nil)
         }
+    }
+    
+    func onChangeTimeline(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            timelineChoice = UIConstants.TimelineEnum.user
+            break
+        case 1:
+            timelineChoice = UIConstants.TimelineEnum.favorite
+            break
+        default:
+            break
+        }
+        tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
