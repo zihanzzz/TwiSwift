@@ -21,6 +21,7 @@ class User: NSObject {
     var tagline: String?
     var dictionary: Dictionary<String, AnyObject>?
     var idString: String?
+    var bannerImageUrl: String?
 
     class var currentUser: User? {
         get {
@@ -62,6 +63,7 @@ class User: NSObject {
         profileImageUrl = dictionary["profile_image_url_https"] as? String
         tagline = dictionary["description"] as? String
         idString = dictionary["id_str"] as? String
+        bannerImageUrl = dictionary["profile_banner_url"] as? String
         self.dictionary = dictionary
     }
     
@@ -83,6 +85,20 @@ class User: NSObject {
         defaults.synchronize()
         
         TwiSwiftClient.sharedInstance? = TwiSwiftClient(baseURL: CredentialsControl.getBaseURL(), consumerKey: CredentialsControl.getKey(), consumerSecret: CredentialsControl.getSecret())
+    }
+    
+    class func getDisplayableBannerURL(user: User) -> String {
+        
+        if user.bannerImageUrl == nil {
+            return "http://www.planwallpaper.com/static/images/nature-wallpapers-1.jpg"
+        }
+        
+        if isCurrentUser(user: user) {
+            return user.bannerImageUrl!
+        } else {
+            return "\(user.bannerImageUrl!)/1500x500"
+        }
+        
     }
     
     class func isCurrentUser(user: User) -> Bool{

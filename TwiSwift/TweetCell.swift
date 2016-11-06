@@ -232,7 +232,8 @@ class TweetCell: UITableViewCell {
     
     // Avatar
     func avatarImageTapped() {
-        delegate?.tweetCell?(tweetCell: self, didTapAvatar tweet: self.tweet)
+        delegate?.tweetCell?(tweetCell: self, didTapAvatar: self.tweet)
+        
     }
     
     func toggleLikeButton() {

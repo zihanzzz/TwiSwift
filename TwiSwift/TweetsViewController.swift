@@ -230,10 +230,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-//        profileVC.user = 
-        
+        profileVC.user = tweet.originalComposer
         self.navigationController?.pushViewController(profileVC, animated: true)
-        
     }
     
     // MARK: - 3D Touch Preview

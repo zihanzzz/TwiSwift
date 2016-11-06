@@ -114,7 +114,8 @@ class TweetDetailsViewController: UIViewController, UITableViewDataSource, UITab
     
     func tweetCell(tweetCell: TweetCell, didTapAvatar tweet: Tweet) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
+        let profileVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+        profileVC.user = tweet.originalComposer
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     

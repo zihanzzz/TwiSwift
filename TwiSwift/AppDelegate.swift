@@ -31,6 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             leftMenuViewController.hamburgerViewController = hamburgerViewController
             
             let vc = storyboard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+            vc.user = User.currentUser
             
             window?.rootViewController = hamburgerViewController
         }
