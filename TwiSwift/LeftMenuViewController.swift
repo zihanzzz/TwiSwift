@@ -62,9 +62,8 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         hamburgerViewController.contentViewController = homeNavigationController
         
         // set up app version label
-        let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-        let appBundle = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-        
+        let version = UIConstants.getAppVersion()
+        let appBundle = UIConstants.getAppBundle()
         appVersionLabel.text = "TwitterLite v\(version) (\(appBundle))"
         appVersionLabel.textColor = UIColor.white
         appVersionLabel.font = UIFont(name: UIConstants.getTextFontNameLight(), size: 16)

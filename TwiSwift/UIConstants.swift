@@ -86,6 +86,14 @@ class UIConstants: NSObject {
     }
     
     // MARK: - Strings
+    static func getAppVersion() -> String {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    }
+    
+    static func getAppBundle() -> String {
+        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+    }
+    
     static func getFriendlyCounts(count: Int) -> String {
         
         let doubleCount = Double(count)
