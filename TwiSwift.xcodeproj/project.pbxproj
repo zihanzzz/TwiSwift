@@ -29,6 +29,8 @@
 		E1A19FC51DC33519008A610A /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A19FC41DC33519008A610A /* TweetCell.swift */; };
 		E1BA1DCC1DCDCDA500902117 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BA1DCB1DCDCDA500902117 /* HamburgerViewController.swift */; };
 		E1FC86621DC6CEFA002C616C /* CredentialsControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FC86611DC6CEFA002C616C /* CredentialsControl.swift */; };
+		E1FE63591DD02AA600C67A37 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE63581DD02AA600C67A37 /* SettingsViewController.swift */; };
+		E1FE635B1DD02D1B00C67A37 /* AccountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE635A1DD02D1B00C67A37 /* AccountCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		E1A19FC41DC33519008A610A /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		E1BA1DCB1DCDCDA500902117 /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
 		E1FC86611DC6CEFA002C616C /* CredentialsControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CredentialsControl.swift; sourceTree = "<group>"; };
+		E1FE63581DD02AA600C67A37 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		E1FE635A1DD02D1B00C67A37 /* AccountCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,7 @@
 				E121DE941DCD481A001CC648 /* LeftMenuViewController.swift */,
 				E1BA1DCB1DCDCDA500902117 /* HamburgerViewController.swift */,
 				E18451F81DCF50F60041F8F3 /* ProfileViewController.swift */,
+				E1FE63581DD02AA600C67A37 /* SettingsViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -166,6 +171,7 @@
 				E1104AB11DC6C3A300D2A830 /* InfiniteScrollActivityView.swift */,
 				E107AAA81DCF0C9400D68FA3 /* BridgingHeader.h */,
 				E18451FA1DCF61170041F8F3 /* FollowingButton.swift */,
+				E1FE635A1DD02D1B00C67A37 /* AccountCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -301,10 +307,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E17445341DC1C2BF00400278 /* User.swift in Sources */,
+				E1FE635B1DD02D1B00C67A37 /* AccountCell.swift in Sources */,
 				E1104AB21DC6C3A300D2A830 /* InfiniteScrollActivityView.swift in Sources */,
 				E121DE971DCD48BC001CC648 /* LeftMenuCell.swift in Sources */,
 				E18451FB1DCF61170041F8F3 /* FollowingButton.swift in Sources */,
 				E149A86D1DC57DDB00918C9C /* NewTweetViewController.swift in Sources */,
+				E1FE63591DD02AA600C67A37 /* SettingsViewController.swift in Sources */,
 				E1BA1DCC1DCDCDA500902117 /* HamburgerViewController.swift in Sources */,
 				E1FC86621DC6CEFA002C616C /* CredentialsControl.swift in Sources */,
 				E17445361DC1C36800400278 /* Tweet.swift in Sources */,

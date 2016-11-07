@@ -11,7 +11,7 @@ import UIKit
 class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     enum MenuSelection: Int {
-        case timeline = 0, profile, mentions, logout
+        case timeline = 0, profile, mentions, settings, logout
     }
     
     @IBOutlet weak var leftMenuTableView: UITableView!
@@ -25,6 +25,8 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     private var profileNavigationController: UINavigationController!
     
     private var mentionsNavigationController: UINavigationController!
+    
+    private var settingsNavigationController: UINavigationController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +45,8 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         mentionsNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
         let mentionsViewController = mentionsNavigationController.topViewController as? TweetsViewController
         mentionsViewController?.timelineChoice = UIConstants.TimelineEnum.mentions
-
+        
+        settingsNavigationController = storyboard.instantiateViewController(withIdentifier: "SettingsNavigationController") as! UINavigationController
         
         leftMenuTableView.dataSource = self
         leftMenuTableView.delegate = self
@@ -79,7 +82,7 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -98,12 +101,14 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         case MenuSelection.mentions.rawValue:
             cell.setUpMenu(menuText: "Mentions", menuImageName: "mention")
             break
+        case MenuSelection.settings.rawValue:
+            cell.setUpMenu(menuText: "Settings", menuImageName: "settings")
+            break
         case MenuSelection.logout.rawValue:
             cell.setUpMenu(menuText: "Log Out", menuImageName: "logout-white")
         default:
             break
         }
-
         return cell
     }
     
@@ -121,7 +126,9 @@ class LeftMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         case MenuSelection.mentions.rawValue:
             hamburgerViewController.contentViewController = mentionsNavigationController
             break
-
+        case MenuSelection.settings.rawValue:
+            hamburgerViewController.contentViewController = settingsNavigationController
+            break
         case MenuSelection.logout.rawValue:
             NotificationCenter.default.post(name: UIConstants.HamburgerEventEnum.didClose.notification, object: nil, userInfo: nil)
             let logoutAlert = UIAlertController(title: "Log Out", message: "Are you sure to log out of TwitterLite?", preferredStyle: .alert)

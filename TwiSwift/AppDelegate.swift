@@ -44,8 +44,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func userDidLogOut() {
-        let vc = storyboard.instantiateInitialViewController()
-        window?.rootViewController = vc
+        UIView.animate(withDuration: 0.7, animations: {
+            let vc = self.storyboard.instantiateInitialViewController()
+            self.window?.rootViewController = vc
+        })
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

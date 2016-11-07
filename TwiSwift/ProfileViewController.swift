@@ -53,7 +53,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         self.navigationController?.navigationBar.isHidden = true
         if (User.isCurrentUser(user: user)) {
             followingButton.isHidden = true
@@ -143,6 +143,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.contentInset = UIEdgeInsetsMake(headerView.frame.height, 0, 0, 0)
         
         followingButton.addTarget(self, action: #selector(followingButtonTapped(_:)), for: .touchUpInside)
@@ -171,6 +172,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         tableView.reloadData()
     }
+
     
     override func viewDidAppear(_ animated: Bool) {
         
