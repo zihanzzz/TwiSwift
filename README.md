@@ -18,7 +18,7 @@ The following **required** functionality is completed:
 - [x] Profile page
    - [x] Contains the user header view
    - [x] Contains a section with the users basic stats: # tweets, # following, # followers
-- [x] Home Timeline
+- [x] Home Timelines
    - [x] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
@@ -42,7 +42,7 @@ The following **additional** features are implemented:
   - [x] 0.4 Display app version and app bundle at the bottom of hamburger menu.
 - [x] 1. Real Twitter app feel Profile page thanks to this **[post](http://developerdean.com/create-twitter-ios-app-user-interface/)**.
   - [x] 1.1 Set up scrolling between UI components using the code base mentioned above.
-  - [x] 1.2 Add user description, user location, user url, # of tweets, # of following and # of followers.
+  - [x] 1.2 Add user description, user location, user url, # of tweets, # of following and # of followers (friendly counts like 1.5K or 8.2M).
   - [x] 1.3 Segmented control to switch between user tweets and user favorites.
   - [x] 1.4 Hide navigation bar upon entering Profile page and un-hide it upon leaving.
 - [x] 2. Settings Page.
@@ -50,7 +50,6 @@ The following **additional** features are implemented:
   - [x] 2.2 Swipe left to log out user.
   - [x] 2.3 Developer information.
   - [x] 2.4 One tap to log out of all authenticated users.
-
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -65,7 +64,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://github.com/zihanzzz/TwitterLite/blob/master/TwitterLiteDemo_2.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

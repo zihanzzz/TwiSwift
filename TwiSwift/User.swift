@@ -123,7 +123,6 @@ class User: NSObject {
     }
     
     class func getDisplayableBannerURL(user: User) -> String {
-        
         if user.bannerImageUrl == nil {
             return "http://www.planwallpaper.com/static/images/nature-wallpapers-1.jpg"
         }
@@ -133,7 +132,6 @@ class User: NSObject {
         } else {
             return "\(user.bannerImageUrl!)/1500x500"
         }
-        
     }
     
     class func isCurrentUser(user: User) -> Bool{

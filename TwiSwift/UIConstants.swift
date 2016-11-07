@@ -10,8 +10,7 @@ import UIKit
 import SwiftDate
 
 class UIConstants: NSObject {
-    
-    
+
     // MARK : - Enums
     enum UserEventEnum: String {
         case didLogin = "userDidLoginNotification"
