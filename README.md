@@ -45,6 +45,7 @@ The following **additional** features are implemented:
   - [x] 1.2 Add user description, user location, user url, # of tweets, # of following and # of followers (friendly counts like 1.5K or 8.2M).
   - [x] 1.3 Segmented control to switch between user tweets and user favorites.
   - [x] 1.4 Hide navigation bar upon entering Profile page and un-hide it upon leaving.
+  - [x] 1.5 **Follow** and **Unfollow** user.
 - [x] 2. Settings Page.
   - [x] 2.1 Show currently logged in user.
   - [x] 2.2 Swipe left to log out user.
