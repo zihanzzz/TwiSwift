@@ -52,7 +52,11 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == SettingsSection.accounts.rawValue {
-            return 100
+            if indexPath.row == 0 {
+                return 100
+            } else if indexPath.row == 1 {
+                return 50
+            }
         } else if indexPath.section == SettingsSection.about.rawValue {
             return 50
         } else if indexPath.section == SettingsSection.deleteAll.rawValue {
@@ -92,7 +96,7 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case SettingsSection.accounts.rawValue:
-            return 1
+            return 2
         case SettingsSection.about.rawValue:
             return 2
         case SettingsSection.deleteAll.rawValue:
@@ -106,15 +110,25 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         if indexPath.section == SettingsSection.accounts.rawValue {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell", for: indexPath) as! AccountCell
-            cell.selectionStyle = .none
-            cell.user = User.currentUser
-            return cell
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "AccountCell", for: indexPath) as! AccountCell
+                cell.selectionStyle = .none
+                cell.user = User.currentUser
+                return cell
+            } else if indexPath.row == 1 {
+                let cell = UITableViewCell()
+                cell.selectionStyle = .none
+                cell.textLabel?.text = "Add another account"
+                cell.textLabel?.textColor = UIConstants.twitterPrimaryBlue
+                cell.textLabel?.font = UIFont(name: UIConstants.getTextFontNameBold(), size: 16)
+                return cell
+            }
+            
         } else if indexPath.section == SettingsSection.about.rawValue {
             let cell = UITableViewCell()
             
             if indexPath.row == 0 {
-                cell.textLabel?.text = "See author's website"
+                cell.textLabel?.text = "See developer's website"
             } else if indexPath.row == 1 {
                 cell.textLabel?.text = "See source code on Github"
             }
@@ -138,6 +152,15 @@ class SettingsViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         switch indexPath.section {
+        case SettingsSection.accounts.rawValue:
+            if indexPath.row == 1 {
+                let notSupportedAlert = UIAlertController(title: "Not Supported", message: "This feature is not yet supported in this version. Please stay tuned.", preferredStyle: .alert)
+                notSupportedAlert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    print("OK")
+                }))
+                present(notSupportedAlert, animated: true, completion: nil)
+            }
+            break
         case SettingsSection.about.rawValue:
             if indexPath.row == 0 {
                 if let url = URL(string: "http://www.jameszzhou.com/") {
